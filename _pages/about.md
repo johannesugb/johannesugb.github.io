@@ -3,6 +3,16 @@ permalink: /about/
 title: "About"
 ---
 
-Tempor velit sint sunt ipsum tempor enim ad qui ullamco. Est dolore anim ad velit duis dolore minim sunt aliquip amet commodo labore. Ut eu pariatur aute ea aute excepteur laborum. Esse ea esse excepteur minim mollit qui cillum excepteur ex dolore magna. Labore deserunt fugiat incididunt incididunt sint ea. Consequat dolore aute laboris quis proident quis non et est consectetur ex eiusmod sit culpa.
+My name is Johannes Unterguggenberger. I am a Real-Time Rendering Engineer and Researcher and live in Vienna, Austria, where I'm working as university assistant and predoctoral researcher at the [Rendering and Modeling group](https://www.cg.tuwien.ac.at) of [TU Wien](https://www.tuwien.at). 
 
-Cupidatat ea do et in excepteur in. Ad nostrud ut est esse eu duis ea sunt eiusmod. Aliquip tempor veniam sint elit fugiat. Velit incididunt laboris amet incididunt labore dolore irure velit excepteur commodo deserunt laborum. Consectetur eu fugiat veniam veniam Lorem labore magna eiusmod. Ea occaecat reprehenderit pariatur consectetur minim labore ut aliquip.
+### Technology and GitHub Projects
+
+Currently, I am mostly working with C++17 and Vulkan, mainly to further the development of a Vulkan convenience and productivity layer called [_Auto-Vk_](https://github.com/cg-tuwien/Auto-Vk) and a C++/Vulkan programming framework called [_Gears-Vk_](https://github.com/cg-tuwien/Gears-Vk).
+
+I'm also using the .NET framework with C# and PowerShell for the development of tools and utils for _Gears-Vk_. In the past, I used C# for various desktop projects in conjunction with WPF, and most notably, also for Unity3D development.
+
+### Contact
+
+To contact me about teaching and research-related topics, please refer to my [personal page](https://www.cg.tuwien.ac.at/staff/JohannesUnterguggenberger.html) at the Institute of Visual Computing & Human-Centered Technology.
+
+For personal matters, feel free to send me an email to: [johannes.unterguggenberger@gmail.com](mailto:johannes.unterguggenberger@gmail.com)
