@@ -19,12 +19,8 @@ description: >- # this means to ignore newlines until "baseurl:"
   Real-Time Rendering Engineer and Researcher
 twitter_username: JohannesUgb
 github_username: johannesugb
-stackoverflow_user: users/387023/j00hi
-linkedin_user: in/johannesugb
 minimal_mistakes_skin: dark
 search: true
-
-teaser: /assets/images/1500x500.jpg
 
 # Build settings
 markdown: kramdown
@@ -61,7 +57,7 @@ plugins:
 
 author:
   name   : "Johannes Unterguggenberger"
-  avatar : "/assets/images/bio-photo.jpg"
+  avatar : "/assets/images/cZsJqsg5_400x400.png"
   bio    : "Real-Time Rendering Engineer and Researcher"
   links:
     - label: "Mail"
