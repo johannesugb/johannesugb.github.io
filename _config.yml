@@ -24,6 +24,8 @@ linkedin_user: in/johannesugb
 minimal_mistakes_skin: dark
 search: true
 
+teaser: /assets/images/1500x500.jpg
+
 # Build settings
 markdown: kramdown
 remote_theme: mmistakes/minimal-mistakes
