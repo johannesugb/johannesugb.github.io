@@ -17,7 +17,7 @@ looking for the best of how to pass-in lambda functions as a parameter. There ar
 - by universal reference*, or
 - by value?
 
-* I will be using the term _universal reference_ in this blog post and not _forwarding reference_ since those references will not be forwarded in 
+\* I will be using the term _universal reference_ in this blog post and not _forwarding reference_ since those references will not be forwarded in 
 the code examples. Therefore, good old "universal reference" seems to be the more appropriate term in this context.
 
 # How does the STL do it?
@@ -38,8 +38,12 @@ it by reference or by value, the compiler _only_ has to plug in the instructions
 We can verify this by taking a look at the generated assembly code (e.g. using [COMPILER EXPLORER](https://godbolt.org/)):
 The two different code versions shown in Figure 1 compile to the same assembly instructions as shown in Figure 2 (x86-64 clang 11.0.0 -O1, diff created with [WinMerge](https://winmerge.org/)).
 
-![Two versions of a function accepting lambda by value or const reference](lambda_byval_vs_byconstref.png)
+![Two versions of a function accepting lambda by value or const reference](/assets/images/lambda_byval_vs_byconstref.png)
 _Figure 1:_ Two versions of a function, the left accepts a lambda by value, the right accepts it by const reference.
 
-![Assembly code of the two different functions from Figure 1](use_func_byval_vs_byconstref.png)
+![Assembly code of the two different functions from Figure 1](/assets/images/use_func_byval_vs_byconstref.png)
 _Figure 2:_ The assembly code of the two versions from Figure 1 compared with each other.
+
+That means, how ex
+
+# Passing a lambda 
