@@ -108,6 +108,7 @@ defaults:
     values:
       layout: single
       author_profile: true
+      words_per_minute: 100
       read_time: true
       comments: true
       share: true
