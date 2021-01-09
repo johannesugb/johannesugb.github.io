@@ -73,7 +73,7 @@ Capturing the `std::vector` by reference incurs the small cost of copying only o
 
 ## Are The Alternatives Any Good?
 
-All the alternatives to passing a lambda by value actually capture a lambda's address, be it by const l-value reference, by non-const l-value reference, by universal reference, or by pointer. No matter which alternative we are choosing, it results in exactly the same code as can be seen in Figure 3 which compare the generated assembly code from Code Listing 3 and Code Listing 4.
+All the alternatives to passing a lambda by value actually capture a lambda's address, be it by const l-value reference, by non-const l-value reference, by universal reference, or by pointer. No matter which alternative we are choosing, it results in exactly the same code as can be seen in Figure 3 which compare the generated assembly code from Code Listing 3 and Code Listing 4 (x86-64 clang 11.0.0 -O0).
 
 ```cpp
 template <typename F>
@@ -134,7 +134,7 @@ This indicates that especially the latter variant -- the one accepting a univers
 
 ## Which Variant Shall I Use?
 
-As reasoned in the answers and comments of the [StackOverflow question](https://stackoverflow.com/questions/65562986) mentioned initially, the **by value** variant is probably the best one that you should default to. It might allow the compiler to optimize the code better due to fewer indirections. Data can be passed very efficiently on the stack in many cases. The fact that the STL uses these kinds of lambda parameters reinforce these points. The only real downside is that it does not accept move-only lambdas. You would have to change move-only lambdas into copy-able lambdas, e.g. by wrapping a `std::unique_ptr` into a `std::reference_wrapper`.
+As reasoned in the answers and comments of the [StackOverflow question](https://stackoverflow.com/questions/65562986) mentioned initially, the **by value** variant is probably the best one that you should default to. It might allow the compiler to optimize the code better due to fewer indirections. Data can be passed very efficiently on the stack in many cases. The fact that the STL uses these kinds of lambda parameters reinforces these points. The only real downside is that the by value-variant does not accept move-only lambdas. You would have to change move-only lambdas into copy-able lambdas, e.g. by wrapping a `std::unique_ptr` into a `std::reference_wrapper`.
 
 The best alternative is accepting lambdas **by universal reference**. It has two advantages:
 - Move-only lambdas are supported.
