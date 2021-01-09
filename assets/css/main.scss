@@ -25,10 +25,10 @@ See: https://github.com/mmistakes/minimal-mistakes/issues/1219#issuecomment-3268
   the "Breakpoints" section of "_variables.scss"?
 */
 html {
-  font-size: 16px; // change to whatever
+  font-size: 14px; // change to whatever
 
   @include breakpoint($small) {
-    font-size: 14pt; // change to whatever
+    font-size: 14px; // change to whatever
   }
 
   @include breakpoint($medium) {
