@@ -124,13 +124,18 @@ auto lambda = [dataPtr = std::unique_ptr<std::array<int, 100>>{}](const char* ca
     printf("This lambda is invoked from %s", callee); 
 }
 ```
+_Code Listing 5:_ A move-only lambda
 
 A lambda that contains a move-only type is only accepted by the following variants:
 - `template <typename F> void use_func(F& func)`
 - `template <typename F> void use_func(F&& func)`
 
-This indicates that especially the latter variant -- the one accepting a universal reference -- is the most versatile one.
+This indicates that especially the latter variant -- the one accepting a universal reference -- is the most versatile one since it is the only variant which accepts all different kinds of parameters: mutable lambdas, move-only lambdas, and -- of course -- ordinary lambdas.
 
 ## Which Variant Shall I Use?
 
-As reasoned in the answers and comments of the [StackOverflow question](https://stackoverflow.com/questions/65562986) mentioned initially, a the **by value** variant is a good default. It might allow the compiler to optimize the code better due to fewer indirections. 
+As reasoned in the answers and comments of the [StackOverflow question](https://stackoverflow.com/questions/65562986) mentioned initially, the **by value** variant is probably the best one that you should default to. It might allow the compiler to optimize the code better due to fewer indirections. Data can be passed very efficiently on the stack in many cases. The fact that the STL uses these kinds of lambda parameters reinforce these points. The only real downside is that it does not accept move-only lambdas. You would have to change move-only lambdas into copy-able lambdas, e.g. by wrapping a `std::unique_ptr` into a `std::reference_wrapper`.
+
+The best alternative is accepting lambdas **by universal reference**. It has two advantages:
+- Move-only lambdas are supported.
+- Lambdas that capture a lot of data, or that lambdas which capture variables which imply high copy costs (e.g. allocations), are handled more efficiently because the lambda (and its data) is not passed by value (therefore not leading to duplication of the lambda's data), but only a reference to it is passed.
