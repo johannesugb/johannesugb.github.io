@@ -1,6 +1,6 @@
 ---
 title: "Vulkan Synchronization Validation - Key Items"
-# last_modified_at: 2021-01-17T17:00:00+01:00
+# last_modified_at: 2021-02-06T18:00:00+01:00
 categories:
   - Vulkan
 tags:
@@ -19,4 +19,8 @@ If you are not yet familiar with synchronization, here are two recommendations:
 ## Integrate Synchronization Validation - Quickstart 
 
 ## Key Items from LunarG's Documentation
+
+In the following, I'll list the key items from LunarG's [Guide to Vulkan Synchronization Validation](https://www.lunarg.com/wp-content/uploads/2021/01/Final_Guide-to-Vulkan-Synchronization-Validation_Jan_21.pdf)", i.e. it shall serve as a TL;DR version of the document:
+
+It is recommended to solve all default validation errors before enabling (and tackling) synchronization validation errors. I.e.: Enable `VK_LAYER_KHRONOS_validation` with its default enablings/disablings and solve all validation layers reported by it. _After_ that is done, enable validation synchronization.
 
