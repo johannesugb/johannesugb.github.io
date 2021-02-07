@@ -54,7 +54,7 @@ To tackle down specific Synchronization Validation errors, it is recommended to 
 ### More Details
 There are different types of hazards (where _W_ means writing to the same region of memory, and _R_ means reading from the same region of memory):
 - "**`W -> R`**" a.k.a. "RAW" a.k.a. "read after write": Problem = R proceeds without waiting for the results of W, potentially reading old data.
-- "**`R -> W`**" a.k.a. "WAR" a.k.a. "write after read": Problem = During R, W overwrites data. (Only for this type of hazard, `execution dependencies only` are sufficient. All other types of hazards require memory dependencies in addition.)
+- "**`R -> W`**" a.k.a. "WAR" a.k.a. "write after read": Problem = During R, W overwrites data. (Only for this type of hazard, _execution dependencies only_ are sufficient. All other types of hazards require memory dependencies in addition.)
 - "**`W -> W`**" a.k.a. "WAW" a.k.a. "write after write": TODO: examples?
 - "**`W || W`**" a.k.a. "WRW" a.k.a. "write racing write": Problem = W and another W write in parallel. It is unclear which one "wins".
 - "**`R || R`**" a.k.a. "RRW" a.k.a. "read racing write": Problem = R and W operate in parallel. It is unclear if R reads the data before or after the W.
