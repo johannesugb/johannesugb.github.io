@@ -1,6 +1,6 @@
 ---
 title: "Vulkan Synchronization Validation - Key Items"
-# last_modified_at: 2021-02-06T18:00:00+01:00
+# last_modified_at: 2021-02-07T13:25:00+01:00
 categories:
   - Vulkan
 tags:
@@ -23,8 +23,6 @@ Here's a list of potential sources for common synchronization mistakes, which ar
 - Image layout transitions are read _and_ write operations and therefore, require memory dependencies
 - All stage/access scopes must be specified where an operation could load/store data -- i.e. "color" and "depth/stencil" are different stages within a graphics pipeline. Stage/access combinations must be specified precisely according to an application's requirements.
 
-## Integrate Synchronization Validation - Quickstart 
-
 ## Key Items from LunarG's Documentation
 
 In the following, I'll list the key items from LunarG's [Guide to Vulkan Synchronization Validation](https://www.lunarg.com/wp-content/uploads/2021/01/Final_Guide-to-Vulkan-Synchronization-Validation_Jan_21.pdf)", i.e. it shall serve as a "TL;DR"-version of the document:
@@ -45,7 +43,8 @@ The messages reported from validation synchronization follow a specific naming s
 It is advised to _first_:
 - solve all errors from Standard Validation and 
 - solve all errors from Thread Safety.
-I.e.: Enable `VK_LAYER_KHRONOS_validation` and solve all errors reported from it. Then TODO. _After_ that is done, enable Synchronization Validation!
+I.e., this would refer to enabling all features of _Core_, _Handle Wrapping_, _Object Lifetime_, _Stateless Parameter_, and _Thread Safety_ in `vkconfig`; and disabling all other features. Resolve all errors reported from that configuration before proceeding!        
+_After_ that is done, enable Synchronization Validation and disable other features: I.e. only leave _Thread Safety_ enabled, enable _Synchronization_ in addition, and disable all other features (i.e. disable all features of _Core_, _Handle Wrapping_, _Object Lifetime_, and _Stateless Parameter_).
 
 To tackle down specific Synchronization Validation errors, it is recommended to add additional heavy barriers, that means:
 - Stages `VK_PIPELINE_STAGE_ALL_COMMANDS_BIT`, or `VK_PIPELINE_STAGE_ALL_GRAPHICS_BIT` for graphics pipelines, **and**
@@ -61,3 +60,4 @@ There are different types of hazards (where _W_ means writing to the same region
 
 LunarG's [Guide to Vulkan Synchronization Validation](https://www.lunarg.com/wp-content/uploads/2021/01/Final_Guide-to-Vulkan-Synchronization-Validation_Jan_21.pdf) further describes how Synchronization Validation internally recognizes hazards by keeping track of the "most recent access" which is relevant for a certain access to a given memory or image subresource range. They describe it in detail and with several examples in the section **Most Recent Access**.
 
+Furthermore, the document describes some common mistakes and pitfalls and explains how to solve them. This is in line with the information given in the synchronization resources listed/recommended in the beginning of this blog post. Please refer to the section **Root Causing Hazards**. It is a good read, but the information is given in a somewhat denser manner than in the resources listed above. 
