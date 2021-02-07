@@ -25,21 +25,21 @@ Here's a list of potential sources for common synchronization mistakes, which ar
 
 ## Key Items from LunarG's Documentation
 
-In the following, I'll list the key items from LunarG's [Guide to Vulkan Synchronization Validation](https://www.lunarg.com/wp-content/uploads/2021/01/Final_Guide-to-Vulkan-Synchronization-Validation_Jan_21.pdf)", i.e. it shall serve as a "TL;DR"-version of the document:
+In the following, I'll list the key items from LunarG's [Guide to Vulkan Synchronization Validation](https://www.lunarg.com/wp-content/uploads/2021/01/Final_Guide-to-Vulkan-Synchronization-Validation_Jan_21.pdf), i.e. it shall serve as a TL;DR-version of the document:
 
-**General Information**    
+### General Information 
 Operations are executed in a massively parallel manner on modern GPUs. Whenever the _same region of memory_  is used by subsequent operations on a GPU _in different ways_ some kind of synchronization must be established to guarantee correct behavior of an application, or -- even more importantly -- to prevent undefined results/behavior.
 
 Synchronization Validation can not only be used to find problems, but also to optimize the performance of an application by reducing the "heaviness" of an existing barrier step by step until a synchronization Validation error occurs (and then go back one step).
 
 Currently, synchronization Validation will report hazards only **within the same command buffer**. It looks like it currently does not work across different command buffers or across different queues.
 
-**Validation Messages**         
+### Validation Messages
 The messages reported from validation synchronization follow a specific naming scheme which should be an efficient representation of the problem reported. All messages start with the pattern `SYNC-<hazard name>`. In addition to such a `SYNC-` prefix-pattern, one can find `SYNC_` (now with an underscore) patterns within error descriptions which report about the previously known usage of a problematic resource. They are printed according to the pattern `SYNC_<stage>_<access-type>`, where both `<stage>` and `<access-type>` refer to only the relevant part of a stage or access enum-value:
 - `<stage>` refers to the `VK_PIPELINE_STAGE_<stage>_BIT` part (e.g. the `COLOR_ATTACHMENT_OUTPUT` part of the total `VK_PIPELINE_STAGE_COLOR_ATTACHMENT_OUTPUT_BIT`)
 - `<access-type>` refers to the `VK_ACCESS_<access-type>_BIT` part (e.g. the `COLOR_ATTACHMENT_WRITE` part of the total `VK_ACCESS_COLOR_ATTACHMENT_WRITE_BIT`)
 
-**Approach For Fixing Validation Errors**    
+### Approach For Fixing Validation Errors
 It is advised to _first_:
 - solve all errors from Standard Validation and 
 - solve all errors from Thread Safety.
@@ -50,7 +50,7 @@ To tackle down specific Synchronization Validation errors, it is recommended to 
 - Stages `VK_PIPELINE_STAGE_ALL_COMMANDS_BIT`, or `VK_PIPELINE_STAGE_ALL_GRAPHICS_BIT` for graphics pipelines, **and**
 - Access masks `VK_ACCESS_MEMORY_READ_BIT | VK_ACCESS_MEMORY_WRITE_BIT` for both synchronization scopes.
 
-**More Details**     
+### More Details
 There are different types of hazards (where _W_ means writing to the same region of memory, and _R_ means reading from the same region of memory):
 - **`W -> R`** a.k.a. "RAW" a.k.a. "read after write": Problem = R proceeds without waiting for the results of W, potentially reading old data.
 - **`R -> W`** a.k.a. "WAR" a.k.a. "write after read": Problem = During R, W overwrites data. (Only for this type of hazard, execution dependencies only are sufficient. All other types of hazards require memory dependencies in addition.)
