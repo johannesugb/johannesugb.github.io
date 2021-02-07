@@ -18,8 +18,8 @@ If you are not yet familiar with synchronization, here are two recommendations:
 
 Here's a list of potential sources for common synchronization mistakes, which are also hinted from LunarG's [Guide to Vulkan Synchronization Validation](https://www.lunarg.com/wp-content/uploads/2021/01/Final_Guide-to-Vulkan-Synchronization-Validation_Jan_21.pdf):
 - Memory access always has to be specified explicitly, except with Semaphore signal/wait operations
+- For implicit subpass dependencies, still proper memory barriers are required.
 - Stage/access pairs must match according to [Table 4 under 7.1.3. Access Types in the Vulkan Specification](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#synchronization-access-types)
-- For implicit subpass dependencies, still memory barriers are required.
 - Image layout transitions are read _and_ write operations and therefore, require memory dependencies
 - All stage/access scopes must be specified where an operation could load/store data -- i.e. "color" and "depth/stencil" are different stages within a graphics pipeline. Stage/access combinations must be specified precisely according to an application's requirements.
 
@@ -31,6 +31,10 @@ In the following, I'll list the key items from LunarG's [Guide to Vulkan Synchro
 
 **General Information**    
 Operations are executed in a massively parallel manner on modern GPUs. Whenever the _same region of memory_  is used by subsequent operations on a GPU _in different ways_ some kind of synchronization must be established to guarantee correct behavior of an application, or -- even more importantly -- to prevent undefined results/behavior.
+
+Synchronization validation can not only be used to find problems, but also to optimize the performance of an application by reducing the "heaviness" of an existing barrier step by step until a synchronization validation error occurs (and then go back one step).
+
+Currently, synchronization validation will report hazards only **within the same command buffer**. It looks like it currently does not work across different command buffers or across different queues.
 
 There are different types of hazards (where _W_ means writing to the same region of memory, and _R_ means reading from the same region of memory):
 - **W -> R** a.k.a. "RAW" a.k.a. "read after write": Problem = R proceeds without waiting for the results of W, potentially reading old data.
@@ -47,6 +51,8 @@ To tackle down specific validation errors, it is recommended to add additional h
 - Access masks `VK_ACCESS_MEMORY_READ_BIT | VK_ACCESS_MEMORY_WRITE_BIT` for both synchronization scopes.
 
 **Validation Messages**         
-The messages reported from validation synchronization follow a specific naming scheme which should be an efficient representation of the problem reported. All messages start with the pattern `SYNC-<hazard name>`. In addition to such a `SYNC-` prefix-pattern, one can find `SYNC_` (now with an underscore) patterns within error descriptions which report about the previously known usage of a problematic resource (printed according to the pattern `SYNC_<stage>_<access>`).         
-TODO: Concrete examples for SYNC_stage_access
+The messages reported from validation synchronization follow a specific naming scheme which should be an efficient representation of the problem reported. All messages start with the pattern `SYNC-<hazard name>`. In addition to such a `SYNC-` prefix-pattern, one can find `SYNC_` (now with an underscore) patterns within error descriptions which report about the previously known usage of a problematic resource. They are printed according to the pattern `SYNC_<stage>_<access-type>`, where both `<stage>` and `<access-type>` refer to only the relevant part of a stage or access enum-value:
+- `<stage>` refers to the `VK_PIPELINE_STAGE_<stage>_BIT` part (e.g. the `COLOR_ATTACHMENT_OUTPUT` part of the total `VK_PIPELINE_STAGE_COLOR_ATTACHMENT_OUTPUT_BIT`)
+- `<access-type>` refers to the `VK_ACCESS_<access-type>_BIT` part (e.g. the `COLOR_ATTACHMENT_WRITE` part of the total `VK_ACCESS_COLOR_ATTACHMENT_WRITE_BIT`)
+
 
