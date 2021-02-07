@@ -42,7 +42,8 @@ The messages reported from validation synchronization follow a specific naming s
 ### Approach For Fixing Validation Errors
 It is advised to _first_:
 - solve all errors from Standard Validation and 
-- solve all errors from Thread Safety.
+- solve all errors from Thread Safety.         
+
 I.e., this would refer to enabling all features of _Core_, _Handle Wrapping_, _Object Lifetime_, _Stateless Parameter_, and _Thread Safety_ in `vkconfig`; and disabling all other features. Resolve all errors reported from that configuration before proceeding!        
 _After_ that is done, enable Synchronization Validation and disable other features: I.e. only leave _Thread Safety_ enabled, enable _Synchronization_ in addition, and disable all other features (i.e. disable all features of _Core_, _Handle Wrapping_, _Object Lifetime_, and _Stateless Parameter_).
 
@@ -52,11 +53,11 @@ To tackle down specific Synchronization Validation errors, it is recommended to 
 
 ### More Details
 There are different types of hazards (where _W_ means writing to the same region of memory, and _R_ means reading from the same region of memory):
-- **`W -> R`** a.k.a. "RAW" a.k.a. "read after write": Problem = R proceeds without waiting for the results of W, potentially reading old data.
-- **`R -> W`** a.k.a. "WAR" a.k.a. "write after read": Problem = During R, W overwrites data. (Only for this type of hazard, execution dependencies only are sufficient. All other types of hazards require memory dependencies in addition.)
-- **`W -> W`** a.k.a. "WAW" a.k.a. "write after write": TODO: examples?
-- **`W || W`** a.k.a. "WRW" a.k.a. "write racing write": Problem = W and another W write in parallel. It is unclear which one "wins".
-- **`R || R`** a.k.a. "RRW" a.k.a. "read racing write": Problem = R and W operate in parallel. It is unclear if R reads the data before or after the W.
+- "**`W -> R`**" a.k.a. "RAW" a.k.a. "read after write": Problem = R proceeds without waiting for the results of W, potentially reading old data.
+- "**`R -> W`**" a.k.a. "WAR" a.k.a. "write after read": Problem = During R, W overwrites data. (Only for this type of hazard, execution dependencies only are sufficient. All other types of hazards require memory dependencies in addition.)
+- "**`W -> W`**" a.k.a. "WAW" a.k.a. "write after write": TODO: examples?
+- "**`W || W`**" a.k.a. "WRW" a.k.a. "write racing write": Problem = W and another W write in parallel. It is unclear which one "wins".
+- "**`R || R`**" a.k.a. "RRW" a.k.a. "read racing write": Problem = R and W operate in parallel. It is unclear if R reads the data before or after the W.
 
 LunarG's [Guide to Vulkan Synchronization Validation](https://www.lunarg.com/wp-content/uploads/2021/01/Final_Guide-to-Vulkan-Synchronization-Validation_Jan_21.pdf) further describes how Synchronization Validation internally recognizes hazards by keeping track of the "most recent access" which is relevant for a certain access to a given memory or image subresource range. They describe it in detail and with several examples in the section **Most Recent Access**.
 
