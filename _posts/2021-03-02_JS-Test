@@ -1,0 +1,26 @@
+---
+title: "JavaScript Test"
+# last_modified_at: 2021-03-02T19:00:00+01:00
+categories:
+#  - Vulkan
+tags:
+#  - Vulkan
+#  - synchronization
+# header:
+#   image: /assets/images/1500x500.jpg
+---
+
+<button id="btn1" type="button">HTML</button>
+
+<p>Click the "Try it" button to return the type of the "HTML" button:</p>
+
+<button onclick="myFunction()">Try it</button>
+
+<p id="demo"></p>
+
+<script>
+function myFunction() {
+  var x = document.getElementById("btn1").type;
+  document.getElementById("demo").innerHTML = x;
+}
+</script>
