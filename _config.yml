@@ -133,9 +133,3 @@ comments:
   disqus:
     shortname: "https-johannesugb-github-io"
  
- analytics:
-  provider: "google-gtag"
-  google:
-    tracking_id: "G-85Z5C51TBG"
-    anonymize_ip: false # default
-
