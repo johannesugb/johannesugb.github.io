@@ -132,9 +132,10 @@ comments:
   provider: "disqus"
   disqus:
     shortname: "https-johannesugb-github-io"
- 
- analytics:
-  provider: "google-gtag"
+
+# Analytics
+analytics:
+  provider               : "google-gtag" # false (default), "google", "google-universal", "google-gtag", "custom"
   google:
-    tracking_id: "G-85Z5C51TBG"
-    anonymize_ip: false # default
+    tracking_id          : "G-85Z5C51TBG" # Replace this with your ID, or delete
+    anonymize_ip         : true
