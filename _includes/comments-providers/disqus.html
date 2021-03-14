@@ -13,15 +13,18 @@
       })();
     }
     function showDisqusNotAvailableMessage() {
-      (function() { 
-        var d = document;
-        var x = d.createElement('div');
-        var y = d.createElement('strong');
-        y.innerHTML = 'Please allow cookies (at the bottom of the page) to enable commenting via Disqus!';
-        x.style.color = '#f71559';
-        x.appendChild(y);
-        (d.head || d.body).appendChild(x);
-      })();
+      var d = document.createElement('div');
+      var p = document.createElement('p');
+      p.style.color = '#f71559';
+      p.style.fontWeight = 'bold';
+      p.style.fontSize = '90%';
+      p.innerHTML = 'Please allow cookies (at the bottom of the page) to enable commenting via Disqus!';
+      d.appendChild(p);
+      var x = document.getElementsByClassName("page__comments");
+      var i;
+      for (i = 0; i < x.length; i++) {
+        x[i].appendChild(d);
+      }
     }
   </script>
 <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
