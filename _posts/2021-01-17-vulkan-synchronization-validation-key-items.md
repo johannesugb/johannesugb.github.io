@@ -2,10 +2,9 @@
 title: "Vulkan Synchronization Validation - Key Items"
 # last_modified_at: 2021-02-07T13:25:00+01:00
 categories:
-  - Vulkan
+  - GPU-Programming
 tags:
   - Vulkan
-  - synchronization
 # header:
 #   image: /assets/images/1500x500.jpg
 ---
