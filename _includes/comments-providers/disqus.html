@@ -16,7 +16,6 @@
       var d = document.createElement('div');
       d.classList.add("page___comments___my___custom____disqus____message");
       var p = document.createElement('p');
-      p.style.color = '#f71559';
       p.style.fontWeight = 'bold';
       p.style.fontSize = '90%';
       p.innerHTML = 'Please allow cookies (at the bottom of the page) to enable commenting via Disqus!';
@@ -34,6 +33,8 @@
         x[i].remove();
       }
     }
+    
+    showDisqusNotAvailableMessage();
   </script>
 <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 {% endif %}
