@@ -52,8 +52,5 @@ window.cookieconsent.initialise({
       removeDisqusNotAvailableMessages();
       loadDisqusOnConsent();
     }
-    if (!didConsent) {
-      showDisqusNotAvailableMessage()
-    }
   }
 });
