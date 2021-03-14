@@ -2,10 +2,9 @@
 title: "How To Pass Lambda Functions in C++ (By Value, By L-Value Reference, By Universal Reference)"
 # last_modified_at: 2021-02-06T17:17:00+01:00
 categories:
-  - Modern C++
+  - CPU-Programming
 tags:
   - C++
-  - lambda functions
 # header:
 #   image: /assets/images/1500x500.jpg
 ---
