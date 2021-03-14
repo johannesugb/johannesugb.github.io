@@ -14,6 +14,7 @@
     }
     function showDisqusNotAvailableMessage() {
       var d = document.createElement('div');
+      d.classList.add("page___comments___my___custom____disqus____message");
       var p = document.createElement('p');
       p.style.color = '#f71559';
       p.style.fontWeight = 'bold';
@@ -24,6 +25,13 @@
       var i;
       for (i = 0; i < x.length; i++) {
         x[i].appendChild(d);
+      }
+    }
+    function removeDisqusNotAvailableMessages() {
+      var x = document.getElementsByClassName("page___comments___my___custom____disqus____message");
+      var i;
+      for (i = 0; i < x.length; i++) {
+        x[i].remove();
       }
     }
   </script>
