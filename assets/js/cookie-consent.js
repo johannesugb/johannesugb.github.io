@@ -21,10 +21,6 @@ window.cookieconsent.initialise({
     if (type == 'opt-out' && !didConsent) {
       // disable cookies
     }
-    if (!didConsent) {
-      removeDisqusNotAvailableMessages();
-      showDisqusNotAvailableMessage()
-    }
   },
   onStatusChange: function(status, chosenBefore) {
     var type = this.options.type;
@@ -38,10 +34,6 @@ window.cookieconsent.initialise({
     if (type == 'opt-out' && !didConsent) {
       // disable cookies
     }
-    if (!didConsent) {
-      removeDisqusNotAvailableMessages();
-      showDisqusNotAvailableMessage()
-    }
   },
   onRevokeChoice: function() {
     var type = this.options.type;
@@ -53,10 +45,6 @@ window.cookieconsent.initialise({
       loadGAonConsent();
       removeDisqusNotAvailableMessages();
       loadDisqusOnConsent();
-    }
-    if (!this.hasConsented()) {
-      removeDisqusNotAvailableMessages();
-      showDisqusNotAvailableMessage()
     }
   }
 });
