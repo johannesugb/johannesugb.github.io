@@ -139,3 +139,6 @@ analytics:
   google:
     tracking_id          : "G-85Z5C51TBG" # Replace this with your ID, or delete
     anonymize_ip         : true
+
+after_footer_scripts     :
+  - /assets/js/cookie-consent.js
