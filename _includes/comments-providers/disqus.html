@@ -12,6 +12,17 @@
         (d.head || d.body).appendChild(s);
       })();
     }
+    function showDisqusNotAvailableMessage() {
+      (function() { 
+        var d = document;
+        var x = d.createElement('div');
+        var y = d.createElement('strong');
+        y.innerHTML = 'Enable cookies (at the bottom of the page) to enable commenting via Disqus!";
+        x.style.color = '#f71559';
+        x.appendChild(y);
+        (d.head || d.body).appendChild(x);
+      })();
+    }
   </script>
 <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 {% endif %}
