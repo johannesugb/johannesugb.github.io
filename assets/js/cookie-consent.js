@@ -15,13 +15,14 @@ window.cookieconsent.initialise({
     if (type == 'opt-in' && didConsent) {
       // enable cookies
       loadGAonConsent();
+      removeDisqusNotAvailableMessages();
       loadDisqusOnConsent();
-    }
-    else {
-      showDisqusNotAvailableMessage()
     }
     if (type == 'opt-out' && !didConsent) {
       // disable cookies
+    }
+    if (!didConsent) {
+      showDisqusNotAvailableMessage()
     }
   },
   onStatusChange: function(status, chosenBefore) {
@@ -30,13 +31,14 @@ window.cookieconsent.initialise({
     if (type == 'opt-in' && didConsent) {
       // enable cookies
       loadGAonConsent();
+      removeDisqusNotAvailableMessages();
       loadDisqusOnConsent();
-    }
-    else {
-      showDisqusNotAvailableMessage()
     }
     if (type == 'opt-out' && !didConsent) {
       // disable cookies
+    }
+    if (!didConsent) {
+      showDisqusNotAvailableMessage()
     }
   },
   onRevokeChoice: function() {
@@ -47,9 +49,10 @@ window.cookieconsent.initialise({
     if (type == 'opt-out') {
       // enable cookies
       loadGAonConsent();
+      removeDisqusNotAvailableMessages();
       loadDisqusOnConsent();
     }
-    else {
+    if (!didConsent) {
       showDisqusNotAvailableMessage()
     }
   }
