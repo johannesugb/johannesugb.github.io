@@ -22,6 +22,7 @@ window.cookieconsent.initialise({
       // disable cookies
     }
     if (!didConsent) {
+      removeDisqusNotAvailableMessages();
       showDisqusNotAvailableMessage()
     }
   },
@@ -38,6 +39,7 @@ window.cookieconsent.initialise({
       // disable cookies
     }
     if (!didConsent) {
+      removeDisqusNotAvailableMessages();
       showDisqusNotAvailableMessage()
     }
   },
@@ -51,6 +53,10 @@ window.cookieconsent.initialise({
       loadGAonConsent();
       removeDisqusNotAvailableMessages();
       loadDisqusOnConsent();
+    }
+    if (!this.hasConsented()) {
+      removeDisqusNotAvailableMessages();
+      showDisqusNotAvailableMessage()
     }
   }
 });
