@@ -1,6 +1,6 @@
 {% if site.comments.disqus.shortname %}
   <script>
-    function loadDisqusOnConsent() {
+    var loadDisqusOnConsent = function() {
       var disqus_config = function () {
         this.page.url = "{{ page.url | absolute_url }}";  /* Replace PAGE_URL with your page's canonical URL variable */
         this.page.identifier = "{{ page.id }}"; /* Replace PAGE_IDENTIFIER with your page's unique identifier variable */
@@ -12,7 +12,7 @@
         (d.head || d.body).appendChild(s);
       })();
     }
-    function showDisqusNotAvailableMessage() {
+    var showDisqusNotAvailableMessage = function() {
       var d = document.createElement('div');
       d.classList.add("page___comments___my___custom____disqus____message");
       var p = document.createElement('p');
@@ -26,7 +26,7 @@
         x[i].appendChild(d);
       }
     }
-    function removeDisqusNotAvailableMessages() {
+    var removeDisqusNotAvailableMessages= function() {
       var x = document.getElementsByClassName("page___comments___my___custom____disqus____message");
       var i;
       for (i = 0; i < x.length; i++) {
