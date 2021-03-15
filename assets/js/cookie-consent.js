@@ -15,7 +15,7 @@ window.cookieconsent.initialise({
     if (type == 'opt-in' && didConsent) {
       // enable cookies
       if (typeof loadGAonConsent === "function")                  { loadGAonConsent(); }
-      if (typeof removeDisqusNotAvailableMessages === "function") { removeDisqusNotAvailableMessages();
+      if (typeof removeDisqusNotAvailableMessages === "function") { removeDisqusNotAvailableMessages(); }
       if (typeof loadDisqusOnConsent === "function")              { loadDisqusOnConsent(); }
     }
     if (type == 'opt-out' && !didConsent) {
@@ -28,7 +28,7 @@ window.cookieconsent.initialise({
     if (type == 'opt-in' && didConsent) {
       // enable cookies
       if (typeof loadGAonConsent === "function")                  { loadGAonConsent(); }
-      if (typeof removeDisqusNotAvailableMessages === "function") { removeDisqusNotAvailableMessages();
+      if (typeof removeDisqusNotAvailableMessages === "function") { removeDisqusNotAvailableMessages(); }
       if (typeof loadDisqusOnConsent === "function")              { loadDisqusOnConsent(); }
     }
     if (type == 'opt-out' && !didConsent) {
@@ -43,7 +43,7 @@ window.cookieconsent.initialise({
     if (type == 'opt-out') {
       // enable cookies
       if (typeof loadGAonConsent === "function")                  { loadGAonConsent(); }
-      if (typeof removeDisqusNotAvailableMessages === "function") { removeDisqusNotAvailableMessages();
+      if (typeof removeDisqusNotAvailableMessages === "function") { removeDisqusNotAvailableMessages(); }
       if (typeof loadDisqusOnConsent === "function")              { loadDisqusOnConsent(); }
     }
   }
