@@ -4,7 +4,10 @@ window.cookieconsent.initialise({
       "background": "#000"
     },
     "button": {
-      "background": "#f71559"
+      "background": "#00cbe6"
+    },
+    "content": {
+      "message": "Welcome to my personal website! Nice to see you here.\nI am using cookies for analytics and for enabling the comments sections in the articles. Would be cool if you allowed their usage."
     }
   },
   "theme": "classic",
