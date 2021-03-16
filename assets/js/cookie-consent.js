@@ -10,7 +10,7 @@ window.cookieconsent.initialise({
   "theme": "classic",
   "type": "opt-in",
   "content": {
-    "message": "Welcome to my personal website! Nice to see you here. I am using cookies for analytics and for <br/>enabling the comments sections in the articles. Would be cool if you allowed their usage."
+    "message": "Welcome to my personal website! Nice to see you here. I am using cookies for analytics and for <br/>\n enabling the comments sections in the articles. Would be cool if you allowed their usage."
   },
   onInitialise: function (status) {
     var type = this.options.type;
