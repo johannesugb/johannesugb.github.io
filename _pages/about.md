@@ -13,6 +13,6 @@ I'm also using the .NET framework with C# and PowerShell for the development of 
 
 ### Contact
 
-To contact me about teaching and research-related topics, please refer to my [personal page](https://www.cg.tuwien.ac.at/staff/JohannesUnterguggenberger.html) at the Institute of Visual Computing & Human-Centered Technology.
+To contact me about teaching and research-related topics, please refer to my [personal page](https://www.cg.tuwien.ac.at/staff/JohannesUnterguggenberger-0) at the Institute of Visual Computing & Human-Centered Technology.
 
 For personal matters, feel free to send me an email to: [johannes.unterguggenberger@gmail.com](mailto:johannes.unterguggenberger@gmail.com)
