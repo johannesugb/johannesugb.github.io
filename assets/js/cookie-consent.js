@@ -7,11 +7,11 @@ window.cookieconsent.initialise({
       "background": "#00cbe6"
     }
   },
+  "theme": "classic",
+  "type": "opt-in",
   "content": {
     "message": "Welcome to my personal website! Nice to see you here.\nI am using cookies for analytics and for enabling the comments sections in the articles. Would be cool if you allowed their usage."
   },
-  "theme": "classic",
-  "type": "opt-in",
   onInitialise: function (status) {
     var type = this.options.type;
     var didConsent = this.hasConsented();
