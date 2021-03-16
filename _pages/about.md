@@ -3,11 +3,11 @@ permalink: /about/
 title: "About"
 ---
 
-My name is Johannes Unterguggenberger. I am a Real-Time Rendering Engineer and Researcher and live in Vienna, Austria, where I'm working as university assistant and predoctoral researcher at the [Rendering and Modeling group](https://www.cg.tuwien.ac.at) of [TU Wien](https://www.tuwien.at). 
+My name is Johannes Unterguggenberger. I am a real-rime rendering engineer and researcher and live in Vienna, Austria, where I'm working as predoctoral university assistant in the [Research Unit of Computer Graphics](https://www.cg.tuwien.ac.at) of [TU Wien](https://www.tuwien.at). 
 
 ### Technology and GitHub Projects
 
-Currently, I am mostly working with C++17 and Vulkan, mainly to further the development of a Vulkan convenience and productivity layer called [_Auto-Vk_](https://github.com/cg-tuwien/Auto-Vk) and a C++/Vulkan programming framework called [_Gears-Vk_](https://github.com/cg-tuwien/Gears-Vk).
+Currently, I am mostly working with C++17/C++20 and Vulkan, mainly to further the development of a Vulkan convenience and productivity layer called [_Auto-Vk_](https://github.com/cg-tuwien/Auto-Vk) and a C++/Vulkan programming framework called [_Gears-Vk_](https://github.com/cg-tuwien/Gears-Vk).
 
 I'm also using the .NET framework with C# and PowerShell for the development of tools and utils for _Gears-Vk_. In the past, I used C# for various desktop projects in conjunction with WPF, and most notably, also for Unity3D development.
 
