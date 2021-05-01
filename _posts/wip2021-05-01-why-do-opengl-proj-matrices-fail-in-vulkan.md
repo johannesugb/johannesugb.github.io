@@ -17,3 +17,6 @@ When programmers with an OpenGL background learn Vulkan, they often expect--or h
 - Changing the front faces from [`VK_FRONT_FACE_COUNTER_CLOCKWISE`](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkFrontFace.html) to [`VK_FRONT_FACE_CLOCKWISE`](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkFrontFace.html)
 
 Applying such fixes without really knowing what's going on under the hood can leave a bad feeling. This blog post tries to explain why OpenGL's projection matrices do not work in a Vulkan application without modification and what the fundamental differences are between these two APIs.
+
+
+
