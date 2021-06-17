@@ -71,9 +71,8 @@ _Equation 3:_ Transforming a homogeneous 3D vector with the projection matrix fr
 While it leaves $x$ and $y$ coordinates untouched, $z$ cooordinates get **flipped**. Furthermore, we get a **negative homogeneous coordinate**. 
 Flipping of one coordinate axis _only_, while not flipping the other two axes, corresponds to **changing the handedness** of the coordinate system as illustrated in _Figure 1_.
 
-<p style="text-align: center;">
+{: .center}
 [![Flipping the z-axis only](/assets/images/inv-z-fade.gif)](/assets/images/inv-z-fade.gif)
-</p>
 
 _Figure 1:_ Illustration of the transformation from _Equation 3_. Of course, matrix multiplication would not lead to an interpolation like shown in the animation; the animation shall just illustrate what happens: One coordinate axis is flipped while the others remain in place---turning the original right-handed coordinate system into a left-handed coordinate system.
 
@@ -83,4 +82,28 @@ And with this information, let us move on to the differences between OpenGL and 
 
 ## Different Space Conventions for OpenGL and Vulkan
 
+We have already learnt about the different space conventions of framebuffer coordinates and screen space. But where it gets really interesting are the spaces before screen space, which are clip space and normalized device coordinates (NDC space). _Figure 2_ shows some typical spaces of a 3D application (referring to world space and view space) along with the spaces that graphics APIs define: clip space, NDC space, and framebuffer space.
+
+{: .center}
+[![Graphics pipeline, different spaces and operations](/assets/images/different_spaces_and_ops.png)](/assets/images/different_spaces_and_ops.png)
+
+_Figure 2:_ Typical spaces in a 3D application include world and view space, which are generally-user defined. Graphics pipelines dictate some conventions about other spaces, though, namely clip space, NDC space, and framebuffer space. Between clip space and NDC space several fixed-function operations are performed (from left to right: backface culling, primitive clipping, homogeneous division) which are indicated with circular symbols. Different spaces are indicated with rectangles.
+
+What we have talked about so far is the projection matrix $\bi{P}$ which transforms into clip space. A key point which needs to be understood is that **the graphics API** defines how clip space shall look like. And here we have differences between OpenGL and Vulkan: While OpenGL expects the clip space to be _left-handed_, Vulkan expects it to be _right-handed_. There are several crucial fixed-function operations happening between clip space and NDC space (shown in _Figure 2_) which are performed in the following order:
+
+1. Backface culling
+2. Primitive clipping
+3. Homogeneous division
+
+Only _after_ all these steps, clip space coordinates have been fully transformed into NDC space. What I would like to emphasize here again is that these steps are performed in spaces with different handedness when comparing OpenGL with Vulkan. _Figures 3 and 4_ illustrate the two spaces in detail for OpenGL and Vulkan, respectively. The
+
+{: .center}
+[![Clip Space and Normalized Device Coordinates details in OpenGL](/assets/images/clip_cube_ndc_cube_opengl.png)](/assets/images/clip_cube_ndc_cube_opengl.png)
+
+_Figure 3:_ OpenGL expects coordinates in clip space to be given in a left-handed coordinate system, supporting homogeneous coordinates. Handedness stays the same through the operations between clip space and NDC space. The left-handed coordinate system naturally translates to OpenGL's framebuffer space, which defines the coordinate origin in the bottom-left corner, with its x-axis pointing to the right and its y-axis pointing up.
+
+{: .center}
+[![Clip Space and Normalized Device Coordinates details in Vulkan](/assets/images/clip_cube_ndc_cube_vulkan.png)](/assets/images/clip_cube_ndc_cube_vulkan.png)
+
+_Figure 4:_ Vulkan expects coordinates in clip space to be given in a right-handed coordinate system, supporting homogeneous coordinates. Handedness stays the same through the operations between clip space and NDC space. The right-handed coordinates system naturally translates to Vulkan's framebuffer space, which defines the coordinate origin in the top-left corner, with its x-axis pointing to the right and its y-axis pointing down.
 
