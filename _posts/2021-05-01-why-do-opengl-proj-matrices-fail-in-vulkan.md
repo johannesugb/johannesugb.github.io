@@ -16,7 +16,12 @@ When programmers with an OpenGL background learn Vulkan, they often expect--or h
 - Inverting the projection matrix' z-axis: `projMat[2][3] *= -1` (TODO: check!)
 - Changing the front faces from [`VK_FRONT_FACE_COUNTER_CLOCKWISE`](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkFrontFace.html) to [`VK_FRONT_FACE_CLOCKWISE`](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkFrontFace.html)
 
-Applying such fixes without really knowing what's going on under the hood can leave a bad feeling. This blog post tries to explain why OpenGL's projection matrices do not work in a Vulkan application without modification and what the fundamental differences are between these two APIs.
+Applying such fixes without really knowing what's going on under the hood can leave a bad feeling in the mind of a thoughtful programmer. This blog post tries to explain why OpenGL's projection matrices do not work in a Vulkan application without modification and what the fundamental differences between the two APIs are in this specific case.
 
+I'll try to make the points I'm going to make visually with images and animations, and minimize the mathematical parts to what is absolutely necessary. 
 
+## The OpenGL Way
 
+Before we can analyze the differences between Vulkan and OpenGL, we should try to understand what happens in OpenGL and why projection matrices of the following form are used:
+
+$$ E = mc^2 $$
