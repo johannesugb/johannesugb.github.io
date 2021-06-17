@@ -71,8 +71,9 @@ _Equation 3:_ Transforming a homogeneous 3D vector with the projection matrix fr
 While it leaves $x$ and $y$ coordinates untouched, $z$ cooordinates get **flipped**. Furthermore, we get a **negative homogeneous coordinate**. 
 Flipping of one coordinate axis _only_, while not flipping the other two axes, corresponds to **changing the handedness** of the coordinate system as illustrated in _Figure 1_.
 
-{: text-align: center;}
+<p style="text-align: center;">
 [![Flipping the z-axis only](/assets/images/inv-z-fade.gif)](/assets/images/inv-z-fade.gif)
+</p>
 
 _Figure 1:_ Illustration of the transformation from _Equation 3_. Of course, matrix multiplication would not lead to an interpolation like shown in the animation; the animation shall just illustrate what happens: One coordinate axis is flipped while the others remain in place---turning the original right-handed coordinate system into a left-handed coordinate system.
 
