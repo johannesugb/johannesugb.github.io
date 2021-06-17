@@ -74,7 +74,7 @@ Flipping of one coordinate axis _only_, while not flipping the other two axes, c
 {: .center}
 [![Flipping the z-axis only](/assets/images/inv-z-fade.gif)](/assets/images/inv-z-fade.gif)
 
-_Figure 1:_ Illustration of the transformation from _Equation 3_. Of course, matrix multiplication would not lead to an interpolation like shown in the animation; the animation shall just illustrate what happens: One coordinate axis is flipped while the others remain in place---turning the original right-handed coordinate system into a left-handed coordinate system.
+_Figure 1:_ Illustration of the transformation from _Equation 3_. Of course, matrix multiplication would not lead to a gradual interpolation like shown in the animation; the animation shall just illustrate what happens: One coordinate axis is flipped while the others remain in place---turning the original right-handed coordinate system into a left-handed coordinate system.
 
 The coordinate system that results from it is left-handed because OpenGL's convention of framebuffer coordinates are so that in screen space the x-axis is pointing to the right, y-axis is pointing up, and the z-axis (which represents depth values) points "into" the screen (i.e. _not_ out of it). A nice illustration of the different framebuffer coordinates spaces in screen space can be found under [Sascha Willems - Flipping the Vulkan viewport](https://www.saschawillems.de/blog/2019/03/29/flipping-the-vulkan-viewport/). 
 
@@ -95,7 +95,7 @@ What we have talked about so far is the projection matrix $\bi{P}$ which transfo
 2. Primitive clipping
 3. Homogeneous division
 
-Only _after_ all these steps, clip space coordinates have been fully transformed into NDC space. What I would like to emphasize here again is that these steps are performed in spaces with different handedness when comparing OpenGL with Vulkan. _Figures 3 and 4_ illustrate the two spaces in detail for OpenGL and Vulkan, respectively. The
+Only _after_ all these steps, clip space coordinates have been fully transformed into NDC space. What I would like to emphasize here again is that these steps are performed in spaces with different handedness when comparing OpenGL with Vulkan. _Figures 3 and 4_ illustrate the two spaces in detail for OpenGL and Vulkan, respectively.
 
 {: .center}
 [![Clip Space and Normalized Device Coordinates details in OpenGL](/assets/images/clip_cube_ndc_cube_opengl.png)](/assets/images/clip_cube_ndc_cube_opengl.png)
