@@ -89,7 +89,7 @@ We have already learnt about the different space conventions of framebuffer coor
 
 _Figure 2:_ Typical spaces in a 3D application include world and view space, which are generally-user defined. Graphics pipelines dictate some conventions about other spaces, though, namely clip space, NDC space, and framebuffer space. Between clip space and NDC space several fixed-function operations are performed (from left to right: backface culling, primitive clipping, homogeneous division) which are indicated with circular symbols. Different spaces are indicated with rectangles.
 
-What we have talked about so far is the projection matrix $\bi{P}$ which transforms into clip space. A key point which needs to be understood is that **the graphics API** defines how clip space shall look like. And here we have differences between OpenGL and Vulkan: While OpenGL expects the clip space to be _left-handed_, Vulkan expects it to be _right-handed_. There are several crucial fixed-function operations happening between clip space and NDC space (shown in _Figure 2_) which are performed in the following order:
+What we have talked about so far is the projection matrix $P$ which transforms into clip space. A key point which needs to be understood is that **the graphics API** defines how clip space shall look like. And here we have differences between OpenGL and Vulkan: While OpenGL expects the clip space to be _left-handed_, Vulkan expects it to be _right-handed_. There are several crucial fixed-function operations happening between clip space and NDC space (shown in _Figure 2_) which are performed in the following order:
 
 1. Backface culling
 2. Primitive clipping
