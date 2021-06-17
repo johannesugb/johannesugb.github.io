@@ -24,4 +24,9 @@ I'll try to make the points I'm going to make visually with images and animation
 
 Before we can analyze the differences between Vulkan and OpenGL, we should try to understand what happens in OpenGL and why projection matrices of the following form are used:
 
-$$ E = mc^2 $$
+$$ \begin{pmatrix}
+\frac{2 n}{r - l} & 0 & \frac{r + l}{r - l} & 0 \\
+0 & \frac{2 n}{t - b} & \frac{t + b}{t - b} & 0 \\
+0 & 0 & \frac{f + n}{f - n} & \frac{2 f n}{f - n} \\
+0 & 0 & -1 & 0 
+\end{pmatrix} $$
