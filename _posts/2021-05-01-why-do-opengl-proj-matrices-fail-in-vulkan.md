@@ -18,9 +18,7 @@ When programmers with an OpenGL background learn Vulkan, they often expect--or h
 
 Applying such fixes without really knowing what's going on under the hood can leave a bad feeling in the mind of a thoughtful programmer. This blog post tries to explain why OpenGL's projection matrices do not work in a Vulkan application without modification and what the fundamental differences between the two APIs are in this specific case.
 
-I'll try to make the points I'm going to make visually with images and animations, and minimize the mathematical parts to what is absolutely necessary. 
-
-## The OpenGL Way
+## Projection Matrices in OpenGL
 
 Before we can analyze the differences between Vulkan and OpenGL, we should try to understand what happens in OpenGL and why projection matrices of the following form are used:
 
@@ -48,7 +46,7 @@ What I would like to point out now is how this projection matrix transforms coor
 
 _Speaking of confusion, a sidenote:_ Don't let yourself be confused by the positions of the $-1$ and $-4$ entries in _Equation 2_; you'll find their positions swapped in many references. This comes from taking taking storage peculiarities into account---namely row-mayor vs. column-major. In this blog post, however, I display matrices in generic mathematical notation s.t. it matches the notation from e.g. [WolframAlpha](https://www.wolframalpha.com/input/?i=%7B%7B1%2C+0%2C+0%2C+0%7D%2C+%7B0%2C+1%2C+0%2C+0%7D%2C+%7B0%2C+0%2C+-3%2C+-1%7D%2C+%7B0%2C+0%2C+-4%2C+0%7D%7D+.+%7B%7Bx%7D%2C+%7By%7D%2C+%7Bz%7D%2C+%7B1%7D%7D) and other mathematical sources.
 
-Okay, back to the projection matrix. Let us investigate what it does to our coordinate values by transforming a homogeneous 3D vector with it:
+Okay, back to the projection matrix. Let us investigate what it does to coordinate values by using it to transform a homogeneous 3D vector:
 
 $$ \begin{pmatrix}
 1 & 0 & 0 & 0 \\
@@ -70,5 +68,13 @@ y \\
 
 _Equation 3:_ Transforming a homogeneous 3D vector with the projection matrix from _Equation 2_.
 
-While it leaves $x$ and $y$ coordinates untouched, $z$ cooordinates get **negated**. Furthermore, we get a **negative homogeneous coordinate**. 
-A negative sign on one major coordinate axis only, while not negating the other two axes corresponds to **changing the handedness** of the coordinate system as illustrated in _Figure 1_.
+While it leaves $x$ and $y$ coordinates untouched, $z$ cooordinates get **flipped**. Furthermore, we get a **negative homogeneous coordinate**. 
+Flipping of one coordinate axis _only_, while not flipping the other two axes, corresponds to **changing the handedness** of the coordinate system as illustrated in _Figure 1_.
+
+[![Flipping the z-axis only](/assets/images/inv-z-fade.gif)](/assets/images/inv-z-fade.gif)     
+
+_Figure 1:_ Illustration of the transformation from _Equation 3_. Of course, matrix multiplication would not lead to an interpolation like shown in the animation; the animation shall just illustrate what happens: One coordinate axis is flipped while the others remain in place---turning the original right-handed coordinate system into a left-handed coordinate system.
+
+The coordinate system that results from it is left-handed because OpenGL's convention of framebuffer coordinates are that in screen space, the x-axis is pointing to the right, y-axis is pointing up, and the z-axis, which represents depth values, points "into" the screen (i.e. _not_ out of it). A nice illustration of the different framebuffer coordinates spaces in screen space can be found under [Sascha Willems - Flipping the Vulkan viewport](https://www.saschawillems.de/blog/2019/03/29/flipping-the-vulkan-viewport/). 
+
+And with this information, let us move on where it get
