@@ -76,6 +76,6 @@ Flipping of one coordinate axis _only_, while not flipping the other two axes, c
 
 _Figure 1:_ Illustration of the transformation from _Equation 3_. Of course, matrix multiplication would not lead to an interpolation like shown in the animation; the animation shall just illustrate what happens: One coordinate axis is flipped while the others remain in place---turning the original right-handed coordinate system into a left-handed coordinate system.
 
-The coordinate system that results from it is left-handed because OpenGL's convention of framebuffer coordinates are that in screen space, the x-axis is pointing to the right, y-axis is pointing up, and the z-axis, which represents depth values, points "into" the screen (i.e. _not_ out of it). A nice illustration of the different framebuffer coordinates spaces in screen space can be found under [Sascha Willems - Flipping the Vulkan viewport](https://www.saschawillems.de/blog/2019/03/29/flipping-the-vulkan-viewport/). 
+The coordinate system that results from it is left-handed because OpenGL's convention of framebuffer coordinates are so that in screen space the x-axis is pointing to the right, y-axis is pointing up, and the z-axis (which represents depth values) points "into" the screen (i.e. _not_ out of it). A nice illustration of the different framebuffer coordinates spaces in screen space can be found under [Sascha Willems - Flipping the Vulkan viewport](https://www.saschawillems.de/blog/2019/03/29/flipping-the-vulkan-viewport/). 
 
 And with this information, let us move on where it get
