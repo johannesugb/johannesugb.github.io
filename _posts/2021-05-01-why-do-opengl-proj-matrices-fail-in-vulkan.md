@@ -53,15 +53,12 @@ $$ \begin{pmatrix}
 0 & 1 & 0 & 0 \\
 0 & 0 & -3 & -1 \\
 0 & 0 & -4 & 0 
-\end{pmatrix} 
-\cdot 
+\end{pmatrix}            \cdot 
 \begin{pmatrix}
 x \\
 y \\
 z \\
-1  
-\end{pmatrix}
-= 
+1 \end{pmatrix}            = 
 \begin{pmatrix}
 x \\
 y \\
