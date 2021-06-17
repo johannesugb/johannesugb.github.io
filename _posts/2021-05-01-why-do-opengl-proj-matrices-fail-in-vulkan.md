@@ -46,7 +46,7 @@ _Equation 2:_ Projection matrix with parameters $l = -1$, $r = 1$, $b = -1$, $t 
 
 What I would like to point out now is how this projection matrix transforms coordinates. We are about to whitness some---in my opinion---rather ugly conventions which have the potential to lead to a lot of confusion. 
 
-_Speaking of confusion, a sidenote:_ Don't let yourself be confused by the positions of the $-1$ and $-4$ entries in _Equation 2_; you'll find their positions swapped in many references. This comes from taking taking storage peculiarities into account---namely row-mayor vs. column-major. In this blog post, however, I display matrices in generic mathematical notation s.t. it matches the notation from e.g. [WolframAlpha](https://www.wolframalpha.com/input/?i=%7B%7B1%2C+0%2C+0%2C+0%7D%2C+%7B0%2C+1%2C+0%2C+0%7D%2C+%7B0%2C+0%2C+-3%2C+-1%7D%2C+%7B0%2C+0%2C+-4%2C+0%7D%7D+.+%7B%7B1%7D%2C+%7B1%7D%2C+%7B1%7D%2C+%7B1%7D%7D) and other mathematical sources.
+_Speaking of confusion, a sidenote:_ Don't let yourself be confused by the positions of the $-1$ and $-4$ entries in _Equation 2_; you'll find their positions swapped in many references. This comes from taking taking storage peculiarities into account---namely row-mayor vs. column-major. In this blog post, however, I display matrices in generic mathematical notation s.t. it matches the notation from e.g. [WolframAlpha](https://www.wolframalpha.com/input/?i=%7B%7B1%2C+0%2C+0%2C+0%7D%2C+%7B0%2C+1%2C+0%2C+0%7D%2C+%7B0%2C+0%2C+-3%2C+-1%7D%2C+%7B0%2C+0%2C+-4%2C+0%7D%7D+.+%7B%7Bx%7D%2C+%7By%7D%2C+%7Bz%7D%2C+%7B1%7D%7D) and other mathematical sources.
 
 Okay, back to the projection matrix. Let us investigate what it does to our coordinate values by transforming a homogeneous 3D vector with it:
 
@@ -68,4 +68,7 @@ y \\
 -4z  
 \end{pmatrix} $$         
 
-_Equation 3:_ adf
+_Equation 3:_ Transforming a homogeneous 3D vector with the projection matrix from _Equation 2_.
+
+While it leaves $x$ and $y$ coordinates untouched, $z$ cooordinates get **negated**. Furthermore, we get a **negative homogeneous coordinate**. 
+A negative sign on one major coordinate axis only, while not negating the other two axes corresponds to **changing the handedness** of the coordinate system as illustrated in _Figure 1_.
