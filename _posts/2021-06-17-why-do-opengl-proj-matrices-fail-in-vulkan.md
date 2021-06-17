@@ -9,14 +9,16 @@ tags:
 #   image: /assets/images/1500x500.jpg
 ---
 
-When programmers with an OpenGL background learn Vulkan, they often expect--or hope--that the projection matrices they have used with OpenGL continue to work with Vulkan. Everyone with such expectations is in for a bad surprise. While many sources on the internet offer quick fixes such as
+When programmers with an OpenGL background learn Vulkan, they often expect--or hope--that the projection matrices they have used with OpenGL continue to work with Vulkan. Everyone with such expectations is in for a bad surprise. While many sources on the internet offer strategies to fix it such as
 
 - Inverting the projection matrix' y-axis: `projMat[1][1] *= -1`,
 - Inverting the y coordinates in the vertex shader: `gl_Position.y = -gl_Position.y;`,
 - Flipping the viewport by specifying a negative height,
-- Inverting a mysterious value in the projection matrix: `projMat[3][2] *= -1;` and changing the front faces from [`VK_FRONT_FACE_COUNTER_CLOCKWISE`](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkFrontFace.html) to [`VK_FRONT_FACE_CLOCKWISE`](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkFrontFace.html).
+- Inverting a mysterious value in the projection matrix: `projMat[3][2] *= -1;`,
 
-Applying such fixes without really knowing what's going on under the hood can leave a bad feeling in the mind of a thoughtful programmer. This blog post tries to explain why OpenGL's projection matrices do not work in a Vulkan application without modification and what the fundamental differences between the two APIs are in this specific case.
+and some require changing the front faces from [`VK_FRONT_FACE_COUNTER_CLOCKWISE`](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkFrontFace.html) to [`VK_FRONT_FACE_CLOCKWISE`](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkFrontFace.html).
+
+Applying such changes without really knowing what's going on under the hood can leave a bad feeling in the mind of a thoughtful programmer. This blog post tries to explain why OpenGL's projection matrices do not work in a Vulkan application without modification and what the fundamental differences between the two APIs are in this specific case.
 
 ## Projection Matrices in OpenGL
 
@@ -111,9 +113,9 @@ I find this pretty confusing. I'd assume that misconceptions like OpenGL would r
 
 I find these properties much less confusing in Vulkan. In Khronos' newer API, everything feels more consistent for its fixed-function steps, applying right-handed rules and performing everything in right-handed spaces. The only "downside" (if it could even be labeled as such) might be that a framebuffer space with its y-axis pointing down could be more confusing to some. However, taking Vulkan's NDC space into account (as shown in _Figure 4_), I think it just is the natural choice and makes sense, totally.
 
-## What Do Those Fixes Actually Do
+## What Do Those Initially Mentioned Strategies Actually Do
 
-Most of the fixes mentioned initially flip another axis of a given OpenGL-style projection matrix. In particular, this applies to the first three items from above:
+Most of the strategies mentioned initially flip another axis of a given OpenGL-style projection matrix. In particular, this applies to the first three items from above:
 
 - Inverting the projection matrix' y-axis: `projMat[1][1] *= -1`,
 - Inverting the y coordinates in the vertex shader: `gl_Position.y = -gl_Position.y;`,
@@ -133,10 +135,12 @@ From _Figure 5_ it can be seen that the result is a right-handed coordinate syst
 
 _Figure 6:_ The transformation illustrated in _Figure 5_ corresponds to a stiff rotation which preserves handedness.
 
-Now we do have a right-handed coordinate system, but it might be that we have messed up some axes along the way. E.g., it might be that if we carelessly applied one of these fixes, we could end up with a situation such as our camera looking in an unexpected direction after multiplying view and (fixed) projection matrices togehter. I won't go into details of specific cases but instead, I'll create another blog post describing how a proper projection matrix for Vulkan might be set-up. 
+Now we do have a right-handed coordinate system, but it might be that we have messed up some axes along the way. E.g., it might be that if we carelessly applied one of these strategies, we could end up with a situation such as our camera looking in an unexpected direction after multiplying view and (changed) projection matrices togehter. I won't go into details of specific cases but instead, I'll create another blog post describing how a proper projection matrix for Vulkan might be set-up. 
 
-We complete our adventurous journey with a brief discussion of the effects of the fourth initially mentioned fix: 
+We complete our adventurous journey with a brief discussion of the effects of the fourth initially mentioned strategy: 
 
 - Inverting a mysterious value in the projection matrix: `projMat[3][2] *= -1;`.
 
-The modification of the projection matrix in this case would actually reverts the flipping of the z-axis but leaves the homogeneous coordinate with a negative sign.
+The modification of the projection matrix in this case reverts the flipping of the z-axis but leaves the homogeneous coordinate with a negative sign, which means that homogeneous division flips every axis---probably with the intention of getting the depth values right by letting the resulting z-axis point "into" the screen. As hinted above, everything with these spaces is relative to the other spaces, but it can get hugely confusing and I would assume that a solution that has been hacked together is not what the thoughtful programmer is after.
+
+As soon as I'll have the blog post about my take on establishing a proper Vulkan projection matrix is done, I'll add a link to it here. Thanks for reading!
