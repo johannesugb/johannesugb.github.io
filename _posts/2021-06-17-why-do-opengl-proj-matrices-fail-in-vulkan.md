@@ -13,9 +13,8 @@ When programmers with an OpenGL background learn Vulkan, they often expect--or h
 
 - Inverting the projection matrix' y-axis: `projMat[1][1] *= -1`,
 - Inverting the y coordinates in the vertex shader: `gl_Position.y = -gl_Position.y;`,
-- Inverting a mysterious value in the projection matrix: `projMat[2][3] *= -1`,
 - Flipping the viewport by specifying a negative height,
-- Changing the front faces from [`VK_FRONT_FACE_COUNTER_CLOCKWISE`](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkFrontFace.html) to [`VK_FRONT_FACE_CLOCKWISE`](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkFrontFace.html).
+- Inverting a mysterious value in the projection matrix: `projMat[3][2] *= -1;` and changing the front faces from [`VK_FRONT_FACE_COUNTER_CLOCKWISE`](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkFrontFace.html) to [`VK_FRONT_FACE_CLOCKWISE`](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkFrontFace.html).
 
 Applying such fixes without really knowing what's going on under the hood can leave a bad feeling in the mind of a thoughtful programmer. This blog post tries to explain why OpenGL's projection matrices do not work in a Vulkan application without modification and what the fundamental differences between the two APIs are in this specific case.
 
@@ -111,3 +110,33 @@ The specifications give the answer: The [OpenGL specification](https://www.khron
 I find this pretty confusing. I'd assume that misconceptions like OpenGL would require right-handed world space originate from these properties, when actually the only spaces that OpenGL really defines a handedness for, are all _left-handed_, but---as outlined above---right-hand rules are applied when determining whether a polygon is frontfacing or backfacing. 
 
 I find these properties much less confusing in Vulkan. In Khronos' newer API, everything feels more consistent for its fixed-function steps, applying right-handed rules and performing everything in right-handed spaces. The only "downside" (if it could even be labeled as such) might be that a framebuffer space with its y-axis pointing down could be more confusing to some. However, taking Vulkan's NDC space into account (as shown in _Figure 4_), I think it just is the natural choice and makes sense, totally.
+
+## What Do Those Fixes Actually Do
+
+Most of the fixes mentioned initially flip another axis of a given OpenGL-style projection matrix. In particular, this applies to the first three items from above:
+
+- Inverting the projection matrix' y-axis: `projMat[1][1] *= -1`,
+- Inverting the y coordinates in the vertex shader: `gl_Position.y = -gl_Position.y;`,
+- Flipping the viewport by specifying a negative height.
+
+The process can be visualized like follows:
+
+{: .center}
+[![Flipping the z-axis and flipping the y-axis](/assets/images/inv-z-then-y-fade.gif)](/assets/images/inv-z-then-y-fade.gif)
+
+_Figure 5:_ If first, one axis (the z-axis in this case) is flipped like in _Figure 1_---corresponding to what a typical OpenGL projection matrix does---, and then another axis (the y-axis in this case) is flipped additionally, the resulting coordinate system is right-handed again. 
+
+From _Figure 5_ it can be seen that the result is a right-handed coordinate system, i.e. exactly what Vulkan expects. Flipping two axes corresponds to a rotation like shown in _Figure 6_, which is an [orthogonal transformation](https://en.wikipedia.org/wiki/Orthogonal_transformation) and as such, preserves handedness.
+
+{: .center}
+[![Rotating a right-handed coordinate system](/assets/images/inv-not-but-rot-fade.gif)](/assets/images/inv-not-but-rot-fade.gif)
+
+_Figure 6:_ The transformation illustrated in _Figure 5_ corresponds to a stiff rotation which preserves handedness.
+
+Now we do have a right-handed coordinate system, but it might be that we have messed up some axes along the way. E.g., it might be that if we carelessly applied one of these fixes, we could end up with a situation such as our camera looking in an unexpected direction after multiplying view and (fixed) projection matrices togehter. I won't go into details of specific cases but instead, I'll create another blog post describing how a proper projection matrix for Vulkan might be set-up. 
+
+We complete our adventurous journey with a brief discussion of the effects of the fourth initially mentioned fix: 
+
+- Inverting a mysterious value in the projection matrix: `projMat[3][2] *= -1;`.
+
+The modification of the projection matrix in this case would actually reverts the flipping of the z-axis but leaves the homogeneous coordinate with a negative sign.
