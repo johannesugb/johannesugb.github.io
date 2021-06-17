@@ -65,5 +65,5 @@ x \\
 y \\
 -3z-1 \\
 -4z  
-\end{pmatrix} $$   
-
+\end{pmatrix} $$         
+_Equation 3:_ adf
