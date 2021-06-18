@@ -31,3 +31,12 @@ _Table 1:_ Comparing several selected benchmark results from PCMark 10 shows tha
 
 The results from _Table 1_ shall mainly serve for the purpose of showing that indeed, there is not a huge performance difference between the two different CPUs in benchmarks which obviously do not really benefit from more cores. 
 
+{: .center}
+| Benchmark            | Ryzen 9 3900X | i5-1135G7 plugged | i5-1135G7 battery |
+| :---                 |         ----: |             ----: |             ----: |
+| Gears-Vk   | 1.56 s        | 2:18.63          |  1.82 s             |
+| Gears-Vk + build step  | 1.56 s        | 2:18.63          |  1.82 s             |
+| ASSIMP  | 1.56 s        | 2:18.63          |  1.82 s             |
+
+
+
