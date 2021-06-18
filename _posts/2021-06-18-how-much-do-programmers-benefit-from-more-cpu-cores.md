@@ -27,7 +27,7 @@ For a start, _Table 1_ shows some results from [PCMark 10](https://benchmarks.ul
 | Save JPEG            | 1.17 s        | 1.24 s          | 1.27 s              |
 | Gaussian blur        | 0.41 s        | 0.35 s       |  0.42 s             |
 
-_Table 1:_ Comparing several selected benchmark results from PCMark 10 shows that for many every-day tasks there is not a huge performance difference between the two CPUs with a huge difference in number of cores. There were also benchmark results which clearly showed an advantage for the CPU with more cores like, e.g., "Batch transformation", but these were left out of this table. Warm start benchmarks have been selected instead of cold start benchmarks, to decrease influences of different SSD and RAM speeds.
+_Table 1:_ Comparing several selected benchmark results from PCMark 10 shows that for many every-day tasks there is not a huge performance difference between the two CPUs with a huge difference in number of cores. There were also benchmark results which clearly showed an advantage for the CPU with more cores like, e.g., "Batch transformation", but these were left out of this table. Warm start benchmarks have been selected instead of cold start benchmarks, to help decrease influences of different SSD speeds.
 
 The results from _Table 1_ shall mainly serve for the purpose of showing that indeed, there is not a huge performance difference between the two different CPUs in benchmarks which obviously do not really benefit from more cores. 
 
