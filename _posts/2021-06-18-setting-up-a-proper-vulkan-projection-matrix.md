@@ -61,7 +61,7 @@ _Equation 2:_ An intermediate transformation which aligns the axes with the expe
 
 ### Perspective Projection Into Clip Space
 
-The final step is transforming from $\textbf{X}$ into clip space with perspective projection. Since all axes have already been aligned properly in the previous step, we can focus on the projection itself in this step and do not have to spend any thoughts on any more axis flips that might be required (as opposed to the OpenGL waythat was discussed in a previous blog post). 
+The final step is transforming from $\textbf{X}$ into clip space with perspective projection. Since all axes have already been aligned properly in the previous step, we can focus on the projection itself in this step and do not have to spend any thoughts on any more axis flips that might be required (as opposed to the OpenGL way that was discussed in a [previous blog post](https://johannesugb.github.io/gpu-programming/why-do-opengl-proj-matrices-fail-in-vulkan/)). 
 
 $$ \mathbf{P} = \begin{pmatrix}
 \frac{1}{a} \frac{1}{\tan \frac{\phi}{2}} & 0 & 0 & 0 \\
