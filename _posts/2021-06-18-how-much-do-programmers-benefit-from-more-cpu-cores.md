@@ -14,6 +14,14 @@ As we all know, programmers always need more cores because our PCs must not impe
 
 In this blog post, I will compare the Ryzen 9 3900X with the Core i5-1135G7 for CPU tasks. However, the comparisons will not be totally accurate because I will not test them with the same hardware components for things like SSD and RAM. I.e., it will not exactly be an apples to apples comparison. But the hardware specifications are not too different from each other, so at least overall performance trends should become visible. 
 
-For a start, _Table 1_ shows some results from [PCMark 10](https://benchmarks.ul.com/pcmark10). I have performed all tests on the laptop-PC twice: once in "extreme performance mode" and plugged in, and once in "intelligent cooling mode" running on battery.
+For a start, _Table 1_ shows some results from [PCMark 10](https://benchmarks.ul.com/pcmark10). I have performed all tests on the laptop-PC twice: once plugged in, and once running on battery.
 
-
+| Benchmark            | Ryzen 9 3900X | i5-1135G7 plugged | i5-1135G7 battery |
+| -------------------- | ------------- | ----------------- | ----------------- |
+| Firefox warm start   | 1.56 s        | 1.56 s          |  1.82 s             |
+| GIMP warm start      | 2.33 s        | 2.64 s          |  2.97 s             |
+| Cut and paste        | 0.33 s        | 0.32 s          |  0.31 s             |
+| Recalculate Stock history CPU | 0.85 s  | 0.88 s       |  1.01 s             |
+| Edit cells              | 0.79 s     |  0.83 s         |  0.85 s             |
+| Save JPEG            | 1.17 s        | 1.24 s          | 1.27 s              |
+| Gaussian blur        | 0.41 s        | 0.35141 s       |  0.42 s             |
