@@ -70,7 +70,7 @@ $$ \mathbf{P} = \begin{pmatrix}
 0 & 0 & 1 & 0 
 \end{pmatrix}^{-1} $$  
 
-_Equation 3:_ Perspective projection matrix, where $a$ is the aspect ratio ($\frac{w}{h}$), $\phi$ is the field of view, $n$ is the distance of the near plane, $f$ is the distance of the far plane.
+_Equation 3:_ Perspective projection matrix, where $a$ is the framebuffer's aspect ratio $\frac{w}{h}$, $\phi$ is the field of view, $n$ is the distance of the near plane, $f$ is the distance of the far plane.
 
 The x and y coordinates are transformed based on the perspective distortion calculated from the field of view and the aspect ratio. z coordinates are scaled based on near and far plane parameters and offset through the `-n(f-n)` matrix entry. The z value ends up in the homogeneous coordinate, leading to the perspective divison at the homogeneous division fixed-function step. 
 
