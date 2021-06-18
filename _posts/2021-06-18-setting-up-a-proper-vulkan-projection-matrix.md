@@ -1,6 +1,6 @@
 ---
 title: "Setting Up a Proper Projection Matrix for Vulkan"
-# last_modified_at: 2021-06-18T12:30:00+02:00
+# last_modified_at: 2021-06-18T13:45:00+02:00
 categories:
   - GPU-Programming
 tags:
@@ -9,8 +9,8 @@ tags:
 #   image: /assets/images/1500x500.jpg
 ---
 
-In a previous post I have pointed out why projection matrices which are typically used with OpenGL do not work with Vulkan without modifications and can lead to a lot confusion.
-In this post, I'd like to describe a strategy how a proper and (hopefully) easy to understand perspective projection matrix for Vulkan can be set-up manually. _Figure 1_ gives an overview of some commonly used spaces and spaces which must follow certain rules that are dictated by the graphics API---i.e. Vulkan for the scope of this blog post.
+In a [previous post](https://johannesugb.github.io/gpu-programming/why-do-opengl-proj-matrices-fail-in-vulkan/) I have pointed out why projection matrices which are typically used with OpenGL do not work with Vulkan without modifications and can lead to a lot confusion.
+In this post, I'd like to describe a strategy how a proper and (hopefully) easy to understand perspective projection matrix for Vulkan can be set-up manually. _Figure 1_ gives an overview of some commonly used spaces. Some spaces must follow certain rules that are dictated by the graphics API---i.e. Vulkan for the scope of this blog post.
 
 {: .center}
 [![Graphics pipeline, different spaces and operations](/assets/images/different-spaces-some-user-defined.png)](/assets/images/different-spaces-some-user-defined.png)
