@@ -16,12 +16,18 @@ In this blog post, I will compare the Ryzen 9 3900X with the Core i5-1135G7 for 
 
 For a start, _Table 1_ shows some results from [PCMark 10](https://benchmarks.ul.com/pcmark10). I have performed all tests on the laptop-PC twice: once plugged in, and once running on battery.
 
+{: .center}
 | Benchmark            | Ryzen 9 3900X | i5-1135G7 plugged | i5-1135G7 battery |
-| -------------------- | ------------- | ----------------- | ----------------- |
+| :---                 |         ----: |             ----: |             ----: |
 | Firefox warm start   | 1.56 s        | 1.56 s          |  1.82 s             |
 | GIMP warm start      | 2.33 s        | 2.64 s          |  2.97 s             |
 | Cut and paste        | 0.33 s        | 0.32 s          |  0.31 s             |
 | Recalculate Stock history CPU | 0.85 s  | 0.88 s       |  1.01 s             |
 | Edit cells              | 0.79 s     |  0.83 s         |  0.85 s             |
 | Save JPEG            | 1.17 s        | 1.24 s          | 1.27 s              |
-| Gaussian blur        | 0.41 s        | 0.35141 s       |  0.42 s             |
+| Gaussian blur        | 0.41 s        | 0.35 s       |  0.42 s             |
+
+_Table 1:_ Comparing several selected benchmark results from PCMark 10 shows that for many every-day tasks there is not a huge performance difference between the two CPUs with a huge difference in number of cores. There were also benchmark results which clearly showed an advantage for the CPU with more cores like, e.g., "Batch transformation", but these were left out of this table. Warm start benchmarks have been selected instead of cold start benchmarks, to decrease influences of different SSD and RAM speeds.
+
+The results from _Table 1_ shall mainly serve for the purpose of establishing a common base line for the compile time results in _Table 2_. It can be seen that for those benchmarks which obviously do not really benefit from more cores, performance numbers are pretty compareable. For our our compile time benchmarks, `MSBuild` is used on freshly checked out repositories, building the `Debug` configurations. 
+
