@@ -22,8 +22,20 @@ _Figure 2_ shows the spaces with requirements with more details. It can be obser
 {: .center}
 [![Clip Space, Normalized Device Coordinates, and Framebuffer Space in Vulkan](/assets/images/vulkan-spaces.png)](/assets/images/vulkan-spaces.png)
 
-_Figure 2:_ The spaces which Vulkan works with and performs fixed-function operations in are all assumed to be given in a right-handed coordinate system with matching axes orientations. While clip space coordinates are given in homogeneous space, normalized device coordinates only contain primitives within the unit cube from $(-1, -1, 0)^T$ to $(1, 1, 0)^T$. Framebuffer space's x and y coordinates range from $ [0..w) $ and $[0..h)$, with $w$ referring to the framebuffer's horizontal resolution, and $h$ referring to the framebuffer's vertical resolution. 
+_Figure 2:_ The spaces which Vulkan works with and performs fixed-function operations in are all assumed to be given in a right-handed coordinate system with matching axes orientations. While clip space coordinates are given in homogeneous space, normalized device coordinates only contain primitives within the unit cube from $(-1, -1, 0)^T$ to $(1, 1, 0)^T$. Framebuffer space's x and y coordinates range from $ [0..w) $ and $[0..h)$, with $w$ referring to the framebuffer's horizontal resolution, and $h$ referring to the framebuffer's vertical resolution. The $z$ coordinates refer to depth values in $[0,1]$ range.
 
+### Into View Space
+
+Let us start with the transformation of our cooordinates into view space. You are totally free to define view space according to your requirements or preference. Let us further assume that we have already set up a matrix $V$ which transforms coordinates from world space into view space. This can be done by plugging the camera's (transformed) coordinate axes ($c_x$, $c_y$, and $c_z$) together with its translation vector $c_t$ into the columns of a matrix---each one in world space!!---and computing the inverse of it, which gives view matrix $V$:
+
+$$ V = \begin{pmatrix}
+c_{x_x} & c_{y_x} & c_{z_x} & c_{t_x} \\
+c_{x_y} & c_{y_y} & c_{z_y} & c_{t_y} \\
+c_{x_z} & c_{y_z} & c_{z_z} & c_{t_z} \\
+0 & 0 & 0 & 1 
+\end{pmatrix}^{-1} $$  
+
+_Equation 1:_ Computation of view matrix $V$ from three axes $c_x$, $c_y$, $c_z$, and a translation vector $c_t$, each given in world space.
 
 $$ \begin{pmatrix}
 \frac{2 n}{r - l} & 0 & \frac{r + l}{r - l} & 0 \\
