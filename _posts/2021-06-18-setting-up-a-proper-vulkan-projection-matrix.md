@@ -1,6 +1,6 @@
 ---
 title: "Setting Up a Proper Projection Matrix for Vulkan"
-# last_modified_at: 2021-06-18T13:45:00+02:00
+# last_modified_at: 2021-06-18T14:00:00+02:00
 categories:
   - GPU-Programming
 tags:
