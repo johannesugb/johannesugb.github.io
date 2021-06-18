@@ -34,8 +34,8 @@ The results from _Table 1_ shall mainly serve for the purpose of showing that in
 {: .center}
 | Benchmark            | Ryzen 9 3900X | i5-1135G7 plugged | i5-1135G7 battery |
 | :---                 |         ----: |             ----: |             ----: |
-| Gears-Vk               |             | 2:18.63           | 2:31.49           |
-| Gears-Vk + custom build step  |             | 2:52.52         |           |
+| Gears-Vk w/o custom build step |      | 2:18.63          | 2:31.49           |
+| Gears-Vk + custom build step   |      | 2:52.52          | 3:09.93           |
 | ASSIMP                 |             |                   |                   |
 
 
