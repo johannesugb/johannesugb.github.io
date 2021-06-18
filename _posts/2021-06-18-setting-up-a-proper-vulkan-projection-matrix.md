@@ -26,7 +26,7 @@ _Figure 2:_ The spaces which Vulkan works with and performs fixed-function opera
 
 ### Into View Space
 
-Let us start with the transformation of our cooordinates into view space. You are totally free to define view space according to your requirements or preference. Let us further assume that we have already set up a matrix $V$ which transforms coordinates from world space into view space. This can be done by plugging the camera's (transformed) coordinate axes ($c_x$, $c_y$, and $c_z$) together with its translation vector $c_t$ into the columns of a matrix---each one in world space!!---and computing the inverse of it, which gives view matrix $V$:
+Let us start with the transformation of our cooordinates into view space. You are totally free to define view space according to your requirements or preference. Let us further assume that we have already set up a matrix $V$ which transforms coordinates from world space into view space. This can be done by plugging the camera's (transformed) coordinate axes ($\mathbf{c_x}$, $\mathbf{c_y}$, and $\mathbf{c_z}$) together with its translation vector $\mathbf{c_t}$ into the columns of a matrix---each one in world space!!---and computing the inverse of it, which gives view matrix $V$:
 
 $$ V = \begin{pmatrix}
 c_{x_x} & c_{y_x} & c_{z_x} & c_{t_x} \\
