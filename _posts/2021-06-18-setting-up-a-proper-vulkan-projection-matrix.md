@@ -84,7 +84,7 @@ $$
 \mathbf{C} = \mathbf{P} \mathbf{X} \mathbf{V}
 $$
 
-_Equation 4:_ Combining the matrices by first transforming world space into view space $\mathbf{V}$ then preparing them for the perspective transformation by transforming them with $\mathbf{X}$, and finally applying perspective projection via $\mathbf{P}$ gives matrix $\mathbf{C}$ which transforms from world space into clip space. Comparing this approach to _Figure 1_, we actually have one additional space as can be seen in _Figure 4_.
+_Equation 4:_ Combining the matrices by first transforming world space into view space with $\mathbf{V}$, then preparing them for the perspective transformation by transforming them with $\mathbf{X}$, and finally applying perspective projection via $\mathbf{P}$ gives matrix $\mathbf{C}$ which transforms from world space into clip space. Comparing this approach to _Figure 1_, we actually have one additional space as can be seen in _Figure 4_.
 
 {: .center}
 [![Graphics pipeline, different spaces and operations, now one more space](/assets/images/different-spaces-some-user-defined-plusX.png)](/assets/images/different-spaces-some-user-defined-plusX.png)
