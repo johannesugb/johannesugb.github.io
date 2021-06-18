@@ -26,16 +26,37 @@ _Figure 2:_ The spaces which Vulkan works with and performs fixed-function opera
 
 ### Into View Space
 
-Let us start with the transformation of our cooordinates into view space. You are totally free to define view space according to your requirements or preference. Let us further assume that we have already set up a matrix $V$ which transforms coordinates from world space into view space. This can be done by plugging the camera's (transformed) coordinate axes ($\mathbf{c_x}$, $\mathbf{c_y}$, and $\mathbf{c_z}$) together with its translation vector $\mathbf{c_t}$ into the columns of a matrix---each one in world space!!---and computing the inverse of it, which gives view matrix $V$:
+Let us start with the transformation of our cooordinates into view space. You are totally free to define view space according to your requirements or preference. Let us further assume that we have already set up a matrix $V$ which transforms coordinates from world space into view space. This can be done by plugging the camera's (transformed) coordinate axes ($\mathbf{c_x}$, $\mathbf{c_y}$, and $\mathbf{c_z}$) together with its translation vector $\mathbf{c_t}$ into the columns of a matrix and computing the inverse of it, which gives view matrix $\mathbf{V}$:
 
-$$ V = \begin{pmatrix}
-c_{x_x} & c_{y_x} & c_{z_x} & c_{t_x} \\
-c_{x_y} & c_{y_y} & c_{z_y} & c_{t_y} \\
-c_{x_z} & c_{y_z} & c_{z_z} & c_{t_z} \\
+$$ \mathbf{V} = \begin{pmatrix}
+\mathbf{c_{x_x}} & \mathbf{c_{y_x}} & \mathbf{c_{z_x}} & \mathbf{c_{t_x}} \\
+\mathbf{c_{x_y}} & \mathbf{c_{y_y}} & \mathbf{c_{z_y}} & \mathbf{c_{t_y}} \\
+\mathbf{c_{x_z}} & \mathbf{c_{y_z}} & \mathbf{c_{z_z}} & \mathbf{c_{t_z}} \\
 0 & 0 & 0 & 1 
 \end{pmatrix}^{-1} $$  
 
-_Equation 1:_ Computation of view matrix $V$ from three axes $c_x$, $c_y$, $c_z$, and a translation vector $c_t$, each given in world space.
+### Prepare for Perspective Projection
+
+For the sake of comprehensibility, I would like to propose an intermediate step between the view matrix and the (in our example: perspective) projection matrix. With this intermediate step, the projection matrix will be easy to understand and straight-forward to build. 
+
+I am proposing to transform our coordinates into the "Vulkan form" here, meaning that we transform everything into the shape of the coordinate systems from _Figure 2_. For the sake of an example, let us assume a right-handed view space coordinate system where the y-axis points up in world space, and the camera's view direction is pointing towards the camera's local -z direction. Again, you are completely free to define view space in a different way, but this is the way chosen for this example. _Figure 3_ shows the transformation which prepares for Vulkan's clip space and further spaces.
+
+{: .center}
+[![Prepare for Vulkan spaces from view space](/assets/images/view-space-prep-for-proj-fade.gif)](/assets/images/view-space-prep-for-proj-fade.gif)
+
+_Figure 3:_ We want to transform coordinates so that the resulting z-axis points into the camera's view direction, s.t. that part of the scene will be contained in the clip space cube. Furthermore, we must maintain a right-handed coordinate system, where x- and y-axes correspond to increasing horizontal coordinates towards the right, and increasing vertical coordinates downwards, w.r.t. framebuffer space.
+
+From $\textbf{V}$ space, we can easily set up the required transformation by just looking at the resulting axes in _Figure 3_. The x-axis remains unchanged, y- and z-axes must be flipped to get the desired coordinate system. Plugging these transformations into a matrix and taking the inverse of it transforms into the desired intermediate space which we call $\textbf{X}$:
+
+$$ \mathbf{X} = \begin{pmatrix}
+\mathbf{1} & \mathbf{0} & \mathbf{0} & 0 \\
+\mathbf{0} & \mathbf{-1} & \mathbf{0} & 0 \\
+\mathbf{0} & \mathbf{0} & \mathbf{-1} & 0 \\
+0 & 0 & 0 & 1 
+\end{pmatrix}^{-1} $$  
+
+
+_Equation 1:_ Computation of view matrix $\mathbf{V}$ from three axes $\mathbf{c_x}$, $\mathbf{c_y}$, $\mathbf{c_z}$, and a translation vector $\mathbf{c_t}$, each given in world space.
 
 $$ \begin{pmatrix}
 \frac{2 n}{r - l} & 0 & \frac{r + l}{r - l} & 0 \\
