@@ -84,7 +84,11 @@ $$
 \mathbf{C} = \mathbf{P} \mathbf{X} \mathbf{V}
 $$
 
-_Equation 4:_ Combining the matrices by first transforming world space into view space $\mathbf{V}$ then preparing them for the perspective transformation by transforming them with $\mathbf{X}$, and finally applying perspective projection via $\mathbf{P}$ gives matrix $\mathbf{C}$ which transforms from world space into clip space.
+_Equation 4:_ Combining the matrices by first transforming world space into view space $\mathbf{V}$ then preparing them for the perspective transformation by transforming them with $\mathbf{X}$, and finally applying perspective projection via $\mathbf{P}$ gives matrix $\mathbf{C}$ which transforms from world space into clip space. Comparing this approach to _Figure 1_, we actually have one additional space as can be seen in _Figure 4_.
 
+{: .center}
+[![Graphics pipeline, different spaces and operations, now one more space](/assets/images/different-spaces-some-user-defined-plusX.png)](/assets/images/different-spaces-some-user-defined-plusX.png)
 
+_Figure 4:_ We have introduced an additional space transformation between view space and clip space, which is totally fine since we basically can do what we want as long as we provide Vulkan with proper clip space coordinates, s.t. its fixed-function steps compute the right results for us.
 
+As a closing remark I would like to point out that the transformation into $\mathbf{X}$ as an intermediate step might not be necessary depending on your particular application's setup. You might, for example, just define view space to be $\mathbf{X}$-space already, or you might "bake" the transformations from $\mathbf{X}$ into your projection matrix. However, splitting the transformations as presented in this blog post shall serve a didactic purpose---namely to explain the differnt transformations and how they can be created manually without requiring any functions of 3rd party libraries.
