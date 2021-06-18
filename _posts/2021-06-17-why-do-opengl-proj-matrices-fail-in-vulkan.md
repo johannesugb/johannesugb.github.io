@@ -1,10 +1,11 @@
 ---
 title: "Why projection matrices typically used with OpenGL fail with Vulkan"
-# last_modified_at: 2021-06-18T10:30:00+02:00
+# last_modified_at: 2021-06-18T14:02:00+02:00
 categories:
   - GPU-Programming
 tags:
   - Vulkan
+  - OpenGL
 # header:
 #   image: /assets/images/1500x500.jpg
 ---
@@ -144,3 +145,5 @@ We complete our adventurous journey with a brief discussion of the effects of th
 The modification of the projection matrix in this case does not change a lot, it just negates the sign of the homogeneous coordinate. That means that homogeneous division no longer flips every axis and probably has the intention of getting the depth values right by letting the z-axis point into the desired direction. The actual point here is, that everything with these spaces is relative to the other spaces which transform coordinates before, but it can get hugely confusing and I would assume that a solution that has been hacked together is not what the thoughtful programmer is after.
 
 As soon as I'll have the blog post about my take on establishing a proper Vulkan projection matrix is done, I'll add a link to it here. Thanks for reading!
+
+_Update:_ Blog post about [establishing a proper Vulkan projection matrix](https://johannesugb.github.io/gpu-programming/setting-up-a-proper-vulkan-projection-matrix/)
