@@ -22,7 +22,7 @@ A more detailed picture of the spaces with special requirements is given in _Fig
 {: .center}
 [![Clip Space, Normalized Device Coordinates, and Framebuffer Space in Vulkan](/assets/images/vulkan-spaces.png)](/assets/images/vulkan-spaces.png)
 
-_Figure 2:_ The spaces which Vulkan works with and performs fixed-function operations in are all assumed to be given in a right-handed coordinate system with matching axes orientations. While clip space coordinates are given in homogeneous space, normalized device coordinates only contain primitives within the unit cube from $(-1, -1, 0)^T$ to $(1, 1, 1)^T$. Framebuffer space's x and y coordinates range from $ [0..w) $ and $[0..h)$, with $w$ referring to the framebuffer's horizontal resolution, and $h$ referring to the framebuffer's vertical resolution. The $z$ coordinates refer to depth values in $[0,1]$ range.
+_Figure 2:_ The spaces which Vulkan works with and performs fixed-function operations in are all assumed to be given in a right-handed coordinate system with matching axes orientations. While clip space coordinates are given in homogeneous space, normalized device coordinates only contain primitives within the unit cube from $(-1, -1, 0)^T$ to $(1, 1, 1)^T$. Framebuffer space's x and y coordinates range from $ [0..w) $ and $[0..h)$, with $w$ referring to the framebuffer's horizontal resolution, and $h$ referring to the framebuffer's vertical resolution. The z coordinates refer to depth values in $[0,1]$ range.
 
 ### Into View Space
 
@@ -72,7 +72,7 @@ $$ \mathbf{P} = \begin{pmatrix}
 
 _Equation 3:_ Perspective projection matrix, where $a$ is the aspect ratio ($\frac{w}{h}$), $\phi$ is the field of view, $n$ is the distance of the near plane, $f$ is the distance of the far plane.
 
-The x- and y-coordinates are transformed based on the perspective distortion calculated from the field of view and the aspect ratio. z coordinates are scaled based on near and far plane parameters and offset through the `-n(f-n)` matrix entry. The z value ends up in the homogeneous coordinate, leading to the perspective divison at the homogeneous division fixed-function step. 
+The x and y coordinates are transformed based on the perspective distortion calculated from the field of view and the aspect ratio. z coordinates are scaled based on near and far plane parameters and offset through the `-n(f-n)` matrix entry. The z value ends up in the homogeneous coordinate, leading to the perspective divison at the homogeneous division fixed-function step. 
 
 If it is not obvious from _Equation 3_ yet that no axes are inverted by $\mathbf{P}$, it can be examined exemplarily by assinging easy-to-follow values (let them be $a=1$, $\phi = \deg{90}$, $n=1$, $f=2$) and computing the result of transforming a generic vector $(x, y, z, 1)$ with $\mathbf{P}$ using [WolframAlpha](https://www.wolframalpha.com/input/?i=%7B%7B1%2C+0%2C+0%2C+0%7D%2C+%7B0%2C+1%2C+0%2C+0%7D%2C+%7B0%2C+0%2C+2%2C+-1%7D%2C+%7B0%2C+0%2C+1%2C+0%7D%7D+.+%7B%7Bx%7D%2C+%7By%7D%2C+%7Bz%7D%2C+%7B1%7D%7D).
 
