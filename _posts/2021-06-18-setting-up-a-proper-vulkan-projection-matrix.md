@@ -39,7 +39,7 @@ _Equation 1:_ Construction of a view matrix from three cooordinate axes $\mathbf
 
 ### Prepare for Perspective Projection
 
-For the sake of comprehensibility, I would like to propose an intermediate step between the view matrix and the (in our example: perspective) projection matrix. With this intermediate step, the projection matrix will be easy to understand and straight-forward to build. 
+For the sake of comprehensibility, I would like to propose an intermediate step between the view matrix and the (in our example: perspective) projection matrix. With this intermediate step, the projection matrix will be easier to explain and straight-forward to build. 
 
 I am proposing to transform our coordinates into the "Vulkan form" here, meaning that we transform everything into the shape of the coordinate systems from _Figure 2_. For the sake of an example, let us assume a right-handed view space coordinate system where the y-axis points up in world space, and the camera's view direction is pointing towards the camera's local -z direction. Again, you are completely free to define view space in a different way, but this is the way chosen for this example. _Figure 3_ shows the transformation which prepares for Vulkan's clip space and further spaces.
 
