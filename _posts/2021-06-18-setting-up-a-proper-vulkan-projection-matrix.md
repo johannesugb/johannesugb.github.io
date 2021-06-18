@@ -22,7 +22,7 @@ A more detailed picture of the spaces with special requirements is given in _Fig
 {: .center}
 [![Clip Space, Normalized Device Coordinates, and Framebuffer Space in Vulkan](/assets/images/vulkan-spaces.png)](/assets/images/vulkan-spaces.png)
 
-_Figure 2:_ The spaces which Vulkan works with and performs fixed-function operations in are all assumed to be given in a right-handed coordinate system with matching axes orientations. While clip space coordinates are given in homogeneous space, normalized device coordinates only contain primitives within the unit cube from $(-1, -1, 0)^T$ to $(1, 1, 0)^T$. Framebuffer space's x and y coordinates range from $ [0..w) $ and $[0..h)$, with $w$ referring to the framebuffer's horizontal resolution, and $h$ referring to the framebuffer's vertical resolution. The $z$ coordinates refer to depth values in $[0,1]$ range.
+_Figure 2:_ The spaces which Vulkan works with and performs fixed-function operations in are all assumed to be given in a right-handed coordinate system with matching axes orientations. While clip space coordinates are given in homogeneous space, normalized device coordinates only contain primitives within the unit cube from $(-1, -1, 0)^T$ to $(1, 1, 1)^T$. Framebuffer space's x and y coordinates range from $ [0..w) $ and $[0..h)$, with $w$ referring to the framebuffer's horizontal resolution, and $h$ referring to the framebuffer's vertical resolution. The $z$ coordinates refer to depth values in $[0,1]$ range.
 
 ### Into View Space
 
