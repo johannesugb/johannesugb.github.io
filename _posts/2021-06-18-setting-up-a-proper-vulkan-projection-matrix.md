@@ -35,6 +35,8 @@ $$ \mathbf{V} = \begin{pmatrix}
 0 & 0 & 0 & 1 
 \end{pmatrix}^{-1} $$  
 
+_Equation 1:_ Construction of a view matrix from three cooordinate axes $\mathbf{c_x}$, $\mathbf{c_y}$, $\mathbf{c_z}$, and a translation vector $\mathbf{c_t}$, each in world space, referring to the camera's orientation and position.
+
 ### Prepare for Perspective Projection
 
 For the sake of comprehensibility, I would like to propose an intermediate step between the view matrix and the (in our example: perspective) projection matrix. With this intermediate step, the projection matrix will be easy to understand and straight-forward to build. 
@@ -55,6 +57,8 @@ $$ \mathbf{X} = \begin{pmatrix}
 0 & 0 & 0 & 1 
 \end{pmatrix}^{-1} $$  
 
+_Equation 2:_ An intermediate transformation which aligns the axes with the expected format of Vulkan's fixed-function steps.
+
 ### Perspective Projection Into Clip Space
 
 The final step is transforming from $\textbf{X}$ into clip space with perspective projection. Since all axes have already been aligned properly in the previous step, we can focus on the projection itself in this step and do not have to spend any thoughts on any more axis flips that might be required (as opposed to the OpenGL waythat was discussed in a previous blog post). 
@@ -62,8 +66,25 @@ The final step is transforming from $\textbf{X}$ into clip space with perspectiv
 $$ \mathbf{P} = \begin{pmatrix}
 \frac{1}{a} \frac{1}{\tan \frac{\phi}{2}} & 0 & 0 & 0 \\
 0 & \frac{1}{\tan \frac{\phi}{2}} & 0 & 0 \\
-0 & 0 & \frac{f}{f - n} & -n * (f-n) \\
-0 & 0 & 1 & 1 
+0 & 0 & \frac{f}{f - n} & -n(f-n) \\
+0 & 0 & 1 & 0 
 \end{pmatrix}^{-1} $$  
+
+_Equation 3:_ Perspective projection matrix, where $a$ is the aspect ratio ($\frac{w}{h}$), $\phi$ is the field of view, $n$ is the distance of the near plane, $f$ is the distance of the far plane.
+
+The x- and y-coordinates are transformed based on the perspective distortion calculated from the field of view and the aspect ratio. z coordinates are scaled based on near and far plane parameters and offset through the `-n(f-n)` matrix entry. The z value ends up in the homogeneous coordinate, leading to the perspective divison at the homogeneous division fixed-function step. 
+
+If it is not obvious from _Equation 3_ yet that no axes are inverted by $\mathbf{P}$, it can be examined exemplarily by assinging easy-to-follow values (let them be $a=1$, $\phi = \deg{90}$, $n=1$, $f=2$) and computing the result of transforming a generic vector $(x, y, z, 1)$ with $\mathbf{P}$ using [WolframAlpha](https://www.wolframalpha.com/input/?i=%7B%7B1%2C+0%2C+0%2C+0%7D%2C+%7B0%2C+1%2C+0%2C+0%7D%2C+%7B0%2C+0%2C+2%2C+-1%7D%2C+%7B0%2C+0%2C+1%2C+0%7D%7D+.+%7B%7Bx%7D%2C+%7By%7D%2C+%7Bz%7D%2C+%7B1%7D%7D).
+
+### Putting Everything Together
+
+Combining _Equations 1 to 3_ gives matrix $\mathbf{C}$ which transforms coordinates from world space into a clip space which is suitable to be used with Vulkan: 
+
+$$
+\mathbf{C} = \mathbf{P} \mathbf{X} \mathbf{V}
+$$
+
+_Equation 4:_ Combining the matrices by first transforming world space into view space $\mathbf{V}$ then preparing them for the perspective transformation by transforming them with $\mathbf{X}$, and finally applying perspective projection via $\mathbf{P}$ gives matrix $\mathbf{C}$ which transforms from world space into clip space.
+
 
 
