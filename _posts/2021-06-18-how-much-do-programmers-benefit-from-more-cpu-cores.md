@@ -38,7 +38,7 @@ The results from _Table 1_ shall mainly serve for the purpose of showing that in
 | :---                 |         ----: |             ----: |             ----: |
 | Gears-Vk w/o custom build step |      | 2:18.63          | 2:31.49           |
 | Gears-Vk + custom build step   |      | 2:52.52          | 3:09.93           |
-| ASSIMP                 |              | 0:52.50          | 0:55.16           |
+| ASSIMP                 | 0:20.24      | 0:52.50          | 0:55.16           |
 
 [Gears-Vk](https://github.com/cg-tuwien/Gears-Vk) commit [08d4c97](https://github.com/cg-tuwien/Gears-Vk/commit/08d4c972944568e47b614bf99f16185563aea085).
 
