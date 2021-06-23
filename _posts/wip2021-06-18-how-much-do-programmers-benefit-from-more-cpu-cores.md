@@ -52,7 +52,7 @@ with -maxcpucount:8 bzw. -maxcpucount:24 set:
 | Benchmark            | Ryzen 9 3900X | i5-1135G7 plugged | i5-1135G7 battery |
 | :---                 |         ----: |             ----: |             ----: |
 | ASSIMP                                    |            |               |                |
-| Sascha Willems Vulkan Examples            |            | 0:56.79       |                |
+| Sascha Willems Vulkan Examples            |            | 0:56.79       | 0:57.16        |
 | Gears-Vk, framework only                  |            |               |                |
 | Gears-Vk + examples <br/> w/o custom build step |      |               |                |
 | Gears-Vk + examples  <br/> + custom build step   |     |               |                |
