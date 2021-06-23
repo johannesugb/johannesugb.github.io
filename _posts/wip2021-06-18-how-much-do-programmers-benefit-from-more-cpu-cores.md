@@ -37,7 +37,7 @@ The results from _Table 1_ shall mainly serve for the purpose of showing that in
 | Benchmark            | Ryzen 9 3900X | i5-1135G7 plugged | i5-1135G7 battery |
 | :---                 |         ----: |             ----: |             ----: |
 | ASSIMP                                    | 0:20.24    | 0:52.50       | 0:55.16        |
-| Gears-Vk, framework only                  | 0:22.89    |               |                |
+| Gears-Vk, framework only                  | 0:22.89    | 0:26.24       | 0:29.55        |
 | Gears-Vk + examples <br/> w/o custom build step | 2:12.02    | 2:18.63       | 2:31.49        |
 | Gears-Vk + examples  <br/> + custom build step   | 2:36.94    | 2:52.52       | 3:09.93        |
 
