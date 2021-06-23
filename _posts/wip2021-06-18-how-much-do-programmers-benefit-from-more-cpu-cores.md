@@ -37,6 +37,7 @@ The results from _Table 1_ shall mainly serve for the purpose of showing that in
 | Benchmark            | Ryzen 9 3900X | i5-1135G7 plugged | i5-1135G7 battery |
 | :---                 |         ----: |             ----: |             ----: |
 | ASSIMP                                    | 0:20.24    | 0:52.50       | 0:55.16        |
+| Sascha Willems Vulkan Examples            |            | 2:26.18       |                |
 | Gears-Vk, framework only                  | 0:22.89    | 0:26.24       | 0:29.55        |
 | Gears-Vk + examples <br/> w/o custom build step | 2:12.02    | 2:18.63       | 2:31.49        |
 | Gears-Vk + examples  <br/> + custom build step   | 2:36.94    | 2:52.52       | 3:09.93        |
@@ -45,3 +46,13 @@ The results from _Table 1_ shall mainly serve for the purpose of showing that in
 
 [ASSIMP](https://github.com/assimp/assimp) commit [376b3b2](https://github.com/assimp/assimp/commit/376b3b2eff1a7b18d1ab5de0ae1d4e7901d944c5)
 
+with -maxcpucount:8 bzw. -maxcpucount:24 set:
+
+{: .center}
+| Benchmark            | Ryzen 9 3900X | i5-1135G7 plugged | i5-1135G7 battery |
+| :---                 |         ----: |             ----: |             ----: |
+| ASSIMP                                    |            |               |                |
+| Sascha Willems Vulkan Examples            |            | 0:56.79       |                |
+| Gears-Vk, framework only                  |            |               |                |
+| Gears-Vk + examples <br/> w/o custom build step |      |               |                |
+| Gears-Vk + examples  <br/> + custom build step   |     |               |                |
