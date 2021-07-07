@@ -48,7 +48,7 @@ I am proposing to transform our coordinates into the "Vulkan form" here, meaning
 
 _Figure 3:_ We want to transform coordinates so that the resulting z axis points into the camera's view direction, s.t. that part of the scene will be contained in the clip space cube. Furthermore, we must maintain a right-handed coordinate system, where x and y axes correspond to ascending horizontal coordinates towards the right, and ascending vertical coordinates downwards, w.r.t. framebuffer space.
 
-From $\textbf{V}$ space, we can easily set up the required transformation by just looking at the resulting axes in _Figure 3_. The x xis remains unchanged, y and z axes must be flipped to get the desired coordinate system. Plugging these transformations into a matrix and taking the inverse of it transforms into the desired intermediate space which we call $\textbf{X}$:
+From $\textbf{V}$ space, we can easily set up the required transformation by just looking at the resulting axes in _Figure 3_. The x axis remains unchanged, y and z axes must be flipped to get the desired coordinate system. Plugging these transformations into a matrix and taking the inverse of it transforms into the desired intermediate space which we call $\textbf{X}$:
 
 $$ \mathbf{X} = \begin{pmatrix}
 1 & 0 &  0 & 0 \\
