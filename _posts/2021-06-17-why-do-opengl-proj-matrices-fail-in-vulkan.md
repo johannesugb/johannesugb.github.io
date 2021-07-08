@@ -1,6 +1,6 @@
 ---
 title: "Why projection matrices typically used with OpenGL fail with Vulkan"
-# last_modified_at: 2021-06-18T14:02:00+02:00
+# last_modified_at: 2021-07-08T14:02:00+02:00
 categories:
   - GPU-Programming
 tags:
@@ -120,7 +120,7 @@ OpenGL does not actually refer to specific handednesses in its specification and
 {: .center}
 [![All coordinate transformations in OpenGL](/assets/images/opengl-matrix-adventures-total.gif)](/assets/images/opengl-matrix-adventures-total.gif)
 
-_Figure 7:_ The total chain of OpenGL's coordinate transformation madness combined into one animation.
+_Figure 7:_ The total chain of OpenGL's coordinate transformation madness combined into one animation. At the end of the animation, a camera view frustum indicates which part of the scene gets rendered into the framebuffer.
 
 Vulkan's approach is much cleaner, and everything can just stay in right-handed coordinate systems throughout the entire graphics pipeline without any painful handedness-changing transformations. The only "downside" (if it could even be labeled as such) might be that a framebuffer space with its y-axis pointing down could be more confusing to some. However, taking Vulkan's NDC space into account (as shown in Figure 5), I think it just is the natural choice and makes sense, totally.
 
