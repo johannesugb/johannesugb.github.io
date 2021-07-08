@@ -68,7 +68,7 @@ $$ \mathbf{P} = \begin{pmatrix}
 0 & \frac{1}{\tan \frac{\phi}{2}} & 0 & 0 \\
 0 & 0 & \frac{f}{f - n} & -n(f-n) \\
 0 & 0 & 1 & 0 
-\end{pmatrix}^{-1} $$  
+\end{pmatrix} $$  
 
 _Equation 3:_ Perspective projection matrix, where $a$ is the framebuffer's aspect ratio $\frac{w}{h}$, $\phi$ is the field of view, $n$ is the distance of the near plane, $f$ is the distance of the far plane.
 
