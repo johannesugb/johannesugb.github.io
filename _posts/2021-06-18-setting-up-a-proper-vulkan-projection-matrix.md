@@ -64,13 +64,13 @@ _Equation 2:_ An intermediate transformation which aligns the axes with the expe
 The final step is transforming from $\textbf{X}$ into clip space with perspective projection. Since all axes have already been aligned properly in the previous step, we can focus on the projection itself in this step and do not have to spend any thoughts on any more axis flips that might be required (as opposed to the OpenGL way that was discussed in a [previous blog post](https://johannesugb.github.io/gpu-programming/why-do-opengl-proj-matrices-fail-in-vulkan/)). 
 
 $$ \mathbf{P} = \begin{pmatrix}
-\frac{1}{a} \frac{1}{\tan \frac{\phi}{2}} & 0 & 0 & 0 \\
+\frac{a^{-1}}{\tan \frac{\phi}{2}} & 0 & 0 & 0 \\
 0 & \frac{1}{\tan \frac{\phi}{2}} & 0 & 0 \\
 0 & 0 & \frac{f}{f - n} & -n(f-n) \\
 0 & 0 & 1 & 0 
 \end{pmatrix} $$  
 
-_Equation 3:_ Perspective projection matrix, where $a$ is the framebuffer's aspect ratio $\frac{w}{h}$, $\phi$ is the field of view, $n$ is the distance of the near plane, $f$ is the distance of the far plane.
+_Equation 3:_ Perspective projection matrix, where $a^{-1}$ is the framebuffer's aspect ratio $\frac{w}{h}$, $\phi$ is the field of view, $n$ is the distance of the near plane, $f$ is the distance of the far plane.
 
 The x and y coordinates are transformed based on the perspective distortion calculated from the field of view and the aspect ratio. z coordinates are scaled based on near and far plane parameters and offset through the $-n(f-n)$ matrix entry. The z value ends up in the homogeneous coordinate, leading to the perspective divison at the homogeneous division fixed-function step. 
 
