@@ -71,22 +71,27 @@ While it leaves $x$ and $y$ coordinates untouched, $z$ cooordinates get **flippe
 Flipping of one coordinate axis _only_, while not flipping the other two axes, corresponds to **changing the handedness** of the coordinate system as illustrated in _Figure 1_.
 
 {: .center}
-[![Flipping the z-axis only](/assets/images/inv-z-fade.gif)](/assets/images/inv-z-fade.gif)
+[![Flipping the z-axis only](/assets/images/opengl-matrix-adventures-first.gif)](/assets/images/opengl-matrix-adventures-first.gif)
 
-_Figure 1:_ Illustration of the transformation from _Equation 3_. Matrix multiplication, of course, would not lead to a gradual interpolation like shown in the animation; the animation's intent is to emphasize the painful transformation from the original right-handed coordinate system into a left-handed coordinate system.
+_Figure 1:_ Illustration of the transformation from _Equation 3_ before homogeneous division. Matrix multiplication, of course, would not lead to a gradual interpolation like shown in the animation; the animation's intent is to emphasize the painful transformation from the original right-handed coordinate system into a left-handed coordinate system.
 
-The coordinate system that results from it is left-handed. OpenGL's convention says that framebuffer space shall be left-handed, too, with its x-axis pointing to the right, its y-axis is pointing up, and its z-axis (which represents depth values) pointing "into" the screen (i.e. _not_ out of it). A nice illustration of the different framebuffer coordinates spaces in screen space can be found under [Sascha Willems - Flipping the Vulkan viewport](https://www.saschawillems.de/blog/2019/03/29/flipping-the-vulkan-viewport/). 
+But we're still left with a negative homogeneous coordinate, which all the other coordinate axes will be divided by eventually. If we would visualize this process, this would yet again lead to a change of handedness as illustrated in _Figure 2_. If we assume to have started in right-handed coordinate system initially, we end up in a right-handed coordinate system again after homogeneous division. But along the way, everything got transformed into a left-handed coordinate system for a while.
 
-And with this information, let us move on to the differences between OpenGL and Vulkan.
+{: .center}
+[![Flipping all coordinate axes](/assets/images/opengl-matrix-adventures-second.gif)](/assets/images/opengl-matrix-adventures-second.gif)
 
-## Different Space Conventions for OpenGL and Vulkan
+_Figure 2:_ Flipping all coordinate axes---which is what happens at the homogeneous division step with a negative homogeneous coordinate---changes handedness of the underlying coordinate system once again. 
 
-We have already learnt about the different space conventions of framebuffer space (if you have followed the link given right above). But where it gets really interesting are the spaces before framebuffer space, which are clip space and normalized device coordinates (NDC space). _Figure 2_ shows some typical spaces of a 3D application (referring to world space and view space) along with the spaces that graphics APIs define: clip space, NDC space, and framebuffer space.
+The relevant spaces and fixed-function steps of a graphics pipeline are outlined in _Figure 3_. The projection matrix transforms coordinates into clip space, which is the space where the fixed-function steps primitive culling and homogeneous division are performed, leading into normalized device coordinates (NDC space). Through viewport scaling, coordinates are transformed into framebuffer space (often called "window coordinates" in OpenGL), where the fixed-function step backface culling is performed.
 
 {: .center}
 [![Graphics pipeline, different spaces and operations](/assets/images/different_spaces_and_ops.png)](/assets/images/different_spaces_and_ops.png)
 
-_Figure 2:_ Typical spaces in a 3D application include world and view space, which are generally user-defined. Graphics APIs dictate some conventions about other spaces, though, namely clip space, NDC space, and framebuffer space. Between clip space and NDC space several fixed-function operations are performed (from left to right: backface culling, primitive clipping, homogeneous division) which are indicated with circular symbols. Different spaces are indicated with rectangles.
+_Figure 3:_ Typical spaces in a 3D application include world and view space, which are generally user-defined. Graphics APIs dictate some conventions about other spaces, though, namely clip space, NDC space, and framebuffer space. Between clip space and NDC space, the fixed-function operations primitive clipping and homogeneous division are performed. After coordinates have been transformed into framebuffer space, we have another fixed-function step, which is backface culling. The fixed-function stepsh are indicated with circular symbols, while different spaces are indicated with rectangles.
+
+## Different Space Conventions for OpenGL and Vulkan
+
+We have already learnt about the different space conventions of framebuffer space (if you have followed the link given right above). But where it gets really interesting are the spaces before framebuffer space, which are clip space and normalized device coordinates (NDC space). _Figure 2_ shows some typical spaces of a 3D application (referring to world space and view space) along with the spaces that graphics APIs define: clip space, NDC space, and framebuffer space.
 
 What we have talked about so far is the projection matrix $P$ which transforms into clip space. A key point which needs to be understood is that **the graphics API** defines how clip space shall look like. And here we have differences between OpenGL and Vulkan: While OpenGL expects the clip space to be _left-handed_, Vulkan expects it to be _right-handed_. There are several crucial fixed-function operations happening between clip space and NDC space (shown in _Figure 2_) which are performed in the following order:
 
