@@ -68,58 +68,63 @@ y \\
 _Equation 3:_ Transforming a homogeneous 3D vector with the projection matrix from _Equation 2_.
 
 While it leaves $x$ and $y$ coordinates untouched, $z$ cooordinates get **flipped**. Furthermore, we get a **negative homogeneous coordinate**. 
-Flipping of one coordinate axis _only_, while not flipping the other two axes, corresponds to **changing the handedness** of the coordinate system as illustrated in _Figure 1_.
+Flipping of one coordinate axis _only_, while not flipping the other two axes, corresponds to **changing the handedness** of the coordinate system as illustrated in Figure 1.
 
 {: .center}
 [![Flipping the z-axis only](/assets/images/opengl-matrix-adventures-first.gif)](/assets/images/opengl-matrix-adventures-first.gif)
 
 _Figure 1:_ Illustration of the transformation from _Equation 3_ before homogeneous division. Matrix multiplication, of course, would not lead to a gradual interpolation like shown in the animation; the animation's intent is to emphasize the painful transformation from the original right-handed coordinate system into a left-handed coordinate system.
 
-But we're still left with a negative homogeneous coordinate, which all the other coordinate axes will be divided by eventually. If we would visualize this process, this would yet again lead to a change of handedness as illustrated in _Figure 2_. If we assume to have started in right-handed coordinate system initially, we end up in a right-handed coordinate system again after homogeneous division. But along the way, everything got transformed into a left-handed coordinate system for a while.
+But we're still left with a negative homogeneous coordinate, which all the other coordinate axes will be divided by eventually. If we would visualize this process, this would yet again lead to a change of handedness as illustrated in Figure 2. If we assume to have started in right-handed coordinate system initially, we end up in a right-handed coordinate system again after homogeneous division. But along the way, everything got transformed into a left-handed coordinate system for a while.
 
 {: .center}
 [![Flipping all coordinate axes](/assets/images/opengl-matrix-adventures-second.gif)](/assets/images/opengl-matrix-adventures-second.gif)
 
 _Figure 2:_ Flipping all coordinate axes---which is what happens at the homogeneous division step with a negative homogeneous coordinate---changes handedness of the underlying coordinate system once again. 
 
-The relevant spaces and fixed-function steps of a graphics pipeline are outlined in _Figure 3_. The projection matrix transforms coordinates into clip space, which is the space where the fixed-function steps primitive culling and homogeneous division are performed, leading into normalized device coordinates (NDC space). Through viewport scaling, coordinates are transformed into framebuffer space (often called "window coordinates" in OpenGL), where the fixed-function step backface culling is performed.
+The relevant spaces and fixed-function steps of a graphics pipeline are outlined in Figure 3. The projection matrix transforms coordinates into clip space, which is the space where the fixed-function steps primitive culling and homogeneous division are performed, leading into normalized device coordinates (NDC space). Through viewport scaling, coordinates are transformed into framebuffer space (often called "window coordinates" in OpenGL), where the fixed-function step backface culling is performed.
 
 {: .center}
 [![Graphics pipeline, different spaces and operations](/assets/images/different_spaces_and_ops.png)](/assets/images/different_spaces_and_ops.png)
 
 _Figure 3:_ Typical spaces in a 3D application include world and view space, which are generally user-defined. Graphics APIs dictate some conventions about other spaces, though, namely clip space, NDC space, and framebuffer space. Between clip space and NDC space, the fixed-function operations primitive clipping and homogeneous division are performed. After coordinates have been transformed into framebuffer space, we have another fixed-function step, which is backface culling. The fixed-function stepsh are indicated with circular symbols, while different spaces are indicated with rectangles.
 
-## Different Space Conventions for OpenGL and Vulkan
+## Different Space Conventions in OpenGL and Vulkan
 
-We have already learnt about the different space conventions of framebuffer space (if you have followed the link given right above). But where it gets really interesting are the spaces before framebuffer space, which are clip space and normalized device coordinates (NDC space). _Figure 2_ shows some typical spaces of a 3D application (referring to world space and view space) along with the spaces that graphics APIs define: clip space, NDC space, and framebuffer space.
-
-What we have talked about so far is the projection matrix $P$ which transforms into clip space. A key point which needs to be understood is that **the graphics API** defines how clip space shall look like. And here we have differences between OpenGL and Vulkan: While OpenGL expects the clip space to be _left-handed_, Vulkan expects it to be _right-handed_. There are several crucial fixed-function operations happening between clip space and NDC space (shown in _Figure 2_) which are performed in the following order:
-
-1. Backface culling
-2. Primitive clipping
-3. Homogeneous division
-
-Only _after_ all these steps, clip space coordinates have been fully transformed into NDC space. What I would like to emphasize here again is that these steps are performed in spaces with different handedness when comparing OpenGL with Vulkan. _Figures 3 and 4_ show the differences between OpenGL and Vulkan w.r.t. their clip and NDC spaces.
+If you have followed the links above, you have already learned about different space conventions for the two graphics APIs. Let us take a closer look the spaces of both APIs by observing Figures 4 and 5. They show the differences between OpenGL and Vulkan w.r.t. clip, NDC, and framebuffer spaces. We can actually observe for each of them that they differ in handedness. While in OpenGL every one of these spaces appears _left-handed_, Vulkan expects them to be _right-handed_. For framebuffer space, this blog post assumes increasing depth coordinates (i.e. the further away, the higher the depth value) to be aligned with the z axes wich are drawn in blue, and point in the direction of increasing positive values.
 
 {: .center}
-[![Clip Space and Normalized Device Coordinates details in OpenGL](/assets/images/clip_cube_ndc_cube_opengl.png)](/assets/images/clip_cube_ndc_cube_opengl.png)
+[![Clip Space, NDC space, and framebuffer space details in OpenGL](/assets/images/opengl-spaces.png)](/assets/images/opengl-spaces.png)
 
-_Figure 3:_ OpenGL expects coordinates in clip space to be given in a left-handed coordinate system, supporting homogeneous coordinates. Handedness stays the same through the operations between clip space and NDC space. The left-handed coordinate system naturally translates to OpenGL's framebuffer space, which defines the coordinate origin in the bottom-left corner, with its x-axis pointing to the right and its y-axis pointing up.
+_Figure 4:_ We can imagine all of OpenGL's spaces to be given in a left-handed coordinate systemss, from clip space, to NDC space, and framebuffer space (taking into account that increasing depth values increase with the direction that "points towards the inside" of the screen.
 
 {: .center}
-[![Clip Space and Normalized Device Coordinates details in Vulkan](/assets/images/clip_cube_ndc_cube_vulkan.png)](/assets/images/clip_cube_ndc_cube_vulkan.png)
+[![Clip Space, NDC space, and framebuffer space details in Vulkan](/assets/images/vulkan-spaces.png)](/assets/images/vulkan-spaces.png)
 
-_Figure 4:_ Vulkan expects coordinates in clip space to be given in a right-handed coordinate system, supporting homogeneous coordinates. Handedness stays the same through the operations between clip space and NDC space. The right-handed coordinate system naturally translates to Vulkan's framebuffer space, which defines the coordinate origin in the top-left corner, with its x-axis pointing to the right and its y-axis pointing down.
+_Figure 5:_ In constrast to OpenGL, we can imagine all spaces in Vulkan in a right-handed coordinate system throughout a graphics pipeline. The right-handed coordinate system naturally translates to Vulkan's framebuffer space, which defines the coordinate origin in the top-left corner, with its x axis pointing to the right and its y axis pointing down.
 
-At this point, there is one thing which looks quite fishy in particular---at least that's how it appeared to me before I started investigating: I was wondering why on earth do both APIs, OpenGL and Vulkan alike, base their backface culling decision on the _same_ winding order w.r.t. a _right-handed_ coordinate system when one API acts on left-handed clip space and the other acts on right-handed clip space? Backface culling clearly comes after the transformation into clip space, i.e. the two APIs are using spaces of different handedness. The [cross product](https://en.wikipedia.org/wiki/Cross_product), which can be used to compute a triangle's face normal, is defined so that if vertices are given in counter-clockwise direction, its resulting vector (which serves as the face normal) is created according to the _right-hand rule_. Wouldn't OpenGL need to have winding orders exactly the other way round, given that it operates on a _left-handed_ clip space?!
+## What the Flip?
 
-The specifications give the answer: The [OpenGL specification](https://www.khronos.org/registry/OpenGL/specs/gl/glspec46.core.pdf) suggests a specific formula for computing whether or not a polygon is backfacing or frontfacing (Section 14.6.1 Basic Polygon Rasterization, Equation 14.8). The [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html) also suggests a specific formula for this purpose (Section 27.12.1. Basic Polygon Rasterization) which almost looks the same as OpenGL's formula, it just has an additional minus sign which makes all the difference. I.e., the formulae which determine if a polygon is frontfacing or backfacing that are used in both APIs _internally_ indeed compute exactly the opposite results w.r.t. each other. However, OpenGL does this in a _left-handed_ clip space while Vulkan operates in a _right-handed_ clip space. If this thought is followed back into an imagined right-handed world space, the front faces of polygons are _the same_ again w.r.t. their winding order. 
+Okay, from Figures 4 and 5 we can see clear differences between the two graphics APIs. But how do we get from the right-handed coordinate system that homogeneous division left us with in OpenGL to a left-handed framebuffer space? And why are we seeing the backfaces and why is everything upside-down---like described in [Sascha Willems - Flipping the Vulkan viewport](https://www.saschawillems.de/blog/2019/03/29/flipping-the-vulkan-viewport/)? 
 
-I find this pretty confusing. I'd assume that misconceptions like OpenGL would require right-handed world space originate from these properties, when actually the only spaces that OpenGL really defines a handedness for, are all _left-handed_, but---as outlined above---right-hand rules are applied when determining whether a polygon is frontfacing or backfacing. 
+We are clearly missing one more piece of the puzzle. And that missing piece can be found in the [OpenGL specification](https://www.khronos.org/registry/OpenGL/specs/gl/glspec46.core.pdf): It suggests a specific formula for computing whether or not a polygon is backfacing or frontfacing (Section 14.6.1 Basic Polygon Rasterization, Equation 14.8)---at least for the default settings of clip control set to `LOWER_LEFT`. The [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html) also suggests a specific formula for this purpose (Section 27.12.1. Basic Polygon Rasterization) which almost looks the same as OpenGL's formula, it just has **an additional minus sign** which makes all the difference. I.e., the formulae which determine if a polygon is frontfacing or backfacing that are used in both APIs _internally_ indeed compute exactly the opposite results w.r.t. each other. 
+While this formula does not produce the [cross product](https://en.wikipedia.org/wiki/Cross_product), it can be used to make the same point if it is used to compute a triangle's face normal: The cross product is defined so that if vertices are given in counter-clockwise direction, its resulting vector (which serves as the face normal) is created according to the _right-hand rule_. By OpenGL flipping the results of the computation, this would correspond to a left-handed coordinate system once again. We could flip one coordinate axis again---leading to a left-handed coordinate system---to illustrate what this basically corresponds in Figure 6.
 
-I find these properties much less confusing in Vulkan. In Khronos' newer API, everything feels more consistent for its fixed-function steps, applying right-handed rules and performing everything in right-handed spaces. The only "downside" (if it could even be labeled as such) might be that a framebuffer space with its y-axis pointing down could be more confusing to some. However, taking Vulkan's NDC space into account (as shown in _Figure 4_), I think it just is the natural choice and makes sense, totally.
+{: .center}
+[![Flipping y again](/assets/images/opengl-matrix-adventures-third.gif)](/assets/images/opengl-matrix-adventures-third.gif)
 
-## What Do Those Initially Mentioned Strategies Actually Do
+_Figure 6:_ OpenGL's inversion of the formula that is used determining if a face is backfacing or not can be interpreted as yet another transformation in handedness. 
+
+OpenGL does not actually refer to specific handednesses in its specification and only defines the math and the rules and basically says: ~"good luck, wrapping your head around this!" With this blog post, I try to somehow visualize what is going on under the hood in OpenGL. To say that OpenGL's transformations are a bit confusing would be a huge understatement. Figure 7 shows all the coordinate transformations from Figures 1, 2, and 6 in combination, which is what happens before the fixed-function backface culling step is performed in hardware. Because the (imagined) coordinate transformation from Figure 6 is missing in Vulkan, it should be obvious why we see the backfaces if we use an OpenGL projection matrix with Vulkan. 
+
+{: .center}
+[![All coordinate transformations in OpenGL](/assets/images/opengl-matrix-adventures-total.gif)](/assets/images/opengl-matrix-adventures-total.gif)
+
+_Figure 7:_ The total chain of OpenGL's coordinate transformation madness combined into one animation.
+
+Vulkan's approach is much cleaner, and everything can just stay in right-handed coordinate systems throughout the entire graphics pipeline without any painful handedness-changing transformations. The only "downside" (if it could even be labeled as such) might be that a framebuffer space with its y-axis pointing down could be more confusing to some. However, taking Vulkan's NDC space into account (as shown in Figure 5), I think it just is the natural choice and makes sense, totally.
+
+## How To Build a Projection Matrix for Vulkan?
 
 Most of the strategies mentioned initially flip another axis of a given OpenGL-style projection matrix. In particular, this applies to the first three items from above:
 
@@ -127,28 +132,4 @@ Most of the strategies mentioned initially flip another axis of a given OpenGL-s
 - Inverting the y coordinates in the vertex shader: `gl_Position.y = -gl_Position.y;`,
 - Flipping the viewport by specifying a negative height.
 
-The process can be visualized like follows:
-
-{: .center}
-[![Flipping the z-axis and flipping the y-axis](/assets/images/inv-z-then-y-fade.gif)](/assets/images/inv-z-then-y-fade.gif)
-
-_Figure 5:_ If first, one axis (the z-axis in this case) is flipped like in _Figure 1_---corresponding to what a typical OpenGL projection matrix does---, and then another axis (the y-axis in this case) is flipped additionally, the resulting coordinate system is right-handed again. 
-
-From _Figure 5_ it can be seen that the result is a right-handed coordinate system, i.e. exactly what Vulkan expects. Flipping two axes corresponds to a rotation like shown in _Figure 6_, which is an [orthogonal transformation](https://en.wikipedia.org/wiki/Orthogonal_transformation) and as such, preserves handedness.
-
-{: .center}
-[![Rotating a right-handed coordinate system](/assets/images/inv-not-but-rot-fade.gif)](/assets/images/inv-not-but-rot-fade.gif)
-
-_Figure 6:_ The transformation illustrated in _Figure 5_ corresponds to a stiff rotation which preserves handedness.
-
-Now we do have a right-handed coordinate system, but it might be that we have messed up our camera setup along the way. E.g., it might be that if we carelessly applied one of these strategies, we could end up with a situation that makes our camera look in a different direction after multiplying view and (changed) projection matrices togehter, or that it is flipped upside down. I won't go into details of specific cases but instead, I'll create another blog post describing how a proper projection matrix for Vulkan might be set-up. 
-
-We complete our adventurous journey with a brief discussion of the effects of the fourth initially mentioned strategy: 
-
-- Setting a mysterious value in the projection matrix: `projMat[2][3] = 1;`.
-
-The modification of the projection matrix in this case does not change a lot, it just negates the sign of the homogeneous coordinate. That means that homogeneous division no longer flips every axis and probably has the intention of getting the depth values right by letting the z-axis point into the desired direction. The actual point here is, that everything with these spaces is relative to the other spaces which transform coordinates before, but it can get hugely confusing and I would assume that a solution that has been hacked together is not what the thoughtful programmer is after.
-
-As soon as I'll have the blog post about my take on establishing a proper Vulkan projection matrix is done, I'll add a link to it here. Thanks for reading!
-
-_Update:_ Blog post about [establishing a proper Vulkan projection matrix](https://johannesugb.github.io/gpu-programming/setting-up-a-proper-vulkan-projection-matrix/)
+It would correspond to a transformation like the one shown in Figure 6 and fixes the API-internal computations so that we just get the right results. As soon as we go down this road, we enter confusing territory once again, I would argue. What I recommend instead is avoiding hacky solutions altogether and building a nice, proper projection matrix for Vulkan which only contains pain-free transformations. I've described how to build such a projection matrix in a different blog post: [establishing a proper Vulkan projection matrix](https://johannesugb.github.io/gpu-programming/setting-up-a-proper-vulkan-projection-matrix/)
