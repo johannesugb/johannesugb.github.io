@@ -21,6 +21,7 @@ In this blog post, I will compare the Ryzen 9 3900X with the Core i5-1135G7 for 
 | SEQ1M Q1T1           | 1603 MB/s   | 1591 MB/s    | 1580 MB/s   | 1477 MB/s    |
 | RND4K Q32T1          | 551  MB/s   | 445  MB/s    | 318  MB/s   |  366 MB/s    |
 | RND4K Q1T1           | 51   MB/s   | 170  MB/s    | 42   MB/s   |   97 MB/s    |
+
 _Table 1:_ Read and write speeds of the different SSDs from the two different systems.
 
 
