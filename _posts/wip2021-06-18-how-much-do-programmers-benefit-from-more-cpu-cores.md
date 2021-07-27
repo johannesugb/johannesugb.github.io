@@ -70,7 +70,7 @@ with -maxcpucount:8 bzw. -maxcpucount:24 set:
 | :---                 |         ----: |             ----: |             ----: |
 | ASSIMP                                    | 0:20.60    | 0:54.44       | 0:56.99        |
 | Sascha Willems' Vulkan Examples           | 0:27.25    | 0:56.79       | 0:57.16        |
-| Gears-Vk, framework only                  | 0:23.50    |               |                |
+| Gears-Vk, framework only                  | 0:23.50    | 0:28.34       | 0:29.17        |
 | Gears-Vk + examples <br/> w/o custom build step  | 0:40.56 |               |                |
 | Gears-Vk + examples  <br/> + custom build step   | 0:43.53 |               |                |
 
