@@ -72,7 +72,7 @@ with -maxcpucount:8 bzw. -maxcpucount:24 set:
 | Sascha Willems' Vulkan Examples           | 0:27.25    | 0:56.79       | 0:57.16        |
 | Gears-Vk, framework only                  | 0:23.50    | 0:28.34       | 0:29.17        |
 | Gears-Vk + examples <br/> w/o custom build step  | 0:40.56 | 1:01.54       | 1:04.99        |
-| Gears-Vk + examples  <br/> + custom build step   | 0:43.53 | 1:19.52       | 1:14.29        |
+| Gears-Vk + examples  <br/> + custom build step   | 0:43.53 | 1:13.03       | 1:14.29        |
 
 _Table 4:_ Compile time benchmark results for 
 
