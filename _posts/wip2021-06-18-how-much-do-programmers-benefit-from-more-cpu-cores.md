@@ -41,7 +41,14 @@ _Table 2:_ Comparing several selected benchmark results from PCMark 10 shows tha
 
 # Compile Time Benchmarks
 
-Now let us move on to the really important data for programmers: Can we see a difference in compile times with CPUs that feature higher numbers of cores?
+Now let us move on to the really important data for programmers: Can we see a difference in compile times with CPUs that feature higher numbers of cores? The performance measurements shown in the following have been created from building different projects: [ASSIMP](https://github.com/assimp/assimp) (commit [376b3b2](https://github.com/assimp/assimp/commit/376b3b2eff1a7b18d1ab5de0ae1d4e7901d944c5)), [Sascha Willems' Vulkan Examples](https://github.com/SaschaWillems/Vulkan) (commit [ac4deed](https://github.com/SaschaWillems/Vulkan/commit/ac4deedd0c46df5c2a26f6ee180df1e6eddedc52)), and [Gears-Vk](https://github.com/cg-tuwien/Gears-Vk) (commit [08d4c97](https://github.com/cg-tuwien/Gears-Vk/commit/08d4c972944568e47b614bf99f16185563aea085)). The latter is a Vulkan rendering framework which I am maintaining and I've included different configurations in the performance measurements:
+While the repository contains 10 example applications at the specified commit, they are referencing a common framework project. The compile times of the framework project have been measured in isolation, but also the compile times of the whole solution including all example applications. Another variant of compile time measurement includes a custom build step in the stated times. The build step compiles shaders and deploys asset files. It must be expected that the build step does not parallelize well, but nevertheless, it represents a real-world use case.
+
+The first benchmarks are shown in _Table 3_ and have been bulit with [`MSBuild`](https://docs.microsoft.com/en-us/visualstudio/msbuild/msbuild?view=vs-2019) and its default settings. I.e. the build instruction is as simple as:
+
+```powershell
+.\MSBuild.exe path-to-solution.sln
+```
 
 {: .center}
 | Benchmark            | Ryzen 9 3900X | i5-1135G7 plugged | i5-1135G7 battery |
@@ -54,18 +61,14 @@ Now let us move on to the really important data for programmers: Can we see a di
 
 _Table 3:_ asdf
 
-[Gears-Vk](https://github.com/cg-tuwien/Gears-Vk) commit [08d4c97](https://github.com/cg-tuwien/Gears-Vk/commit/08d4c972944568e47b614bf99f16185563aea085).
 
-[ASSIMP](https://github.com/assimp/assimp) commit [376b3b2](https://github.com/assimp/assimp/commit/376b3b2eff1a7b18d1ab5de0ae1d4e7901d944c5)
-
-[Sascha Willems' Vulkan Examples](https://github.com/SaschaWillems/Vulkan) commit [ac4deed](https://github.com/SaschaWillems/Vulkan/commit/ac4deedd0c46df5c2a26f6ee180df1e6eddedc52)
 
 with -maxcpucount:8 bzw. -maxcpucount:24 set:
 
 {: .center}
 | Benchmark            | Ryzen 9 3900X | i5-1135G7 plugged | i5-1135G7 battery |
 | :---                 |         ----: |             ----: |             ----: |
-| ASSIMP                                    | 0:20.60    |               |                |
+| ASSIMP                                    | 0:20.60    | 0:54.44       | 0:56.99        |
 | Sascha Willems' Vulkan Examples           | 0:27.25    | 0:56.79       | 0:57.16        |
 | Gears-Vk, framework only                  | 0:23.50    |               |                |
 | Gears-Vk + examples <br/> w/o custom build step  | 0:40.56 |               |                |
