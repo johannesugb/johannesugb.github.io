@@ -24,8 +24,7 @@ In this blog post, I will compare the Ryzen 9 3900X with the Core i5-1135G7 in t
 
 _Table 1:_ Read and write speeds of the different SSDs from the two different systems.
 
-
-For a start, _Table 1_ shows some results from [PCMark 10](https://benchmarks.ul.com/pcmark10). I have performed all tests on the laptop-PC twice: once plugged in, and once running on battery.
+Before studying compile times, let us take a look at benchmark results from [PCMark 10](https://benchmarks.ul.com/pcmark10) in _Table 2_. The tests were performed once on the desktoop-PC, and twice on the laptop-PC: once plugged in, and once running on battery.
 
 {: .center}
 | Benchmark            | Ryzen 9 3900X | i5-1135G7 plugged | i5-1135G7 battery |
@@ -38,7 +37,7 @@ For a start, _Table 1_ shows some results from [PCMark 10](https://benchmarks.ul
 | Save JPEG            | 1.17 s        | 1.24 s          | 1.27 s              |
 | Gaussian blur        | 0.41 s        | 0.35 s       |  0.42 s             |
 
-_Table 2:_ Comparing several selected benchmark results from PCMark 10 shows that for many every-day tasks there is not a huge performance difference between the two CPUs with a huge difference in number of cores. There were also benchmark results which clearly showed an advantage for the CPU with more cores like, e.g., "Batch transformation", but these were left out of this table. Warm start benchmarks have been selected instead of cold start benchmarks, to help decrease influences of different SSD speeds.
+_Table 2:_ Comparing several selected benchmark results from PCMark 10 shows that for many every-day tasks there is not a huge performance difference between the two CPUs although they feature very different numbers of cores. There were many benchmark results which clearly showed an advantage for the CPU with more cores like, e.g., "Batch transformation", but these were left out of this table to make the point of compareable single-core performance. Warm start benchmarks have been selected instead of cold start benchmarks, to help decrease influences of different SSD speeds.
 
 W.I.P. from here on:
 
@@ -81,7 +80,7 @@ Multiple compile units in parallel:
 | :---                             |      ----: |      ----: |      ----: |       ----: |       ----: |
 | ASSIMP                           |  2:45.45   | 0:20.58    | 2:40.09    | 0:18:96     | 0:23:63     |
 | Sascha Willems' Vulkan Examples  |  2:15.70   | 2:16.65    | 0:25.69    | 0:25.59     | 0:28:28     |
-| Gears-Vk, framework only         |  2:12.02   |            | 0:40.56    |
+| Gears-Vk, framework only         |  2:18.50   |            | 0:40.56    |
 
 _Table 5:_ Different compile time measurements with different settings for `-maxcpucount` (abbreviated with 'm') Build with Multiple Processes (abbreviated with 'MP') and different combinations of those two settings compared to each other.
 
