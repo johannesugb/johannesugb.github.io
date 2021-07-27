@@ -49,7 +49,7 @@ The results from _Table 1_ shall mainly serve for the purpose of showing that in
 | :---                 |         ----: |             ----: |             ----: |
 | ASSIMP                                    | 0:20.24    | 0:52.50       | 0:55.16        |
 | Sascha Willems' Vulkan Examples           | 2:17.04    | 2:26.18       | 3:06.63        |
-| Gears-Vk, framework only                  | 0:22.89    | 0:26.24       | 0:29.55        |
+| Gears-Vk, framework only                  | 0:23.58    | 0:26.24       | 0:29.55        |
 | Gears-Vk + examples <br/> w/o custom build step | 2:12.02    | 2:18.63       | 2:31.49        |
 | Gears-Vk + examples  <br/> + custom build step   | 2:36.94    | 2:52.52       | 3:09.93        |
 
@@ -66,6 +66,6 @@ with -maxcpucount:8 bzw. -maxcpucount:24 set:
 | :---                 |         ----: |             ----: |             ----: |
 | ASSIMP                                    | 0:20.60    |               |                |
 | Sascha Willems' Vulkan Examples           | 0:27.25    | 0:56.79       | 0:57.16        |
-| Gears-Vk, framework only                  |            |               |                |
+| Gears-Vk, framework only                  | 0:23.50    |               |                |
 | Gears-Vk + examples <br/> w/o custom build step |      |               |                |
 | Gears-Vk + examples  <br/> + custom build step   |     |               |                |
