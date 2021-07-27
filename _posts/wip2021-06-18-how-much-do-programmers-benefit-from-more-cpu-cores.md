@@ -69,3 +69,12 @@ with -maxcpucount:8 bzw. -maxcpucount:24 set:
 | Gears-Vk, framework only                  | 0:23.50    |               |                |
 | Gears-Vk + examples <br/> w/o custom build step  | 0:40.56 |               |                |
 | Gears-Vk + examples  <br/> + custom build step   | 0:43.53 |               |                |
+
+/MP:24
+
+{: .center}
+| Benchmark            | Ryzen 9 3900X | i5-1135G7 plugged | i5-1135G7 battery |
+| :---                 |         ----: |             ----: |             ----: |
+| ASSIMP                                    | 0:20.24    |          |          |
+| Sascha Willems' Vulkan Examples           | 2:17.04    |          |          |
+| Gears-Vk, framework only                  | 0:23.27    |          |          |
