@@ -15,13 +15,12 @@ As we all know, programmers always need more cores because our PCs must not impe
 In this blog post, I will compare the Ryzen 9 3900X with the Core i5-1135G7 for CPU tasks. However, the comparisons will not be totally accurate because I will not test them with exactly the same hardware components for things like SSD and RAM. I.e., it will not exactly be an apples to apples comparison. But the hardware specifications are not too different from each other, so at least overall performance trends should become visible. _Table 1_ shows a comparison of the two systems' SSD speeds as determined with [CrystalDiskMark](https://crystalmark.info). While they are not exactly the same, they definitely play in the same ball park which should be sufficient for receiving an impression of performance trends in terms of compile times later on.
 
 {: .center}
-| Benchmark            | Ryzen 9 3900X Desktop || i5-1135G7 Laptop ||
-|                      | Read (MB/s) | Write (MB/s) | Read (MB/s) | Write (MB/s) | 
+| Benchmark            | Desktop Read | Desktop Write | Laptop Read | Laptop Write | 
 | :---                 |       ----: |        ----: |       ----: |        ----: |
-| SEQ1M Q8T1           | 1802        | 1705         | 2478        | 1789         |
-| SEQ1M Q1T1           | 1603        | 1591         | 1580        | 1477         |
-| RND4K Q32T1          | 551         | 445          | 318         |  366         |
-| RND4K Q1T1           | 51          | 170          | 42          |   97         |
+| SEQ1M Q8T1           | 1802 MB/s   | 1705 MB/s    | 2478 MB/s   | 1789 MB/s    |
+| SEQ1M Q1T1           | 1603 MB/s   | 1591 MB/s    | 1580 MB/s   | 1477 MB/s    |
+| RND4K Q32T1          | 551  MB/s   | 445  MB/s    | 318  MB/s   |  366 MB/s    |
+| RND4K Q1T1           | 51   MB/s   | 170  MB/s    | 42   MB/s   |   97 MB/s    |
 _Table 1:_ Read and write speeds of the different SSDs from the two different systems.
 
 
