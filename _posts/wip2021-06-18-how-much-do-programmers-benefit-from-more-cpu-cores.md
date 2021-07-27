@@ -12,7 +12,18 @@ Taking a closer look at how the two very different CPUs compare to each other on
 
 As we all know, programmers always need more cores because our PCs must not impede us in our endeavours---at least that's what I am thinking sometimes when I try to find justifications for why I need the high-end model of a CPU series. After all, all the benchmarks of recent years said that if you are doing "productivity stuff" (whatever that means), you should go for a Ryzen because it has more cores than Intel. But what if the number of cores don't matter so much and core speed is more important? This question was nagging in the back of my mind, so let's try to get some more information about this.
 
-In this blog post, I will compare the Ryzen 9 3900X with the Core i5-1135G7 for CPU tasks. However, the comparisons will not be totally accurate because I will not test them with the same hardware components for things like SSD and RAM. I.e., it will not exactly be an apples to apples comparison. But the hardware specifications are not too different from each other, so at least overall performance trends should become visible. 
+In this blog post, I will compare the Ryzen 9 3900X with the Core i5-1135G7 for CPU tasks. However, the comparisons will not be totally accurate because I will not test them with exactly the same hardware components for things like SSD and RAM. I.e., it will not exactly be an apples to apples comparison. But the hardware specifications are not too different from each other, so at least overall performance trends should become visible. _Table 1_ shows a comparison of the two systems' SSD speeds as determined with [CrystalDiskMark](https://crystalmark.info). While they are not exactly the same, they definitely play in the same ball park which should be sufficient for receiving an impression of performance trends in terms of compile times later on.
+
+{: .center}
+| Benchmark            | Ryzen 9 3900X Desktop || i5-1135G7 Laptop ||
+|                      | Read (MB/s) | Write (MB/s) | Read (MB/s) | Write (MB/s) | 
+| :---                 |       ----: |        ----: |       ----: |        ----: |
+| SEQ1M Q8T1           | 1802        | 1705         | 2478        | 1789         |
+| SEQ1M Q1T1           | 1603        | 1591         | 1580        | 1477         |
+| RND4K Q32T1          | 551         | 445          | 318         |  366         |
+| RND4K Q1T1           | 51          | 170          | 42          |   97         |
+_Table 1:_ Read and write speeds of the different SSDs from the two different systems.
+
 
 For a start, _Table 1_ shows some results from [PCMark 10](https://benchmarks.ul.com/pcmark10). I have performed all tests on the laptop-PC twice: once plugged in, and once running on battery.
 
