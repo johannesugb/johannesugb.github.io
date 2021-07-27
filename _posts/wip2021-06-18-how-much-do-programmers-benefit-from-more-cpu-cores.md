@@ -1,6 +1,6 @@
 ---
-title: "How Much Do Programmers Benefit From More CPU Cores"
-# last_modified_at: 2021-06-18T16:00:00+02:00
+title: "As a Programmer, You Need a CPU With Lots of Cores, Right?"
+# last_modified_at: 2021-07-27T21:00:00+02:00
 categories:
   - Hardware
 # header:
@@ -39,9 +39,9 @@ Before studying compile times, let us take a look at benchmark results from [PCM
 
 _Table 2:_ Comparing several selected benchmark results from PCMark 10 shows that for many every-day tasks there is not a huge performance difference between the two CPUs although they feature very different numbers of cores. There were many benchmark results which clearly showed an advantage for the CPU with more cores like, e.g., "Batch transformation", but these were left out of this table to make the point of compareable single-core performance. Warm start benchmarks have been selected instead of cold start benchmarks, to help decrease influences of different SSD speeds.
 
-W.I.P. from here on:
+# Compile Time Benchmarks
 
-The results from _Table 1_ shall mainly serve for the purpose of showing that indeed, there is not a huge performance difference between the two different CPUs in benchmarks which obviously do not really benefit from more cores. 
+Now let us move on to the really important data for programmers: Can we see a difference in compile times with CPUs that feature higher numbers of cores?
 
 {: .center}
 | Benchmark            | Ryzen 9 3900X | i5-1135G7 plugged | i5-1135G7 battery |
@@ -80,7 +80,7 @@ Multiple compile units in parallel:
 | :---                             |      ----: |      ----: |      ----: |       ----: |       ----: |
 | ASSIMP                           |  2:45.45   | 0:20.58    | 2:40.09    | 0:18:96     | 0:23:63     |
 | Sascha Willems' Vulkan Examples  |  2:15.70   | 2:16.65    | 0:25.69    | 0:25.59     | 0:28:28     |
-| Gears-Vk, framework only         |  2:18.50   |            | 0:40.56    |
+| Gears-Vk, framework only         |  2:18.50   | 2:18.84    | 0:39.71    | 0:39.60     | 0:39.55     |
 
 _Table 5:_ Different compile time measurements with different settings for `-maxcpucount` (abbreviated with 'm') Build with Multiple Processes (abbreviated with 'MP') and different combinations of those two settings compared to each other.
 
