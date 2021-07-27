@@ -73,8 +73,8 @@ with -maxcpucount:8 bzw. -maxcpucount:24 set:
 /MP:24
 
 {: .center}
-| Benchmark            | Ryzen 9 3900X | i5-1135G7 plugged | i5-1135G7 battery |
-| :---                 |         ----: |             ----: |             ----: |
-| ASSIMP                                    | 0:20.24    |          |          |
-| Sascha Willems' Vulkan Examples           | 2:17.09    |          |          |
-| Gears-Vk, framework only                  | 0:23.27    |          |          |
+| Benchmark                        | m=1, MP=1  | m=1, MP=24 | m=24, MP=1 | m=24, MP=24 | m=12, MP=12 |
+| :---                             |      ----: |      ----: |      ----: |       ----: |       ----: |
+| ASSIMP                           |  0:20.24   | 0:20.56    | 0:20.60    | 0:18:96     | 0:23:63     |
+| Sascha Willems' Vulkan Examples  |  2:17.04   | 2:17.09    | 0:27.25    | 0:25.41     | 0:28:28     |
+| Gears-Vk, framework only                  | 0:23.27    |            |             |
