@@ -38,7 +38,7 @@ For a start, _Table 1_ shows some results from [PCMark 10](https://benchmarks.ul
 | Save JPEG            | 1.17 s        | 1.24 s          | 1.27 s              |
 | Gaussian blur        | 0.41 s        | 0.35 s       |  0.42 s             |
 
-_Table 1:_ Comparing several selected benchmark results from PCMark 10 shows that for many every-day tasks there is not a huge performance difference between the two CPUs with a huge difference in number of cores. There were also benchmark results which clearly showed an advantage for the CPU with more cores like, e.g., "Batch transformation", but these were left out of this table. Warm start benchmarks have been selected instead of cold start benchmarks, to help decrease influences of different SSD speeds.
+_Table 2:_ Comparing several selected benchmark results from PCMark 10 shows that for many every-day tasks there is not a huge performance difference between the two CPUs with a huge difference in number of cores. There were also benchmark results which clearly showed an advantage for the CPU with more cores like, e.g., "Batch transformation", but these were left out of this table. Warm start benchmarks have been selected instead of cold start benchmarks, to help decrease influences of different SSD speeds.
 
 W.I.P. from here on:
 
@@ -52,6 +52,8 @@ The results from _Table 1_ shall mainly serve for the purpose of showing that in
 | Gears-Vk, framework only                  | 0:23.58    | 0:26.24       | 0:29.55        |
 | Gears-Vk + examples <br/> w/o custom build step | 2:12.02    | 2:18.63       | 2:31.49        |
 | Gears-Vk + examples  <br/> + custom build step   | 2:36.94    | 2:52.52       | 3:09.93        |
+
+_Table 3:_ asdf
 
 [Gears-Vk](https://github.com/cg-tuwien/Gears-Vk) commit [08d4c97](https://github.com/cg-tuwien/Gears-Vk/commit/08d4c972944568e47b614bf99f16185563aea085).
 
@@ -70,11 +72,19 @@ with -maxcpucount:8 bzw. -maxcpucount:24 set:
 | Gears-Vk + examples <br/> w/o custom build step  | 0:40.56 |               |                |
 | Gears-Vk + examples  <br/> + custom build step   | 0:43.53 |               |                |
 
-/MP:24
+_Table 4:_ Compile time benchmark results for 
+
+Multiple compile units in parallel:
 
 {: .center}
 | Benchmark                        | m=1, MP=1  | m=1, MP=24 | m=24, MP=1 | m=24, MP=24 | m=12, MP=12 |
 | :---                             |      ----: |      ----: |      ----: |       ----: |       ----: |
-| ASSIMP                           |  0:20.24   | 0:20.56    | 0:20.60    | 0:18:96     | 0:23:63     |
-| Sascha Willems' Vulkan Examples  |  2:17.04   | 2:17.09    | 0:27.25    | 0:25.41     | 0:28:28     |
-| Gears-Vk, framework only                  | 0:23.27    |            |             |
+| ASSIMP                           |  2:45.45   | 0:20.58    | 2:40.09    | 0:18:96     | 0:23:63     |
+| Sascha Willems' Vulkan Examples  |  2:16.96   | 2:15.60    | 0:25.52    | 0:25.41     | 0:28:28     |
+| Gears-Vk, framework only         |  2:12.02   |            | 0:40.56    |
+
+_Table 5:_ Different compile time measurements with different settings for `-maxcpucount` (abbreviated with 'm') Build with Multiple Processes (abbreviated with 'MP') and different combinations of those two settings compared to each other.
+
+/MP is by default off
+
+Visual Studio appears to build multiple projects in parallel since the build times when building a solution from within Visual Studio are very close to the results measured with `MSBuild.exe` from _Table 4_.
