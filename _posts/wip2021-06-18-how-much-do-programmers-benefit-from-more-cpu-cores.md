@@ -1,5 +1,5 @@
 ---
-title: "As a Programmer, You Need a CPU With Lots of Cores, Right?"
+title: "The Impact of Utilizing Multi-Core CPUs on Compile Times"
 # last_modified_at: 2021-07-27T21:00:00+02:00
 categories:
   - Hardware
