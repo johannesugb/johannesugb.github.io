@@ -91,17 +91,17 @@ _Figure 2:_ Typical spaces in a 3D application include world and view space, whi
 
 ## Different Space Conventions in OpenGL and Vulkan
 
-If you have followed the links above, you have already learned about different space conventions for the two graphics APIs. Let us take a closer look the spaces of both APIs by observing Figures 4 and 5. They show the differences between OpenGL and Vulkan w.r.t. clip, NDC, and framebuffer spaces. We can actually observe for each of them that they differ in handedness. While in OpenGL every one of these spaces appears _left-handed_, Vulkan expects them to be _right-handed_. For framebuffer space, this blog post assumes increasing depth coordinates (i.e. the further away, the higher the depth value) to be aligned with the z axes wich are drawn in blue, and point in the direction of increasing positive values.
+Different graphics APIs can have different conventions. This is also the case between OpenGL and Vulkan. Let us take a closer look the spaces of both APIs by observing _Figures 3_ and _4__. They show the differences between OpenGL and Vulkan w.r.t. clip, NDC, and framebuffer spaces. We can actually observe for each of them that they differ in handedness. While in OpenGL every one of these spaces appears _left-handed_, Vulkan expects them to be _right-handed_. For framebuffer space, this blog post assumes increasing depth coordinates (i.e. the further away, the higher the depth value) to be aligned with the z axes wich are drawn in blue, and point in the direction of increasing positive values.
 
 {: .center}
 [![Clip Space, NDC space, and framebuffer space details in OpenGL](/assets/images/opengl-spaces.png)](/assets/images/opengl-spaces.png)
 
-_Figure 4:_ We can imagine all of OpenGL's spaces to be given in a left-handed coordinate systemss, from clip space, to NDC space, and framebuffer space (taking into account that increasing depth values increase with the direction that "points towards the inside" of the screen.
+_Figure 3:_ We can imagine all of OpenGL's spaces to be given in a left-handed coordinate systemss, from clip space, to NDC space, and framebuffer space (taking into account that increasing depth values increase with the direction that "points towards the inside" of the screen.
 
 {: .center}
 [![Clip Space, NDC space, and framebuffer space details in Vulkan](/assets/images/vulkan-spaces.png)](/assets/images/vulkan-spaces.png)
 
-_Figure 5:_ In constrast to OpenGL, we can imagine all spaces in Vulkan in a right-handed coordinate system throughout a graphics pipeline. The right-handed coordinate system naturally translates to Vulkan's framebuffer space, which defines the coordinate origin in the top-left corner, with its x axis pointing to the right and its y axis pointing down.
+_Figure 4:_ In constrast to OpenGL, we can imagine all spaces in Vulkan in a right-handed coordinate system throughout a graphics pipeline. The right-handed coordinate system naturally translates to Vulkan's framebuffer space, which defines the coordinate origin in the top-left corner, with its x axis pointing to the right and its y axis pointing down.
 
 ## What the Flip?
 
