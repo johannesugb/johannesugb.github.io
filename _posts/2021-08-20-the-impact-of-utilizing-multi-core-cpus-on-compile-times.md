@@ -79,6 +79,8 @@ _Table 4:_ Compile time benchmark results, generated with `MSBuild` and paramete
 
 The `-maxcpucount` option turned out to be a success. Compile times benefit from this setting in solutions which contain more than one projects. Since the benchmarks "ASSIMP" and "Gears-Vk, framework only" only contain a single project, those did not see improvements in compile times.
 
+The 12-core CPU could not outperform the 4-core CPU in the proportion of their physical core numbers. Only in "Sascha Willems' Vulkan Examples", the former managed to be twice as fast as the latter. It might well be that there are certain dependencies which do not allow further parallelization, but it is a real-world usage scenario, and it does not appear that the payoff is totally in proportion to the number of cores.
+
 There is yet another interesting option, namely [`/MP`](https://docs.microsoft.com/en-us/cpp/build/reference/mp-build-with-multiple-processes?view=msvc-160) which can build multiple "compile units" in parallel. In a final benchmark, the effect of this option is investigated, the results are presented in _Table 5_.
 
 {: .center}
@@ -104,3 +106,5 @@ The `/MP` setting can speed-up inter-project compile time by compiling multiple 
 `Configuration Properties -> C++ -> General -> Multi-processor Compilation`.
 
 One last, but important point to consider is if `/MP` _can_ compile multiple compilation units in parallel, which might be prevented by high degrees of coupling between parts of the code, by excessive use of templates, and propbably a number of other situations. Avoiding such situtaions will lead to faster compile times when `/MP` is on---and then yes, you will befenefit the high number of cores in your developer-PC CPU.
+
+While it is definitely beneficial to have multiple cores available for parallel compilation, the speed-up did not turn out to be in proportion to the number of cores. I therefore have to hypothesise that it might be better to go for higher single-core speed instead of a hugely higher core count, if you can only choose one. A different approach might be to gradually get rid of dependencies within your code which prevent further speed-ups through parallel compilation. I encourage you to set it as your goal to improve your project's structure so much that your compile times continue to decline with higher core counts---I wonder if this leads to a great code structure. Please feel free to share your thoughts especially about possible code improvements in the comments section.
