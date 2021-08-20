@@ -10,6 +10,10 @@ tags:
 #   image: /assets/images/1500x500.jpg
 ---
 
+**ATTENTION: THIS IS WORK IN PROGRESS!!!**
+
+**Please come back later!**
+
 When programmers with an OpenGL background learn Vulkan, they often expect---or hope---that the projection matrices they have used with OpenGL continue to work with Vulkan. Everyone with such expectations is in for a bad surprise. While many sources on the internet offer strategies to fix it such as
 
 - Inverting the projection matrix' y-axis: `projMat[1][1] *= -1`,
@@ -45,13 +49,24 @@ $$ \begin{pmatrix}
 
 _Equation 2:_ Projection matrix with parameters $l = -1$, $r = 1$, $b = -1$, $t = 1$, $n = 1$, and $f = 2$.
 
-What I would like to point out now is how this projection matrix transforms coordinates. And then we are about to whitness some---in my opinion---rather ugly conventions which have the potential to lead to a lot of confusion. Transforming a generic homogeneous 3D vector with _Equation 2_ leads to the result shown in _Equation 3_:
+What a projection matrix like the one shown in _Equation 2_ does can be visualized with the animation in _Figure 1_. The key points of this transformation are the following:
+- It transforms a frustum that is oriented into the direction of the _negative z axis_ into a unit cube
+- It _flips the z axis_, which corresponds to changing the handedness of the coordinate system
+
+{: .center}
+[![OpenGL projection effect visualized](/assets/images/opengl-projection-and-z-flip3.gif)](/assets/images/opengl-projection-and-z-flip3.gif)
+
+_Figure 1:_ Visualizing the key points of an OpenGL-style projection matrix: The part of the scene that lies towards the negative z axis gets perspectively transformed, and the underlying coordinate system changes.
+
+Applying such a perspective transformation would, of course, not gradually convert the coordinate system as shown in the animation, but instantly. The animations in _Figure 1_ shall serve the purpose of making the transformations that are happening more obvious. 
+
+We can exemplarily calculate one specific vector which was positioned in front of the camera (which is by convention towards the negative z axis, as stated above) by transforming a homogeneous 3D vector with _Equation 2_. We get the following result:
 
 $$ \begin{pmatrix}
 1 & 0 & 0 & 0 \\
 0 & 1 & 0 & 0 \\
-0 & 0 & -3 & -1 \\
-0 & 0 & -4 & 0 
+0 & 0 & -3 & -4 \\
+0 & 0 & -1 & 0 
 \end{pmatrix}            \cdot 
 \begin{pmatrix}
 x \\
