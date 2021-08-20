@@ -52,7 +52,7 @@ What a projection matrix like the one shown in _Equations 1_ and _2_ does can be
 
 _Figure 1:_ Visualizing the key points of an OpenGL-style projection matrix: The part of the scene that is positioned along the negative z axis gets perspectively transformed, and the underlying coordinate system changes.
 
-Applying such a perspective transformation would, of course, not gradually convert the coordinate system as shown in the animation, but instantly through matrix transformation of a vector. The animations in _Figure 1_ shall serve the purpose of making the transformations more obvious. 
+Applying such a perspective transformation would, of course, not gradually convert the coordinate system as shown in the animation, but instantly through matrix transformation of a vector. The animations in _Figure 1_ shall serve the purpose of demonstrating what's happening. 
 
 We can exemplarily calculate one specific vector which was positioned in front of the camera (which is by convention towards the negative z axis, as stated above) by transforming a homogeneous 3D vector on the far plane with _Equation 2_. We get the following result:
 
