@@ -93,7 +93,7 @@ For solutions containing multiple projects, the `-maxcpucount` parameter resulte
 
 # Takeaways
 
-Compilation can be parallelized to a certain degree, resulting in significant reductions of compile time. However, parallel compilation is not turned on by default, necessarily.
+Compilation can be parallelized to a certain degree, resulting in significant reductions of compile time. However, parallel compilation is not necessarily turned on by default.
 
 When building solutions with multiple projects using `MSBuild`, ensure that the `-maxcpucount` parameter is set, otherwise projects will not be built in parallel. Visual Studio appears to build multiple projects in parallel by default since the build times when building a solution from within Visual Studio are very close to the results measured with `MSBuild` from _Table 4_.
 
