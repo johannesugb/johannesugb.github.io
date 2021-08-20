@@ -85,7 +85,7 @@ _Figure 2:_ Typical spaces in a 3D application include world and view space, whi
 
 ## Different Space Conventions in OpenGL and Vulkan
 
-Different graphics APIs can have different conventions. This is also the case between OpenGL and Vulkan. Let us take a closer look the spaces of both APIs by observing _Figures 3_ and _4__. They show the differences between OpenGL and Vulkan w.r.t. clip, NDC, and framebuffer spaces. We can actually observe for each of them that they differ in handedness. While in OpenGL every one of these spaces appears _left-handed_, Vulkan expects them to be _right-handed_. For framebuffer space, this blog post assumes increasing depth coordinates (i.e. the further away, the higher the depth value) to be aligned with the z axes wich are drawn in blue, and point in the direction of increasing positive values.
+Different graphics APIs can have different conventions. This is also the case between OpenGL and Vulkan. Let us take a closer look the spaces of both APIs by observing _Figures 3_ and _4_. They show the differences between OpenGL and Vulkan w.r.t. clip, NDC, and framebuffer spaces. We can actually observe for each of them that they differ in handedness. While in OpenGL every one of these spaces appears _left-handed_, Vulkan expects them to be _right-handed_. For framebuffer space, this blog post assumes increasing depth coordinates (i.e. the further away, the higher the depth value) to be aligned with the z axes wich are drawn in blue, and point in the direction of increasing positive values.
 
 {: .center}
 [![Clip Space, NDC space, and framebuffer space details in OpenGL](/assets/images/opengl-spaces.png)](/assets/images/opengl-spaces.png)
