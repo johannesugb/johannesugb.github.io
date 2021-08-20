@@ -91,7 +91,7 @@ Different values for the `/MP` parameter show big effects also in the solutions 
 
 For solutions containing multiple projects, the `-maxcpucount` parameter resulted in a bigger speed-up than the `/MP` parameter, while the former does not help at all if there is only one project in a solution.
 
-# Take Aways
+# Takeaways
 
 Compilation can be parallelized to a certain degree, resulting in significant reductions of compile time. However, parallel compilation is not turned on by default, necessarily.
 
@@ -100,4 +100,4 @@ When building solutions with multiple projects using `MSBuild`, ensure that the 
 The `/MP` setting can speed-up inter-project compile time by compiling multiple compile units in parallel. It appears that this setting is on by default in `MSBuild` and most likely also when building via Visual Studio. To be totally sure, check the Visual Studio setting        
 `Configuration Properties -> C++ -> General -> Multi-processor Compilation`.
 
-One last, but important point to consider is if `/MP` _can_ compile multiple compilation units in parallel, which might be prevented by high degrees of coupling between parts of the code, by excessive use of templates, and propbably a number of other situations. Avoiding such situtaions will lead to faster compile times when `/MP` is on and then yes, you will befenefit the high number of cores in your developer-PC CPU.
+One last, but important point to consider is if `/MP` _can_ compile multiple compilation units in parallel, which might be prevented by high degrees of coupling between parts of the code, by excessive use of templates, and propbably a number of other situations. Avoiding such situtaions will lead to faster compile times when `/MP` is on---and then yes, you will befenefit the high number of cores in your developer-PC CPU.
