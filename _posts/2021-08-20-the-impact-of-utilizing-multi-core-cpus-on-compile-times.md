@@ -3,6 +3,9 @@ title: "The Impact of Utilizing Multi-Core CPUs on Compile Times"
 # last_modified_at: 2021-08-20T21:00:00+02:00
 categories:
   - Hardware
+  - CPU-Programming
+tags:
+  - C++
 # header:
 #   image: /assets/images/1500x500.jpg
 ---
