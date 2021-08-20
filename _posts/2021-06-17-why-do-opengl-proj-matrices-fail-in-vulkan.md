@@ -49,7 +49,7 @@ $$ \begin{pmatrix}
 
 _Equation 2:_ Projection matrix with parameters $l = -1$, $r = 1$, $b = -1$, $t = 1$, $n = 1$, and $f = 2$.
 
-What a projection matrix like the one shown in _Equation 2_ does can be visualized with the animation in _Figure 1_. The key points of this transformation are the following:
+What a projection matrix like the one shown in _Equations 1_ and _2_ does can be visualized with the animation in _Figure 1_. The key points of this transformation are the following:
 - It transforms a frustum that is oriented into the direction of the _negative z axis_ into a unit cube
 - It _flips the z axis_, which corresponds to changing the handedness of the coordinate system
 
@@ -58,9 +58,9 @@ What a projection matrix like the one shown in _Equation 2_ does can be visualiz
 
 _Figure 1:_ Visualizing the key points of an OpenGL-style projection matrix: The part of the scene that lies towards the negative z axis gets perspectively transformed, and the underlying coordinate system changes.
 
-Applying such a perspective transformation would, of course, not gradually convert the coordinate system as shown in the animation, but instantly. The animations in _Figure 1_ shall serve the purpose of making the transformations that are happening more obvious. 
+Applying such a perspective transformation would, of course, not gradually convert the coordinate system as shown in the animation, but instantly through matrix transformation of a vector. The animations in _Figure 1_ shall serve the purpose of making the transformations more obvious. 
 
-We can exemplarily calculate one specific vector which was positioned in front of the camera (which is by convention towards the negative z axis, as stated above) by transforming a homogeneous 3D vector with _Equation 2_. We get the following result:
+We can exemplarily calculate one specific vector which was positioned in front of the camera (which is by convention towards the negative z axis, as stated above) by transforming a homogeneous 3D vector on the far plane with _Equation 2_. We get the following result:
 
 $$ \begin{pmatrix}
 1 & 0 & 0 & 0 \\
@@ -69,40 +69,25 @@ $$ \begin{pmatrix}
 0 & 0 & -1 & 0 
 \end{pmatrix}            \cdot 
 \begin{pmatrix}
-x \\
-y \\
-z \\
+1 \\
+1 \\
+-2 \\
 1 \end{pmatrix}            = 
 \begin{pmatrix}
-x \\
-y \\
--3z-4 \\
--z  
+1 \\
+1 \\
+2 \\
+2  
 \end{pmatrix} $$         
 
-_Equation 3:_ Transforming a homogeneous 3D vector with the projection matrix from _Equation 2_.
+_Equation 3:_ Transforming a homogeneous 3D vector positioned on the far plane with the projection matrix from _Equation 2_. The resulting vector after homogenization is $(\frac{1}{2}, \frac{1}{2}, 1, 1)^T$. 
 
-While it leaves $x$ and $y$ coordinates untouched, $z$ cooordinates get **flipped**. Furthermore, we get a **negative homogeneous coordinate**. 
-Flipping of one coordinate axis _only_, while not flipping the other two axes, corresponds to **changing the handedness** of the coordinate system as illustrated in Figure 1.
-
-{: .center}
-[![Flipping the z-axis only](/assets/images/opengl-matrix-adventures-first.gif)](/assets/images/opengl-matrix-adventures-first.gif)
-
-_Figure 1:_ Illustration of the transformation from _Equation 3_ before homogeneous division. Matrix multiplication, of course, would not lead to a gradual interpolation like shown in the animation; the animation's intent is to emphasize the painful transformation from the original right-handed coordinate system into a left-handed coordinate system.
-
-But we're still left with a negative homogeneous coordinate, which all the other coordinate axes will be divided by eventually. If we would visualize this process, this would yet again lead to a change of handedness as illustrated in Figure 2. If we assume to have started in right-handed coordinate system initially, we end up in a right-handed coordinate system again after homogeneous division. But along the way, everything got transformed into a left-handed coordinate system for a while.
-
-{: .center}
-[![Flipping all coordinate axes](/assets/images/opengl-matrix-adventures-second.gif)](/assets/images/opengl-matrix-adventures-second.gif)
-
-_Figure 2:_ Flipping all coordinate axes---which is what happens at the homogeneous division step with a negative homogeneous coordinate---changes handedness of the underlying coordinate system once again. 
-
-The relevant spaces and fixed-function steps of a graphics pipeline are outlined in Figure 3. The projection matrix transforms coordinates into clip space, which is the space where the fixed-function steps primitive culling and homogeneous division are performed, leading into normalized device coordinates (NDC space). Through viewport scaling, coordinates are transformed into framebuffer space (often called "window coordinates" in OpenGL), where the fixed-function step backface culling is performed.
+While these projection matrices retains the signs of $x$ and $y$ coordinates, $z$ cooordinates get flipped. In our case, this means that our right-handed view space coordinates end up in a left-handed clip space coordinate system. The relevant spaces and fixed-function steps of a graphics pipeline are outlined in _Figure 2_. The projection matrix transforms coordinates into clip space, which is the space where the fixed-function steps primitive culling and homogeneous division are performed, leading into normalized device coordinates (NDC space). Through viewport scaling, coordinates are transformed into framebuffer space (often called "window coordinates" in OpenGL).
 
 {: .center}
 [![Graphics pipeline, different spaces and operations](/assets/images/different_spaces_and_ops.png)](/assets/images/different_spaces_and_ops.png)
 
-_Figure 3:_ Typical spaces in a 3D application include world and view space, which are generally user-defined. Graphics APIs dictate some conventions about other spaces, though, namely clip space, NDC space, and framebuffer space. Between clip space and NDC space, the fixed-function operations primitive clipping and homogeneous division are performed. After coordinates have been transformed into framebuffer space, we have another fixed-function step, which is backface culling. The fixed-function stepsh are indicated with circular symbols, while different spaces are indicated with rectangles.
+_Figure 2:_ Typical spaces in a 3D application include world and view space, which are generally user-defined. Graphics APIs dictate some conventions about other spaces, though, namely clip space, NDC space, and framebuffer space. Between clip space and NDC space, the fixed-function operations primitive clipping and homogeneous division are performed. After coordinates have been transformed into framebuffer space, we have another fixed-function step, which is backface culling. The fixed-function stepsh are indicated with circular symbols, while different spaces are indicated with rectangles.
 
 ## Different Space Conventions in OpenGL and Vulkan
 
