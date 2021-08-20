@@ -5,7 +5,7 @@ categories:
   - CPU-Programming
 tags:
   - C++
-  - Benchmarks
+  - Benchmark
 # header:
 #   image: /assets/images/1500x500.jpg
 ---
