@@ -1,5 +1,5 @@
 ---
-title: "The Impact of Utilizing Multi-Core CPUs on Compile Times"
+title: "Faster Compile Times Through Parallel Compilation on Multiple Cores? (With Benchmarks)"
 # last_modified_at: 2021-08-20T21:00:00+02:00
 categories:
   - CPU-Programming
