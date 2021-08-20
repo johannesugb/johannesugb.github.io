@@ -90,7 +90,7 @@ Different graphics APIs can have different conventions. This is also the case be
 {: .center}
 [![Clip Space, NDC space, and framebuffer space details in OpenGL](/assets/images/opengl-spaces.png)](/assets/images/opengl-spaces.png)
 
-_Figure 3:_ We can imagine all of OpenGL's spaces to be given in left-handed coordinate systems, from clip space, to NDC space, and framebuffer space (taking into account that increasing depth values increase with the direction that "points towards the inside" of the screen.
+_Figure 3:_ We can imagine all of OpenGL's spaces to be given in left-handed coordinate systems---from clip space, to NDC space, and framebuffer space---under the assumption that that increasing depth values increase with the direction that "points towards the inside" of the screen.
 
 {: .center}
 [![Clip Space, NDC space, and framebuffer space details in Vulkan](/assets/images/vulkan-spaces.png)](/assets/images/vulkan-spaces.png)
