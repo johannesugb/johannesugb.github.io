@@ -10,18 +10,12 @@ tags:
 #   image: /assets/images/1500x500.jpg
 ---
 
-**ATTENTION: THIS IS WORK IN PROGRESS!!!**
-
-**Please come back later!**
-
 When programmers with an OpenGL background learn Vulkan, they often expect---or hope---that the projection matrices they have used with OpenGL continue to work with Vulkan. Everyone with such expectations is in for a bad surprise. While many sources on the internet offer strategies to fix it such as
 
 - Inverting the projection matrix' y-axis: `projMat[1][1] *= -1`,
 - Inverting the y coordinates in the vertex shader: `gl_Position.y = -gl_Position.y;`,
 - Flipping the viewport by specifying a negative height,
-- Setting a mysterious value in the projection matrix: `projMat[2][3] = 1;`,
-
-and some require changing the front faces from [`VK_FRONT_FACE_COUNTER_CLOCKWISE`](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkFrontFace.html) to [`VK_FRONT_FACE_CLOCKWISE`](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkFrontFace.html).
+- Changing the front faces from [`VK_FRONT_FACE_COUNTER_CLOCKWISE`](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkFrontFace.html) to [`VK_FRONT_FACE_CLOCKWISE`](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkFrontFace.html).
 
 Applying such changes without really knowing what's going on under the hood can leave a bad feeling in the mind of a thoughtful programmer. This blog post tries to explain why OpenGL's projection matrices do not work in a Vulkan application without modification and what the fundamental differences between the two APIs are in this specific case.
 
@@ -113,6 +107,8 @@ Most of the strategies mentioned initially flip another axis of a given OpenGL-s
 
 - Inverting the projection matrix' y-axis: `projMat[1][1] *= -1`,
 - Inverting the y coordinates in the vertex shader: `gl_Position.y = -gl_Position.y;`,
-- Flipping the viewport by specifying a negative height.
+- Flipping the viewport by specifying a negative height (Further details can be found in [Sascha Willems - Flipping the Vulkan viewport](https://www.saschawillems.de/blog/2019/03/29/flipping-the-vulkan-viewport/)).
 
-It would correspond to a transformation like the one shown in Figure 6 and fixes the API-internal computations so that we just get the right results. As soon as we go down this road, we enter confusing territory once again, I would argue. What I recommend instead is avoiding hacky solutions altogether and building a nice, proper projection matrix for Vulkan which only contains pain-free transformations. I've described how to build such a projection matrix in a different blog post: [Setting Up a Proper Projection Matrix for Vulkan](https://johannesugb.github.io/gpu-programming/setting-up-a-proper-vulkan-projection-matrix/)
+Changing the front faces from counter clockwise to clockwise is only a partial solution. While it fixes which faces are being rendered, it fails to get the image right, still rendering it vertically flipped.
+
+What I recommend is to avoid hacky solutions or such that fix OpenGL-style projection matrices entirely and instead, to build a nice, proper projection matrix for Vulkan as I have described in a different blog post: [Setting Up a Proper Projection Matrix for Vulkan](https://johannesugb.github.io/gpu-programming/setting-up-a-proper-vulkan-projection-matrix/).
