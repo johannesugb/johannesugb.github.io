@@ -82,12 +82,12 @@ $$ \begin{pmatrix}
 
 _Equation 3:_ Transforming a homogeneous 3D vector positioned on the far plane with the projection matrix from _Equation 2_. The resulting vector after homogenization is $(\frac{1}{2}, \frac{1}{2}, 1, 1)^T$. 
 
-While these projection matrices retains the signs of $x$ and $y$ coordinates, $z$ cooordinates get flipped. In our case, this means that our right-handed view space coordinates end up in a left-handed clip space coordinate system. The relevant spaces and fixed-function steps of a graphics pipeline are outlined in _Figure 2_. The projection matrix transforms coordinates into clip space, which is the space where the fixed-function steps primitive culling and homogeneous division are performed, leading into normalized device coordinates (NDC space). Through viewport scaling, coordinates are transformed into framebuffer space (often called "window coordinates" in OpenGL).
+While these projection matrices retain the signs of $x$ and $y$ coordinates, $z$ cooordinates get flipped. In our case, this means that our right-handed view space coordinates end up in a left-handed clip space coordinate system. The relevant spaces and fixed-function steps of a graphics pipeline are outlined in _Figure 2_. The projection matrix transforms coordinates into clip space, which is the space where the fixed-function steps primitive culling and homogeneous division are performed, leading into normalized device coordinates (NDC space). Through viewport scaling, coordinates are transformed into framebuffer space (often called "window coordinates" in OpenGL).
 
 {: .center}
 [![Graphics pipeline, different spaces and operations](/assets/images/different_spaces_and_ops.png)](/assets/images/different_spaces_and_ops.png)
 
-_Figure 2:_ Typical spaces in a 3D application include world and view space, which are generally user-defined. Graphics APIs dictate some conventions about other spaces, though, namely clip space, NDC space, and framebuffer space. Between clip space and NDC space, the fixed-function operations primitive clipping and homogeneous division are performed. After coordinates have been transformed into framebuffer space, we have another fixed-function step, which is backface culling. The fixed-function stepsh are indicated with circular symbols, while different spaces are indicated with rectangles.
+_Figure 2:_ Typical spaces in a 3D application include world and view space, which are generally user-defined. Graphics APIs dictate some conventions about other spaces, though, namely clip space, NDC space, and framebuffer space. Fixed-function steps are indicated with circular symbols, while different spaces are indicated with rectangles.
 
 ## Different Space Conventions in OpenGL and Vulkan
 
