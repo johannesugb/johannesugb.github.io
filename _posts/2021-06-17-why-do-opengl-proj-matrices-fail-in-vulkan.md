@@ -10,7 +10,7 @@ tags:
 #   image: /assets/images/1500x500.jpg
 ---
 
-When programmers with an OpenGL background learn Vulkan, they often expect--or hope--that the projection matrices they have used with OpenGL continue to work with Vulkan. Everyone with such expectations is in for a bad surprise. While many sources on the internet offer strategies to fix it such as
+When programmers with an OpenGL background learn Vulkan, they often expect---or hope---that the projection matrices they have used with OpenGL continue to work with Vulkan. Everyone with such expectations is in for a bad surprise. While many sources on the internet offer strategies to fix it such as
 
 - Inverting the projection matrix' y-axis: `projMat[1][1] *= -1`,
 - Inverting the y coordinates in the vertex shader: `gl_Position.y = -gl_Position.y;`,
