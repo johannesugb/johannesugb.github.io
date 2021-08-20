@@ -103,7 +103,7 @@ While this formula does not exactly compute the [cross product](https://en.wikip
 
 ## How To Build a Projection Matrix for Vulkan?
 
-Most of the strategies mentioned initially flip another axis of a given OpenGL-style projection matrix. In particular, this applies to the first three items from above:
+Most of the strategies mentioned initially flip one axis of a given OpenGL-style projection matrix, turning the result into a right-handed coordinate system. In particular, this applies to the first three items from above:
 
 - Inverting the projection matrix' y-axis: `projMat[1][1] *= -1`,
 - Inverting the y coordinates in the vertex shader: `gl_Position.y = -gl_Position.y;`,
