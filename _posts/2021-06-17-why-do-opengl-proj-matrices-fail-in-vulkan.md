@@ -109,6 +109,6 @@ Most of the strategies mentioned initially flip one axis of a given OpenGL-style
 - Inverting the y coordinates in the vertex shader: `gl_Position.y = -gl_Position.y;`,
 - Flipping the viewport by specifying a negative height (Further details can be found in [Sascha Willems - Flipping the Vulkan viewport](https://www.saschawillems.de/blog/2019/03/29/flipping-the-vulkan-viewport/)).
 
-Changing the front faces from counter clockwise to clockwise is only a partial solution. While it fixes which faces are being rendered, it fails to get the image right, still rendering it vertically flipped.
+Changing the front faces from counter clockwise to clockwise can only be a partial solution. While it fixes which faces are being rendered, it fails to get the coordinate system right w.r.t. framebuffer space (compare between OpenGL and Vulkan in _Figures 3_ and _4_), rendering the scene upside-down. 
 
 What I recommend is to avoid hacky solutions or such that fix OpenGL-style projection matrices entirely and instead, to build a nice, proper projection matrix for Vulkan as I have described in a different blog post: [Setting Up a Proper Projection Matrix for Vulkan](https://johannesugb.github.io/gpu-programming/setting-up-a-proper-vulkan-projection-matrix/).
