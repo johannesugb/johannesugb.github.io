@@ -96,33 +96,16 @@ Different graphics APIs can have different conventions. This is also the case be
 {: .center}
 [![Clip Space, NDC space, and framebuffer space details in OpenGL](/assets/images/opengl-spaces.png)](/assets/images/opengl-spaces.png)
 
-_Figure 3:_ We can imagine all of OpenGL's spaces to be given in a left-handed coordinate systemss, from clip space, to NDC space, and framebuffer space (taking into account that increasing depth values increase with the direction that "points towards the inside" of the screen.
+_Figure 3:_ We can imagine all of OpenGL's spaces to be given in left-handed coordinate systems, from clip space, to NDC space, and framebuffer space (taking into account that increasing depth values increase with the direction that "points towards the inside" of the screen.
 
 {: .center}
 [![Clip Space, NDC space, and framebuffer space details in Vulkan](/assets/images/vulkan-spaces.png)](/assets/images/vulkan-spaces.png)
 
 _Figure 4:_ In constrast to OpenGL, we can imagine all spaces in Vulkan in a right-handed coordinate system throughout a graphics pipeline. The right-handed coordinate system naturally translates to Vulkan's framebuffer space, which defines the coordinate origin in the top-left corner, with its x axis pointing to the right and its y axis pointing down.
 
-## What the Flip?
-
-Okay, from Figures 4 and 5 we can see clear differences between the two graphics APIs. But how do we get from the right-handed coordinate system that homogeneous division left us with in OpenGL to a left-handed framebuffer space? And why are we seeing the backfaces and why is everything upside-down---like described in [Sascha Willems - Flipping the Vulkan viewport](https://www.saschawillems.de/blog/2019/03/29/flipping-the-vulkan-viewport/)? 
-
-We are clearly missing one more piece of the puzzle. And that missing piece can be found in the [OpenGL specification](https://www.khronos.org/registry/OpenGL/specs/gl/glspec46.core.pdf): It suggests a specific formula for computing whether or not a polygon is backfacing or frontfacing (Section 14.6.1 Basic Polygon Rasterization, Equation 14.8)---at least for the default settings of clip control set to `LOWER_LEFT`. The [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html) also suggests a specific formula for this purpose (Section 27.12.1. Basic Polygon Rasterization) which almost looks the same as OpenGL's formula, it just has **an additional minus sign** which makes all the difference. I.e., the formulae which determine if a polygon is frontfacing or backfacing that are used in both APIs _internally_ indeed compute exactly the opposite results w.r.t. each other. 
-While this formula does not produce the [cross product](https://en.wikipedia.org/wiki/Cross_product), it can be used to make the same point if it is used to compute a triangle's face normal: The cross product is defined so that if vertices are given in counter-clockwise direction, its resulting vector (which serves as the face normal) is created according to the _right-hand rule_. By OpenGL flipping the results of the computation, this would correspond to a left-handed coordinate system once again. We could flip one coordinate axis again---leading to a left-handed coordinate system---to illustrate what this basically corresponds in Figure 6.
-
-{: .center}
-[![Flipping y again](/assets/images/opengl-matrix-adventures-third.gif)](/assets/images/opengl-matrix-adventures-third.gif)
-
-_Figure 6:_ OpenGL's inversion of the formula that is used determining if a face is backfacing or not can be interpreted as yet another transformation in handedness. 
-
-OpenGL does not actually refer to specific handednesses in its specification and only defines the math and the rules and basically says: ~"good luck, wrapping your head around this!" With this blog post, I try to somehow visualize what is going on under the hood in OpenGL. To say that OpenGL's transformations are a bit confusing would be a huge understatement. Figure 7 shows all the coordinate transformations from Figures 1, 2, and 6 in combination, which is what happens before the fixed-function backface culling step is performed in hardware. Because the (imagined) coordinate transformation from Figure 6 is missing in Vulkan, it should be obvious why we see the backfaces if we use an OpenGL projection matrix with Vulkan. 
-
-{: .center}
-[![All coordinate transformations in OpenGL](/assets/images/opengl-matrix-adventures-total.gif)](/assets/images/opengl-matrix-adventures-total.gif)
-
-_Figure 7:_ The total chain of OpenGL's coordinate transformation madness combined into one animation. At the end of the animation, a camera view frustum indicates which part of the scene gets rendered into the framebuffer.
-
-Vulkan's approach is much cleaner, and everything can just stay in right-handed coordinate systems throughout the entire graphics pipeline without any painful handedness-changing transformations. The only "downside" (if it could even be labeled as such) might be that a framebuffer space with its y-axis pointing down could be more confusing to some. However, taking Vulkan's NDC space into account (as shown in Figure 5), I think it just is the natural choice and makes sense, totally.
+From _Figures 3_ and _4_ we can see clear differences between the two graphics APIs and this is the very reason why we get undesirable effects when using an OpenGL-style projectin matrix in Vulkan---like described in [Sascha Willems - Flipping the Vulkan viewport](https://www.saschawillems.de/blog/2019/03/29/flipping-the-vulkan-viewport/)? 
+The exact reason can be found when comparing the [OpenGL specification](https://www.khronos.org/registry/OpenGL/specs/gl/glspec46.core.pdf)'s fojrmula for computing whether or not a polygon is backfacing or frontfacing (Section 14.6.1 Basic Polygon Rasterization, Equation 14.8) to the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html), which also suggests a specific formula for this purpose (Section 27.12.1. Basic Polygon Rasterization). It almost looks the same as OpenGL's formula, it just has **an additional minus sign** which makes all the difference. I.e., the formulae which determine if a polygon is frontfacing or backfacing that are used in both APIs _internally_ indeed compute exactly the opposite results w.r.t. each other. 
+While this formula does not exactly compute the [cross product](https://en.wikipedia.org/wiki/Cross_product), we can use the cross product the same point if it is used to compute a triangle's face normal: The cross product is defined so that if vertices are given in counter-clockwise direction, its resulting vector (which serves as the face normal) is created according to the _right-hand rule_. By OpenGL flipping the results of the computation, this would correspond to a left-handed coordinate system.
 
 ## How To Build a Projection Matrix for Vulkan?
 
