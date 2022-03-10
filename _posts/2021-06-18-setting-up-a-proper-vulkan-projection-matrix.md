@@ -1,6 +1,6 @@
 ---
 title: "Setting Up a Proper Projection Matrix for Vulkan"
-# last_modified_at: 2021-07-07T11:09:00+02:00
+# last_modified_at: 2022-03-10T10:44:00+01:00
 categories:
   - GPU-Programming
 tags:
@@ -15,7 +15,7 @@ In this post, I'd like to describe a strategy how a proper and (hopefully) easy 
 {: .center}
 [![Graphics pipeline, different spaces and operations](/assets/images/different-spaces-some-user-defined.png)](/assets/images/different-spaces-some-user-defined.png)
 
-_Figure 1:_ The spaces displayed with yellow borders and fonts (world space and view space) can be chosen freely by programmers. But for the other spaces, Vulkan dictates certain requirements s.t. its fixed-function steps backface culling, polygon clipping, and homogeneous division (marked with circular symbols) lead to the expected result. All of the spaces are required to be in a right-handed coordinate system. I.e., Vulkan's fixed-function steps operate so that they expect the input geometry to be defined with right-handed coordinates.
+_Figure 1:_ The spaces displayed with yellow borders and fonts (world space and view space) can be chosen freely by programmers. But for the other spaces, Vulkan dictates certain requirements s.t. its fixed-function steps polygon clipping, homogeneous division, and backface culling (in that order from left to right, marked with circular symbols) lead to the expected result. All of the spaces are required to be in a right-handed coordinate system. I.e., Vulkan's fixed-function steps operate so that they expect the input geometry to be defined with right-handed coordinates.
 
 A more detailed picture of the spaces with special requirements is given in _Figure 2_. It can be observed that the basic structure of them all is very similar and consistent: Each space is defined with a right-handed coordinate system where the x axis points to the right, and the y axis points down. Now, "right" and "down" might be terrible descriptions of the matter, but at least if we follow these thoughts through to the framebuffer space and imagine a framebuffer being rendered on a screen, they should hopefully get the point across. I.e. an image (in framebuffer space) is drawn to the screen s.t. its origin is assumed to be in the top-left corner, ascending x coordinates refer to pixels from left to right on the screen, and ascending y coordinates refer to pixels from top to bottom on the screen. The z axis pointing "into" the screen shall indicate that depth values increase the further away an object is.
 
