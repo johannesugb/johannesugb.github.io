@@ -1,5 +1,5 @@
 ---
-title: "Fast Multi-View Rendering for Real-Time Applications"
+title: "Fast Multi-View Rendering for Real-Time Applications (Paper Page)"
 # last_modified_at: 2022-06-10T01:20:00+02:00
 categories:
   - GPU-Programming
@@ -13,19 +13,24 @@ tags:
 aasdfasdfasdf
 
 <div style="display:block;">
-  <div style="float:left; width:20%;">
-   first
+  <div style="float:left; width:20%; text-align:center;">
+   [Johannes Unterguggenberger](johannesugb.github.io)              
+    TU Wien
   </div>
-  <div style="float:left; width:20%;">
-   secnd
+  <div style="float:left; width:20%; text-align:center;">
+    [Johannes Unterguggenberger](johannesugb.github.io)              
+    TU Wien
   </div>
-  <div style="float:left; width:20%;">
-   first
+  <div style="float:left; width:20%; text-align:center;">
+    [Johannes Unterguggenberger](johannesugb.github.io)              
+    TU Wien
   </div>
-  <div style="float:left; width:20%;">
-   first
+  <div style="float:left; width:20%; text-align:center;">
+    [Johannes Unterguggenberger](johannesugb.github.io)              
+    TU Wien
   </div>
-  <div style="float:left; width:20%;">
-   first
+  <div style="float:left; width:20%; text-align:center;">
+    [Johannes Unterguggenberger](johannesugb.github.io)              
+    TU Wien
   </div>
 </div>              
