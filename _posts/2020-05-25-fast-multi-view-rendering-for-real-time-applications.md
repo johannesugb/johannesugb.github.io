@@ -12,20 +12,20 @@ tags:
 
 aasdfasdfasdf
 
-<p>
-  <div style="float:left; width:20%;>
+<div style="display:block;">
+  <div style="float:left; width:20%;">
    first
   </div>
-  <div style="float:left; width:20%;>
+  <div style="float:left; width:20%;">
    secnd
   </div>
-  <div style="float:left; width:20%;>
+  <div style="float:left; width:20%;">
    first
   </div>
-  <div style="float:left; width:20%;>
+  <div style="float:left; width:20%;">
    first
   </div>
-  <div style="float:left; width:20%;>
+  <div style="float:left; width:20%;">
    first
   </div>
-</p>              
+</div>              
