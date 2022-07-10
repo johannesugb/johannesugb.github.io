@@ -11,6 +11,17 @@ tags:
 ---
 
 <div style="display:block;">
+   <div style="float:left; width:50%; padding:5%; text-align:center; font-size:0.9em;">
+    <a href="/assets/images/fmvr-perf-ovr-multiview.png" class="image-popup"><img src="/assets/images/fmvr-perf-ovr-multiview.png" alt="Performance of OVR multiview variants examined in our paper"/></a><br/>
+     <em>Figure 1:</em> Performance numbers of the (hardware-accelerated) "OVR multiview" pipeline variants examined in our paper.
+  </div>
+  <div style="float:left; width:50%; padding:5%; text-align:center; font-size:0.9em;">
+    <a href="/assets/images/fmvr-perf-geom-shader-inst.png" class="image-popup"><img src="/assets/images/fmvr-perf-geom-shader-inst.png" alt="Performance of geometry shader instancing variants examined in our paper"/></a><br/>
+     <em>Figure 2:</em> Performance numbers of the geometry shader instancing-based pipeline variants examined in our paper.
+  </div>
+</div>
+
+<div style="display:block;">
   <div style="float:left; width:20%; text-align:center; font-size:0.8em;">
     <a href="https://johannesugb.github.io/">Johannes<br/>Unterguggenberger</a><br/>
     TU Wien
