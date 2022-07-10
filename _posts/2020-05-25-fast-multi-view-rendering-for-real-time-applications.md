@@ -31,7 +31,8 @@ tags:
     <a href="https://www.cg.tuwien.ac.at/staff/MichaelWimmer">Michael<br/>Wimmer</a><br/>
     TU Wien
   </div>
-</div>              
+</div>
+<p>&nbsp;</p>
 
 # Abstract
 
