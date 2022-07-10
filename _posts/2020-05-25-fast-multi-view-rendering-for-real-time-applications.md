@@ -56,6 +56,7 @@ We investigate the performance of over 50 graphics pipeline variants for the tas
 <p class="center">
   <a href="/assets/images/fmvr-list-of-symbols.png" class="image-popup"><img style="width:50%" src="/assets/images/fmvr-list-of-symbols.png" alt="List of symbols"/></a>
 <p>
+  
 _Figure 3:_ List of symbols used in our paper to distinguish the different configuration parameters of graphics pipelines examined in our paper. Fundamental distinguishing features of each variant can be described in terms of the way how "Geometry Amplification" is performed and its target "Framebuffer Layout". Some variants have additional "Culling & Clipping" properties.
 
 In our paper, we compare all variants to our selected baseline multiview variant: simple multi-pass rendering into separate framebuffers (in terms of our symbols, this is described with "Direct forwarding" and "Separate framebuffer objects"). We also provide a sequence diagram to describe our baseline, which is shown in _Figure 4_. 
@@ -63,6 +64,7 @@ In our paper, we compare all variants to our selected baseline multiview variant
 <p class="center">
   <a href="/assets/images/fmvr-multipass-seqdiag.png" class="image-popup"><img style="width:50%" src="/assets/images/fmvr-multipass-seqdiag.png" alt="Sequence diagram of simple multi-pass rendering"/></a>
 <p>
+  
 _Figure 4:_ Sequence diagram, describing our baseline multiview variant, namely simple multi-pass rendering into separate framebuffers.
 
 # BibTeX
