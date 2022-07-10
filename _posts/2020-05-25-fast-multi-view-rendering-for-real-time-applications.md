@@ -11,23 +11,23 @@ tags:
 ---
 
 <div style="display:block;">
-  <div style="float:left; width:20%; text-align:center; font-size:1.4em;">
+  <div style="float:left; width:20%; text-align:center; font-size:0.8em;">
     <a href="https://johannesugb.github.io/">Johannes<br/>Unterguggenberger</a><br/>
     TU Wien
   </div>
-  <div style="float:left; width:20%; text-align:center; font-size:1.4em;">
+  <div style="float:left; width:20%; text-align:center; font-size:0.8em;">
     <a href="https://www.cg.tuwien.ac.at/staff/BernhardKerbl">Bernhard<br/>Kerbl</a><br/>
     TU Wien
   </div>
-  <div style="float:left; width:20%; text-align:center; font-size:1.4em;">
+  <div style="float:left; width:20%; text-align:center; font-size:0.8em;">
     <a href="https://www.markussteinberger.net/">Markus<br/>Steinberger</a><br/>
     Graz University of Technology
   </div>
-  <div style="float:left; width:20%; text-align:center; font-size:1.4em;">
+  <div style="float:left; width:20%; text-align:center; font-size:0.8em;">
     <a href="https://www.tugraz.at/institute/icg/research/team-schmalstieg/">Dieter<br/>Schmalstieg</a><br/>
     Graz University of Technology
   </div>
-  <div style="float:left; width:20%; text-align:center; font-size:1.4em;">
+  <div style="float:left; width:20%; text-align:center; font-size:0.8em;">
     <a href="https://www.cg.tuwien.ac.at/staff/MichaelWimmer">Michael<br/>Wimmer</a><br/>
     TU Wien
   </div>
