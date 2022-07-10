@@ -21,11 +21,11 @@ tags:
   </div>
   <div style="float:left; width:20%; text-align:center; font-size:small;">
     <a href="https://www.markussteinberger.net/">Markus<br/>Steinberger</a><br/>
-    TU Wien
+    Graz University of Technology
   </div>
   <div style="float:left; width:20%; text-align:center; font-size:small;">
     <a href="https://www.tugraz.at/institute/icg/research/team-schmalstieg/">Dieter<br/>Schmalstieg</a><br/>
-    TU Wien
+    Graz University of Technology
   </div>
   <div style="float:left; width:20%; text-align:center; font-size:small;">
     <a href="https://www.cg.tuwien.ac.at/staff/MichaelWimmer">Michael<br/>Wimmer</a><br/>
