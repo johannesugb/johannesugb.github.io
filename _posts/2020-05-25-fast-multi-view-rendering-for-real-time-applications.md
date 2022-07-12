@@ -1,6 +1,6 @@
 ---
-title: "Fast Multi-View Rendering for Real-Time Applications (Paper Page)"
-last_modified_at: 2022-07-12T11:55:00+02:00
+title: "Fast Multi-View Rendering for Real-Time Applications"
+last_modified_at: 2022-07-12T13:10:00+02:00
 categories:
   - GPU-Programming
 tags:
@@ -9,6 +9,8 @@ tags:
 # header:
 #   image: /assets/images/1500x500.jpg
 ---
+
+This is the paper page of our paper "Fast Multi-View Rendering for Real-Time Applications" which has been accepted at the [Eurographics Symposium on Parallel Graphics and Visualization 2020](https://conferences.eg.org/egpgv20/). Its full list of papers can be found in the [Eurographics Digital Library](https://diglib.eg.org/handle/10.2312/2632899).
 
 <div style="display:block;">
    <div style="float:left; width:50%; padding:4% 3% 4% 5%; text-align:center; font-size:0.9em;">
@@ -20,6 +22,8 @@ tags:
      <em>Figure 2:</em> Performance numbers of the geometry shader instancing-based pipeline variants examined in our paper.
   </div>
 </div>
+
+# Authors
 
 <div style="display:block;">
   <div style="float:left; width:20%; text-align:center; font-size:0.8em;">
