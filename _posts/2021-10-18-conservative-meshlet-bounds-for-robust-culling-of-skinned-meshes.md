@@ -1,6 +1,6 @@
 ---
-title: "Conservative Meshlet Bounds for Robust Culling of Skinned Meshes (Paper Page)"
-last_modified_at: 2022-07-12T12:55:00+02:00
+title: "Conservative Meshlet Bounds for Robust Culling of Skinned Meshes"
+last_modified_at: 2022-07-12T13:11:00+02:00
 categories:
   - GPU-Programming
 tags:
@@ -9,6 +9,8 @@ tags:
 # header:
 #   image: /assets/images/1500x500.jpg
 ---
+
+This is the paper page of our paper "Conservative Meshlet Bounds for Robust Culling of Skinned Meshes" which has been accepted and presented at [Pacific Graphics 2021](https://www.pg2021.org/).
 
 {: .center}
 [![Terrain and skinned character model divided into meshlets](/assets/images/msh-header-image.png)](/assets/images/msh-header-image.png)
