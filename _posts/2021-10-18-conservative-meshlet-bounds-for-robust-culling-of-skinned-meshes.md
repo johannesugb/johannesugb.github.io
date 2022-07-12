@@ -13,6 +13,9 @@ tags:
 {: .center}
 [![Terrain and skinned character model divided into meshlets](/assets/images/msh-header-image.png)](/assets/images/msh-header-image.png)
 
+_Figure 1:_ Both static (terrain) and animated (skinned character) models are divided into small clusters of geometry---so called "meshlets". 
+
+
 <div style="display:block;">
   <div style="float:left; width:25%; text-align:center; font-size:0.9em;">
     <a href="https://johannesugb.github.io/">Johannes<br/>Unterguggenberger</a><br/>
