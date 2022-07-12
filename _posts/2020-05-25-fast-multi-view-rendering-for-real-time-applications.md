@@ -67,6 +67,12 @@ In our paper, we compare all variants to our selected baseline multiview variant
   
 _Figure 4:_ Sequence diagram, describing our baseline multiview variant, namely simple multi-pass rendering into separate framebuffers.
 
+# Links
+- Paper: [Fast Multi-View Rendering for Real-Time Applications](https://www.cg.tuwien.ac.at/research/publications/2020/unterguggenberger-2020-fmvr/unterguggenberger-2020-fmvr-paper.pdf)
+- Source Code: [github.com/cg-tuwien/FastMVR](https://github.com/cg-tuwien/FastMVR)
+- Talk: [Pre-recorded talk as presented at EGPGV 2020](https://youtu.be/iVq_wgPO9Aw)
+- Slides: [Fast Multi-View Rendering for Real-Time Applications Slides](https://www.cg.tuwien.ac.at/research/publications/2020/unterguggenberger-2020-fmvr/unterguggenberger-2020-fmvr-slides.pdf)
+
 # BibTeX
 
 ```tex
@@ -90,9 +96,3 @@ _Figure 4:_ Sequence diagram, describing our baseline multiview variant, namely 
   URL =        "https://www.cg.tuwien.ac.at/research/publications/2020/unterguggenberger-2020-fmvr/",
 }
 ```              
-
-# Links
-- Paper: [Fast Multi-View Rendering for Real-Time Applications](https://www.cg.tuwien.ac.at/research/publications/2020/unterguggenberger-2020-fmvr/unterguggenberger-2020-fmvr-paper.pdf)
-- Source Code: [github.com/cg-tuwien/FastMVR](https://github.com/cg-tuwien/FastMVR)
-- Talk: [Pre-recorded talk as presented at EGPGV 2020](https://youtu.be/iVq_wgPO9Aw)
-- Slides: [Fast Multi-View Rendering for Real-Time Applications Slides](https://www.cg.tuwien.ac.at/research/publications/2020/unterguggenberger-2020-fmvr/unterguggenberger-2020-fmvr-slides.pdf)
