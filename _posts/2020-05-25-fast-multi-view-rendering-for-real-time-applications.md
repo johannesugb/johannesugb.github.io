@@ -1,6 +1,6 @@
 ---
 title: "Fast Multi-View Rendering for Real-Time Applications (Paper Page)"
-last_modified_at: 2022-07-12T11:13:00+02:00
+last_modified_at: 2022-07-12T11:55:00+02:00
 categories:
   - GPU-Programming
 tags:
