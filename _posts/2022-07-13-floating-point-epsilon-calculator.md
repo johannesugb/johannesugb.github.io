@@ -12,7 +12,7 @@ tags:
 
 When using floating point variables, there's always the danger that a certain value cannot be represented exactly. Therefore, oftentimes epsilon values need to be used when checking or comparing results of floating point computations. **But which epsilon to use?** The answer is: **It depends!** More precisely, it depends on the range of values that you are using for your computations, which is where this small online tool comes into play: The Floating Point Epsilon Calculator will tell you the _largest difference between two consecutive floating point values within a given range of values_---use that as your epsilon! Furthermore, the precision across the given range of values is plotted.
 
-**Operating instructions:** Select the data type, enter lower and upper bounds of the floating point range of interest, then hit the `[Calculate]` button and await the resulting epsilon and precision chart across the entered range.
+**Operating instructions:** Select the data type, enter lower and upper bounds of the floating point range of interest, then hit the `[Calculate]` button and await the resulting epsilon and precision chart.
 
 <div style="display:block;">
   <div style="margin: 0px 0px 0px 0px;">
@@ -192,12 +192,13 @@ function myAjaxGoGo(){
 	"#include <array>                                                                            \n" +
 	"#include <cmath>                                                                            \n" +
 	"#include <limits>                                                                           \n" +
-	"double precision_for(double reference) {                                                    \n" +
-	"    double more = std::nextafter(reference,  std::numeric_limits<double>::infinity());      \n" +
-	"	double less = std::nextafter(reference, -std::numeric_limits<double>::infinity());       \n" +
-	"    double precision = std::max(more - reference, reference - less);                        \n" +
-	"	return precision;                                                                        \n" +
-	"}                                                                                           \n" +
+	"template <typename T>                                                       	\n" +
+	"T precision_for(T reference) {                                              	\n" +
+	"  T more = std::nextafter(reference,  std::numeric_limits<T>::infinity());  	\n" +
+	"  T less = std::nextafter(reference, -std::numeric_limits<T>::infinity());  	\n" +
+	"  T precision = std::max(more - reference, reference - less);               	\n" +
+	"  return precision;                                                         	\n" +
+	"}                                                                           	\n" +
 	"struct result {                                                                             \n" +
 	"    double mValue;                                                                          \n" +
 	"    double mPrecision;                                                                      \n" +
@@ -268,13 +269,14 @@ function myAjaxGoGo(){
 	
 The calculations are performed in C++ via the fantastic and invaluable "Compiler Explorer" at [godbolt.org](https://godbolt.org/). The calculations use [`std::nextafter`](https://en.cppreference.com/w/cpp/numeric/math/nextafter) to get the smallest adjacent floating point value to a given reference value => this is the proposed epsilon. For a range of values, the proposed epsilon value can always w.l.o.g. be calculated by taking the maximum of the lower bound's epsilon and the upper bound's epsilon. 
 	
-The following C++ code is used to calculate the floating point precision around a given reference value (in this case for the `double` data type):
+The following C++ code is used to calculate the floating point precision around a given reference value:
 ```cpp
-double precision_for(double reference) {
-  double more = std::nextafter(reference,  std::numeric_limits<double>::infinity());
-  double less = std::nextafter(reference, -std::numeric_limits<double>::infinity());
-  double precision = std::max(more - reference, reference - less);
-  return precision;
+template <typename T>
+T precision_for(T reference) {
+    T more = std::nextafter(reference,  std::numeric_limits<T>::infinity());
+    T less = std::nextafter(reference, -std::numeric_limits<T>::infinity());
+    T precision = std::max(more - reference, reference - less);
+    return precision;
 }
 ```
 	
