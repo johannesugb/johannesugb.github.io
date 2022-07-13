@@ -1,6 +1,6 @@
 ---
 title: "Floating Point Epsilon Calculator"
-last_modified_at: 2022-07-13T10:00:00+02:00
+last_modified_at: 2022-07-13T11:49:00+02:00
 categories:
 #  - CPU-Programming
 #  - Tools
@@ -277,6 +277,7 @@ double precision_for(double reference) {
   return precision;
 }
 ```
+	
 	
 # Further Information
 	
