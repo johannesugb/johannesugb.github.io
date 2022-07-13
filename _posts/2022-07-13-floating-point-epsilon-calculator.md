@@ -233,7 +233,7 @@ function myAjaxGoGo(){
 	// Converting JSON data to string 
 	var data = JSON.stringify({
 		"source": cppCode.replace("{FROM}", fromVal).replace("{TO}", toVal).replaceAll("double", dataType),
-		"compiler": "g82",
+		"compiler": "g113",
 		"options": {
 			"userArguments": "-O3",
 			"executeParameters": {
