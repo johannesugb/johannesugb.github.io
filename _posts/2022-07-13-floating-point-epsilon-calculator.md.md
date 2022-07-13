@@ -28,13 +28,13 @@ When using floating point variables, there's always the danger that a certain va
     <button onclick="goGoPredefinedRange(-1.0,  1.0);" style="padding: 2px 5px; margin: 0 0 0 0;">[-1,  1]</button>
   </div>
   <div style="float:left; text-align:left; margin: 0px 10px 0px 0px;">
-    <button id="sendButton" onclick="goGoPredefinedRange(-100.0,  100.0);" style="padding: 2px 5px; margin: 0 0 0 0;">[-100,  100]</button>
+    <button onclick="goGoPredefinedRange(-100.0,  100.0);" style="padding: 2px 5px; margin: 0 0 0 0;">[-100,  100]</button>
   </div>
   <div style="float:left; text-align:left; margin: 0px 10px 0px 0px;">
     <button onclick="goGoPredefinedRange(0.0,  10000.0);" style="padding: 2px 5px; margin: 0 0 0 0;">[0,  10000]</button>
   </div>
   <div style="float:left; text-align:left; margin: 0px 10px 0px 0px;">
-    <button id="sendButton" onclick="goGoPredefinedRange(10000.0,  1000000000.0);" style="padding: 2px 5px; margin: 0 0 0 0;">[10000,  1000000000]</button>
+    <button onclick="goGoPredefinedRange(10000.0,  1000000000.0);" style="padding: 2px 5px; margin: 0 0 0 0;">[10000,  1000000000]</button>
   </div>
   <div style="clear:both;">&nbsp;</div>
 </div>
@@ -75,7 +75,7 @@ When using floating point variables, there's always the danger that a certain va
   <div style="margin: 0px 0px 10px 0px;">
     Result:
   </div>
-  <div class="language-cpp highlighter-rouge" style="font-size: 1.1em;"><div class="highlight"><pre class="highlight"><code><span class="k">constexpr</span> <span class="k" id="resultDataType">float</span> <span class="n">epsilon</span> <span class="o">=</span> <span class="mi" id="resultEpsilonValue">?</span><span class="p">;</span></code></pre></div></div>
+  <div class="language-cpp highlighter-rouge" style="font-size: 1.0em;"><div class="highlight"><pre class="highlight"><code><span class="k">constexpr</span> <span class="k" id="resultDataType">float</span> <span class="n">epsilon</span> <span class="o">=</span> <span class="mi" id="resultEpsilonValue">?</span><span class="p">;</span></code></pre></div></div>
 </div>
 	
 
