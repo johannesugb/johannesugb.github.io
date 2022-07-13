@@ -20,20 +20,20 @@ _Figure 1:_ Differences between OpenGL and Vulkan. We argue that the highlighted
 # Authors
 
 <div style="display:block;">
-  <div style="float:left; width:33.33%; text-align:center; font-size:1em;">
+  <div style="float:left; width:34%; text-align:center; font-size:1em;">
     <a href="https://johannesugb.github.io/">Johannes<br/>Unterguggenberger</a><br/>
     TU Wien
   </div>
-  <div style="float:left; width:33.33% text-align:center; font-size:1em;">
+  <div style="float:left; width:33% text-align:center; font-size:1em;">
     <a href="https://www.cg.tuwien.ac.at/staff/BernhardKerbl">Bernhard<br/>Kerbl</a><br/>
     TU Wien
   </div>
-  <div style="float:left; width:33.33%; text-align:center; font-size:1em;">
+  <div style="float:left; width:33%; text-align:center; font-size:1em;">
     <a href="https://www.cg.tuwien.ac.at/staff/MichaelWimmer">Michael<br/>Wimmer</a><br/>
     TU Wien
   </div>
+  <div style="clear:both;">&nbsp;</div>
 </div>
-<p>&nbsp;</p>
 
 # Abstract
 
@@ -63,7 +63,7 @@ This led to a manageable workload for our students and we got positive feedback.
 In terms of lectures, we created the [Vulkan Lecture Series](https://www.youtube.com/playlist?list=PLmIqTlJ6KsE1Jx5HV4sd2jOe3V1KMHHgn), which represents the way how we think that Vulkan should be introduced properly. It has been perceived well and has even been listed on Khronos' very own [vulkan.org](https://www.vulkan.org/) under the learning resources in the [tutorials](https://www.vulkan.org/learn#vulkan-tutorials) section.
 
 # Links
-- Paper: [The Road to Vulkan: Teaching Modern Low-Level APIs in Introductory Graphics Courses](https://www.cg.tuwien.ac.at/research/publications/2022/unterguggenberger-2022-vulkan/unterguggenberger-2022-vulkan-slides.pdf)
+- Paper: [The Road to Vulkan: Teaching Modern Low-Level APIs in Introductory Graphics Courses](https://www.cg.tuwien.ac.at/research/publications/2022/unterguggenberger-2022-vulkan/unterguggenberger-2022-vulkan-paper.pdf)
 - Talk: [Pre-recorded (backup) talk for Eurographics 2022](https://youtu.be/ZG0ct4V6c0k)
 - Slides: [The Road to Vulkan: Teaching Modern Low-Level APIs in Introductory Graphics Courses Slides](https://www.cg.tuwien.ac.at/research/publications/2022/unterguggenberger-2022-vulkan/unterguggenberger-2022-vulkan-slides.pdf)
 
