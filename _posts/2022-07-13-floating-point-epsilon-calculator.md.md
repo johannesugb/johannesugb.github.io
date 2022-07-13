@@ -1,11 +1,11 @@
 ---
 title: "Floating Point Epsilon Calculator"
-last_modified_at: 2022-07-13T11:49:00+02:00
+last_modified_at: 2022-07-13T11:54:00+02:00
 categories:
-#  - CPU-Programming
-#  - Tools
+  - CPU-Programming
+  - Tools
 tags:
-#  - C++
+  - C++
 # header:
 #   image: /assets/images/1500x500.jpg
 ---
