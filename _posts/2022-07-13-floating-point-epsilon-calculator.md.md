@@ -19,19 +19,19 @@ When using floating point variables, there's always the danger that a certain va
     Alternatively, select one of the predefined ranges:
   </div>
   <div style="float:left; text-align:left; margin: 0px 10px 0px 0px;">
-    <button id="sendButton" onclick="goGoPredefinedRange(0.0,  0.3);" style="padding: 2px 5px; margin: 0 0 0 0;">[0, 0.3]</button>
+    <button onclick="goGoPredefinedRange(0.0,  0.3);" style="padding: 2px 5px; margin: 0 0 0 0;">[0, 0.3]</button>
   </div>
   <div style="float:left; text-align:left; margin: 0px 10px 0px 0px;">
-    <button id="sendButton" onclick="goGoPredefinedRange(0.0,  1.0);" style="padding: 2px 5px; margin: 0 0 0 0;">[0,  1]</button>
+    <button onclick="goGoPredefinedRange(0.0,  1.0);" style="padding: 2px 5px; margin: 0 0 0 0;">[0,  1]</button>
   </div>
   <div style="float:left; text-align:left; margin: 0px 10px 0px 0px;">
-    <button id="sendButton" onclick="goGoPredefinedRange(-1.0,  1.0);" style="padding: 2px 5px; margin: 0 0 0 0;">[-1,  1]</button>
+    <button onclick="goGoPredefinedRange(-1.0,  1.0);" style="padding: 2px 5px; margin: 0 0 0 0;">[-1,  1]</button>
   </div>
   <div style="float:left; text-align:left; margin: 0px 10px 0px 0px;">
     <button id="sendButton" onclick="goGoPredefinedRange(-100.0,  100.0);" style="padding: 2px 5px; margin: 0 0 0 0;">[-100,  100]</button>
   </div>
   <div style="float:left; text-align:left; margin: 0px 10px 0px 0px;">
-    <button id="sendButton" onclick="goGoPredefinedRange(0.0,  10000.0);" style="padding: 2px 5px; margin: 0 0 0 0;">[0,  10000]</button>
+    <button onclick="goGoPredefinedRange(0.0,  10000.0);" style="padding: 2px 5px; margin: 0 0 0 0;">[0,  10000]</button>
   </div>
   <div style="float:left; text-align:left; margin: 0px 10px 0px 0px;">
     <button id="sendButton" onclick="goGoPredefinedRange(10000.0,  1000000000.0);" style="padding: 2px 5px; margin: 0 0 0 0;">[10000,  1000000000]</button>
