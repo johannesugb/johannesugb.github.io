@@ -268,13 +268,13 @@ function myAjaxGoGo(){
 	
 The calculations are performed in C++ via the fantastic and invaluable "Compiler Explorer" at [godbolt.org](https://godbolt.org/). The calculations use [`std::nextafter`](https://en.cppreference.com/w/cpp/numeric/math/nextafter) to get the smallest adjacent floating point value to a given reference value => this is the proposed epsilon. For a range of values, the proposed epsilon value can always w.l.o.g. be calculated by taking the maximum of the lower bound's epsilon and the upper bound's epsilon. 
 	
-The following C++ code is used to calculate the floating point precision around a given reference value:
+The following C++ code is used to calculate the floating point precision around a given reference value (in this case for the `double` data type):
 ```cpp
 double precision_for(double reference) {
-    double more = std::nextafter(reference,  std::numeric_limits<double>::infinity());
-	double less = std::nextafter(reference, -std::numeric_limits<double>::infinity());
-    double precision = std::max(more - reference, reference - less);
-	return precision;
+  double more = std::nextafter(reference,  std::numeric_limits<double>::infinity());
+  double less = std::nextafter(reference, -std::numeric_limits<double>::infinity());
+  double precision = std::max(more - reference, reference - less);
+  return precision;
 }
 ```
 	
