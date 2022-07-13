@@ -270,8 +270,12 @@ The calculations are performed in C++ via the fantastic and invaluable "Compiler
 	
 The following C++ code is used to calculate the floating point precision around a given reference value:
 ```cpp
-	lol
-
+double precision_for(double reference) {
+    double more = std::nextafter(reference,  std::numeric_limits<double>::infinity());
+	double less = std::nextafter(reference, -std::numeric_limits<double>::infinity());
+    double precision = std::max(more - reference, reference - less);
+	return precision;
+}
 ```
 	
 # Further Information
