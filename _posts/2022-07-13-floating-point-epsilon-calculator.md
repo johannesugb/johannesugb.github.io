@@ -1,6 +1,6 @@
 ---
 title: "Floating Point Epsilon Calculator"
-last_modified_at: 2022-07-13T11:54:00+02:00
+last_modified_at: 2022-07-13T13:06:00+02:00
 categories:
   - CPU-Programming
   - Tools
@@ -237,8 +237,6 @@ function myAjaxGoGo(){
 		"options": {
 			"userArguments": "-O3",
 			"executeParameters": {
-				"args": ["arg1", "arg2"],
-				"stdin": "hello, world!"
 			},
 			"compilerOptions": {
 				"executorRequest": true
@@ -247,9 +245,7 @@ function myAjaxGoGo(){
 				"execute": true
 			},
 			"tools": [],
-			"libraries": [
-				{"id": "openssl", "version": "111c"}
-			]
+			"libraries": []
 		},
 		"lang": "c++",
 		"allowStoreCodeDebug": true
