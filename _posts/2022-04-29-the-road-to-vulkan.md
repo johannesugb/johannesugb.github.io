@@ -24,7 +24,7 @@ _Figure 1:_ Differences between OpenGL and Vulkan. We argue that the highlighted
     <a href="https://johannesugb.github.io/">Johannes Unterguggenberger</a><br/>
     TU Wien
   </div>
-  <div style="float:left; width:33% text-align:center; font-size:0.9em;">
+  <div style="float:left; width:33%; text-align:center; font-size:0.9em;">
     <a href="https://www.cg.tuwien.ac.at/staff/BernhardKerbl">Bernhard Kerbl</a><br/>
     TU Wien
   </div>
