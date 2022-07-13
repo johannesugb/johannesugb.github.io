@@ -64,7 +64,7 @@ When using floating point variables, there's always the danger that a certain va
     <input type="number" step="any" id="toVal" placeholder="upper bound" style="width: 130px; background-color: white; color: black; font-size: 0.9em;">
   </div>
   <div style="clear: both; position: relative;">
-	<img src="Ripple-1s-200px.gif" style="position: absolute; width:40px; height:40px; right:0%; visibility: hidden;" id="loadingIcon" />
+	<img src="/assets/images/loading-ani-ripple-1s-200px.gif" style="position: absolute; width:40px; height:40px; right:0%; visibility: hidden;" id="loadingIcon" />
     <!-- Button to send data -->
 	<center>
 		<button id="sendButton" onclick="myAjaxGoGo();" style="padding: 5px 20px; margin: 5px 0 0 0;">
