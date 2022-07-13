@@ -235,7 +235,7 @@ function myAjaxGoGo(){
 		"source": cppCode.replace("{FROM}", fromVal).replace("{TO}", toVal).replaceAll("double", dataType),
 		"compiler": "g113",
 		"options": {
-			"userArguments": "-O3",
+			"userArguments": "-O1",
 			"executeParameters": {
 			},
 			"compilerOptions": {
