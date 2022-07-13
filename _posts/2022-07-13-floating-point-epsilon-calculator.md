@@ -268,6 +268,10 @@ The calculations are performed in C++ via the fantastic and invaluable "Compiler
 The following C++ code is used to calculate the floating point precision around a given reference value:
 ```cpp
 template <typename T>
+#include <limits>
+#include <cmath>
+#include <algorithm>
+	
 T precision_for(T reference) {
     T more = std::nextafter(reference,  std::numeric_limits<T>::infinity());
     T less = std::nextafter(reference, -std::numeric_limits<T>::infinity());
