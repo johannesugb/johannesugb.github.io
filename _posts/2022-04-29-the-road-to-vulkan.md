@@ -20,20 +20,20 @@ _Figure 1:_ Differences between OpenGL and Vulkan. We argue that the highlighted
 # Authors
 
 <div style="display:block;">
-  <div style="float:left; width:34%; text-align:center; font-size:1em;">
-    <a href="https://johannesugb.github.io/">Johannes<br/>Unterguggenberger</a><br/>
+  <div style="float:left; width:34%; text-align:center; font-size:0.9em;">
+    <a href="https://johannesugb.github.io/">Johannes Unterguggenberger</a><br/>
     TU Wien
   </div>
-  <div style="float:left; width:33% text-align:center; font-size:1em;">
-    <a href="https://www.cg.tuwien.ac.at/staff/BernhardKerbl">Bernhard<br/>Kerbl</a><br/>
+  <div style="float:left; width:33% text-align:center; font-size:0.9em;">
+    <a href="https://www.cg.tuwien.ac.at/staff/BernhardKerbl">Bernhard Kerbl</a><br/>
     TU Wien
   </div>
-  <div style="float:left; width:33%; text-align:center; font-size:1em;">
-    <a href="https://www.cg.tuwien.ac.at/staff/MichaelWimmer">Michael<br/>Wimmer</a><br/>
+  <div style="float:left; width:33%; text-align:center; font-size:0.9em;">
+    <a href="https://www.cg.tuwien.ac.at/staff/MichaelWimmer">Michael Wimmer</a><br/>
     TU Wien
   </div>
-  <div style="clear:both;">&nbsp;</div>
 </div>
+<div style="clear:both;">&nbsp;</div>
 
 # Abstract
 
