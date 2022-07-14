@@ -1,6 +1,6 @@
 ---
 title: "Floating Point Epsilon Calculator"
-last_modified_at: 2022-07-13T13:06:00+02:00
+last_modified_at: 2022-07-14T07:48:00+02:00
 categories:
   - CPU-Programming
   - Tools
@@ -10,7 +10,7 @@ tags:
 #   image: /assets/images/1500x500.jpg
 ---
 
-When using floating point variables, there's always the danger that a certain value cannot be represented exactly. Therefore, oftentimes epsilon values need to be used when checking or comparing results of floating point computations. **But which epsilon to use?** The answer is: **It depends!** More precisely, it depends on the range of values that you are using for your computations, which is where this small online tool comes into play: The Floating Point Epsilon Calculator will tell you the _largest difference between two consecutive floating point values within a given range of values_---use that as your epsilon! Furthermore, the precision across the given range of values is plotted.
+When using floating point variables, there's always the danger that a certain number cannot be represented exactly. Therefore, oftentimes epsilon values need to be used when checking or comparing results of floating point computations. **But which epsilon to use?** The answer is: **It depends.** More precisely, it depends on the range of numbers that you are using for your computations, which is where this small online tool comes into play: The Floating Point Epsilon Calculator will tell you the _largest difference between two consecutive floating point values within a given range of numbers_---use that as your epsilon! Furthermore, the precision across the given range of numbers is plotted.
 
 **Operating instructions:** Select the data type, enter lower and upper bounds of the floating point range of interest, then hit the `[Calculate]` button and await the resulting epsilon and precision chart.
 
