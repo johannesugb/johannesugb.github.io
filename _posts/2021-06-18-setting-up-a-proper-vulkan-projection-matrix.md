@@ -1,6 +1,6 @@
 ---
 title: "Setting Up a Proper Projection Matrix for Vulkan"
-# last_modified_at: 2022-03-10T10:44:00+01:00
+# last_modified_at: 2023-03-17T08:50:00+01:00
 categories:
   - GPU-Programming
 tags:
@@ -66,13 +66,13 @@ The final step is transforming from $\textbf{X}$ into clip space with perspectiv
 $$ \mathbf{P} = \begin{pmatrix}
 \frac{a^{-1}}{\tan \frac{\phi}{2}} & 0 & 0 & 0 \\
 0 & \frac{1}{\tan \frac{\phi}{2}} & 0 & 0 \\
-0 & 0 & \frac{f}{f - n} & -n(f-n) \\
+0 & 0 & \frac{f}{f - n} & -\frac{nf}{f-n} \\
 0 & 0 & 1 & 0 
 \end{pmatrix} $$  
 
 _Equation 3:_ Perspective projection matrix, where $a^{-1}$ is the framebuffer's aspect ratio $\frac{h}{w}$, $\phi$ is the field of view, $n$ is the distance of the near plane, $f$ is the distance of the far plane.
 
-The x and y coordinates are transformed based on the perspective distortion calculated from the field of view and the aspect ratio. z coordinates are scaled based on near and far plane parameters and offset through the $-n(f-n)$ matrix entry. The z value ends up in the homogeneous coordinate, leading to the perspective divison at the homogeneous division fixed-function step. 
+The x and y coordinates are transformed based on the perspective distortion calculated from the field of view and the aspect ratio. z coordinates are scaled based on near and far plane parameters and offset through the $-\frac{nf}{f-n}$ matrix entry. The z value ends up in the homogeneous coordinate, leading to the perspective divison at the homogeneous division fixed-function step. 
 
 If it is not obvious from _Equation 3_ yet that no axes are inverted by $\mathbf{P}$, it can be examined exemplarily by assinging easy-to-follow values (let them be $a=1$, $\phi = 90^{\circ}$, $n=1$, $f=2$) and computing the result of transforming a generic vector $(x, y, z, 1)$ with $\mathbf{P}$ using [WolframAlpha](https://www.wolframalpha.com/input/?i=%7B%7B1%2C+0%2C+0%2C+0%7D%2C+%7B0%2C+1%2C+0%2C+0%7D%2C+%7B0%2C+0%2C+2%2C+-1%7D%2C+%7B0%2C+0%2C+1%2C+0%7D%7D+.+%7B%7Bx%7D%2C+%7By%7D%2C+%7Bz%7D%2C+%7B1%7D%7D).
 
