@@ -1,6 +1,6 @@
 ---
 title: "Why projection matrices typically used with OpenGL fail with Vulkan"
-# last_modified_at: 2022-03-10T10:45:00+01:00
+# last_modified_at: 2024-01-22T10:38:00+01:00
 categories:
   - GPU-Programming
 tags:
@@ -26,7 +26,7 @@ Before we can analyze the differences between Vulkan and OpenGL, we might be int
 $$ \begin{pmatrix}
 \frac{2 n}{r - l} & 0 & \frac{r + l}{r - l} & 0 \\
 0 & \frac{2 n}{t - b} & \frac{t + b}{t - b} & 0 \\
-0 & 0 & -\frac{f + n}{f - n} & \frac{2 f n}{f - n} \\
+0 & 0 & -\frac{f + n}{f - n} & -\frac{2 f n}{f - n} \\
 0 & 0 & -1 & 0 
 \end{pmatrix} $$      
 
