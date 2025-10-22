@@ -37,7 +37,13 @@ _Figure 1:_ Both static (terrain) and animated (skinned character) models are di
     TU Wien
   </div>
 </div>
-<p>&nbsp;</p>
+
+<div style="display:block; text-align: center; padding-bottom: 1em;">
+  <a href="https://www.cg.tuwien.ac.at/staff/JohannesUnterguggenberger">Johannes Unterguggenberger</a>, <a href="https://www.cg.tuwien.ac.at/staff/BernhardKerbl">Bernhard Kerbl</a>, Jakob Pernsteiner, <a href="https://www.cg.tuwien.ac.at/staff/MichaelWimmer">Michael Wimmer</a>
+</div>
+<div style="display:block; text-align: center;">
+  TU Wien
+</div>
 
 # Abstract
 
