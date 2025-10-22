@@ -26,12 +26,11 @@ This is the paper page of our paper "Fast Multi-View Rendering for Real-Time App
 # Authors
 
 <div style="display:block; text-align: center; padding-bottom: 1em;">
-  Johannes Unterguggenberger&sup1;, Bernhard Kerbl&sup1;, Markus Steinberger&sup2;, Dieter Schmalstieg&sup2;, Michael Wimmer&sup1;
+  <a href="https://www.cg.tuwien.ac.at/staff/JohannesUnterguggenberger">Johannes Unterguggenberger</a>&sup1;, <a href="https://www.cg.tuwien.ac.at/staff/BernhardKerbl">Bernhard Kerbl</a>&sup1;, <a href="https://www.markussteinberger.net/">Markus Steinberger</a>&sup2;, <a href="https://arbook.icg.tugraz.at/schmalstieg/cv.html">Dieter Schmalstieg</a>&sup2;, <a href="https://www.cg.tuwien.ac.at/staff/MichaelWimmer">Michael Wimmer</a>&sup1;
 </div>
-<div style="display:block; text-align: center; padding-bottom: 1em;">
+<div style="display:block; text-align: center;">
   &sup1;TU Wien, &sup2;Graz University of Technology
 </div>
-<p>&nbsp;</p>
 
 # Abstract
 
