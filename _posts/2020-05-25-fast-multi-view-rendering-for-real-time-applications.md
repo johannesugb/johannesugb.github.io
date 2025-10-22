@@ -1,6 +1,6 @@
 ---
 title: "Fast Multi-View Rendering for Real-Time Applications"
-last_modified_at: 2025-10-22T17:16:00+02:00
+last_modified_at: 2025-10-22T17:20:00+02:00
 categories:
   - GPU-Programming
 tags:
@@ -25,11 +25,11 @@ This is the paper page of our paper "Fast Multi-View Rendering for Real-Time App
 
 # Authors
 
-<div style="display:block; text-align: center;">
+<div style="display:block; text-align: center; padding-bottom: 1em;">
   Johannes Unterguggenberger&sup1;, Bernhard Kerbl&sup1;, Markus Steinberger&sup2;, Dieter Schmalstieg&sup2;, Michael Wimmer&sup1;
 </div>
-<div style="display:block; text-align: center;">
-  &sup1;TU Wien, &sup2Graz University of Technology
+<div style="display:block; text-align: center; padding-bottom: 1em;">
+  &sup1;TU Wien, &sup2;Graz University of Technology
 </div>
 <p>&nbsp;</p>
 
