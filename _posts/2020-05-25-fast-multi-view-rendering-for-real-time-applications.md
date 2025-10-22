@@ -1,6 +1,6 @@
 ---
 title: "Fast Multi-View Rendering for Real-Time Applications"
-last_modified_at: 2022-07-12T13:10:00+02:00
+last_modified_at: 2025-10-22T17:16:00+02:00
 categories:
   - GPU-Programming
 tags:
@@ -25,27 +25,11 @@ This is the paper page of our paper "Fast Multi-View Rendering for Real-Time App
 
 # Authors
 
-<div style="display:block;">
-  <div style="float:left; width:20%; text-align:center; font-size:0.8em;">
-    <a href="https://johannesugb.github.io/">Johannes<br/>Unterguggenberger</a><br/>
-    TU Wien
-  </div>
-  <div style="float:left; width:20%; text-align:center; font-size:0.8em;">
-    <a href="https://www.cg.tuwien.ac.at/staff/BernhardKerbl">Bernhard<br/>Kerbl</a><br/>
-    TU Wien
-  </div>
-  <div style="float:left; width:20%; text-align:center; font-size:0.8em;">
-    <a href="https://www.markussteinberger.net/">Markus<br/>Steinberger</a><br/>
-    Graz University of Technology
-  </div>
-  <div style="float:left; width:20%; text-align:center; font-size:0.8em;">
-    <a href="https://www.tugraz.at/institute/icg/research/team-schmalstieg/">Dieter<br/>Schmalstieg</a><br/>
-    Graz University of Technology
-  </div>
-  <div style="float:left; width:20%; text-align:center; font-size:0.8em;">
-    <a href="https://www.cg.tuwien.ac.at/staff/MichaelWimmer">Michael<br/>Wimmer</a><br/>
-    TU Wien
-  </div>
+<div style="display:block; text-align: center;">
+  Johannes Unterguggenberger&sup1;, Bernhard Kerbl&sup1;, Markus Steinberger&sup2;, Dieter Schmalstieg&sup2;, Michael Wimmer&sup1;
+</div>
+<div style="display:block; text-align: center;">
+  &sup1;TU Wien, &sup2Graz University of Technology
 </div>
 <p>&nbsp;</p>
 
