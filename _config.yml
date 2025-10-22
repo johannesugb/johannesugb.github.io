@@ -78,10 +78,10 @@ author:
       icon: "fab fa-fw fa-linkedin"
       url: "https://www.linkedin.com/in/johannesugb"
     - label: "X"
-      icon: "fab fa-fw square-x-twitter"
+      icon: "fab fa-brands fa-square-x-twitter"
       url: "https://x.com/JohannesUgb"
     - label: "CV"
-      icon: "fab fa-fw file-pdf"
+      icon: "fab fa-solid fa-file-pdf"
       url: "files/cv-johannes-unterguggenberger.pdf"
       
 footer:
@@ -102,10 +102,10 @@ footer:
       icon: "fab fa-fw fa-linkedin"
       url: "https://www.linkedin.com/in/johannesugb"
     - label: "X"
-      icon: "fab fa-fw square-x-twitter"
+      icon: "fab fa-brands fa-square-x-twitter"
       url: "https://x.com/JohannesUgb"
     - label: "CV"
-      icon: "fab fa-fw file-pdf"
+      icon: "fab fa-solid fa-file-pdf"
       url: "files/cv-johannes-unterguggenberger.pdf"
 
 defaults:
