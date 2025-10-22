@@ -81,7 +81,7 @@ author:
       icon: "fab fa-fw square-x-twitter"
       url: "https://x.com/JohannesUgb"
     - label: "CV"
-      icon "fab fa-fw file-pdf"
+      icon: "fab fa-fw file-pdf"
       url: "files/cv-johannes-unterguggenberger.pdf"
       
 footer:
@@ -105,7 +105,7 @@ footer:
       icon: "fab fa-fw square-x-twitter"
       url: "https://x.com/JohannesUgb"
     - label: "CV"
-      icon "fab fa-fw file-pdf"
+      icon: "fab fa-fw file-pdf"
       url: "files/cv-johannes-unterguggenberger.pdf"
 
 defaults:
