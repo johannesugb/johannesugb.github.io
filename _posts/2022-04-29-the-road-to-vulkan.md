@@ -1,6 +1,6 @@
 ---
 title: "The Road to Vulkan: Teaching Modern Low-Level APIs in Introductory Graphics Courses"
-last_modified_at: 2022-07-13T11:00:00+02:00
+last_modified_at: 2025-10-22T17:30:00+02:00
 categories:
   - GPU-Programming
 tags:
