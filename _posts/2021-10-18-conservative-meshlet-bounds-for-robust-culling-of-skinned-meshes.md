@@ -1,6 +1,6 @@
 ---
 title: "Conservative Meshlet Bounds for Robust Culling of Skinned Meshes"
-last_modified_at: 2022-07-12T13:11:00+02:00
+last_modified_at: 2025-10-22T17:25:00+02:00
 categories:
   - GPU-Programming
 tags:
