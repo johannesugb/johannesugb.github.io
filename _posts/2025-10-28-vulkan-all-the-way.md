@@ -13,7 +13,7 @@ This is the paper page of our paper "Vulkan all the way", which is an extended e
 and has been accepted for publication in the _Computers and Graphics_ journal in 2023.
 
 {: .center}
-[![Seak peek into our paper Vulkan all the way](/assets/images/msh-header-image.png)](/assets/images/vulkan-all-the-way-teaser.png)
+[![Seak peek into our paper Vulkan all the way](/assets/images/vulkan-all-the-way-teaser.png)](/assets/images/vulkan-all-the-way-teaser.png)
 
 _Figure 1:_ Our extended paper contains information across all real-time rendering focused courses in our curriculum, showing our approach, student numbers, and learnings from student feedback. It also introduces different Vulkan programming frameworks, explaining their main concepts and why we have used them.
 
@@ -35,17 +35,19 @@ For over two decades, the OpenGL API provided users with the means for implement
 Our [previous publication](https://johannesugb.github.io/gpu-programming/the-road-to-vulkan/), which was presented at Eurographics 2022 in Reims, France, focused mainly on 
 our guidelines and experiences from transitioning an introductory graphics course from OpenGL to Vulkan. Our extended edition extends the information given to our 
 guidelines, experiences, and recommendations from/for advanced graphics courses. Over the years, we have gradually transitioned all our graphics courses to Vulkan and
-use different programming frameworks for the different courses. The reasons for using different frameworks is that they serve different purposes: Vulkan Launchpad is a very light-weight 
+use different programming frameworks for the different courses (see also _Figure 1_). The reasons for using different frameworks is that they serve different purposes: [Vulkan Launchpad](https://github.com/cg-tuwien/VulkanLaunchpad) is a very light-weight 
 framework that is actually intended to learn the Vulkan API. To achieve this goal, it only abstracts a few (overly verbose) setup steps to enable students to make faster initial progress. 
-Auto-Vk-Toolkit, on the other hand, requires users to "learn the framework" to a certain degree. It's purpose is to reduce overall host-side code and be an efficient tool for rapid Vulkan development.
+[Auto-Vk-Toolkit](https://github.com/cg-tuwien/Auto-Vk-Toolkit), on the other hand, requires users to "learn the framework" to a certain degree. It's purpose is to reduce overall host-side code and be an efficient tool for rapid Vulkan development.
 Despite its abstractions, it sticks to the underlying Vulkan concepts.
 
 # Links
 - Paper: [Vulkan all the way: Transitioning to a modern low-level graphics API in academia](https://www.cg.tuwien.ac.at/research/publications/2023/unterguggenberger-2023-vaw/unterguggenberger-2023-vaw-paper.pdf)
 - Publication in journal: [Computers & Graphics, Volume 111, April 2023, Pages 155-165](https://www.sciencedirect.com/science/article/pii/S0097849323000249)
-- [Vulkan Launchpad]([https://github.com/cg-tuwien/Auto-Vk-Toolkit](https://github.com/cg-tuwien/VulkanLaunchpad)): A framework by TU Wien targeted at Vulkan beginners.
+- [Vulkan Launchpad](https://github.com/cg-tuwien/VulkanLaunchpad): A framework by TU Wien targeted at Vulkan beginners.
 - [Auto-Vk](https://github.com/cg-tuwien/Auto-Vk): A low-level convenience and productivity layer for Vulkan
 - [Auto-Vk-Toolkit](https://github.com/cg-tuwien/Auto-Vk-Toolkit): C++ framework atop Auto-Vk for rapid prototyping, research, and teaching.
+
+
 # BibTeX
 
 ```tex
