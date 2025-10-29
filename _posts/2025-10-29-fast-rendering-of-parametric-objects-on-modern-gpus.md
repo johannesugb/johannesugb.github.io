@@ -13,9 +13,9 @@ This is the paper page of our paper "Fast Rendering of Parametric Objects on Mod
 where it was decorated as [Best Paper](https://www.cg.tuwien.ac.at/news/2024-06-07-Best-Paper-Award-EGPGV2024).
 
 {: .center}
-[![Terrain and skinned character model divided into meshlets](/assets/images/msh-header-image.png)](/assets/images/msh-header-image.png)
+[![Various different kinds of parametric objects that can be enabled in the UI of our tool](/assets/images/fropo-ui.png)](/assets/images/fropo-ui.png)
 
-_Figure 1:_ Both static (terrain) and animated (skinned character) models are divided into small clusters of geometry---so called "meshlets". 
+_Figure 1:_ This is a screenshot from our application, the source code of which we have released on GitHub. It shows a variety of different parametric objects which are all just described by a parametric function with zero storage cost. Our proposed algorithm can render them with high frame rates in real time.
 
 # Authors
 
@@ -36,7 +36,19 @@ Parametric functions are an extremely efficient representation for 3D geometry, 
 
 # Details
 
+[![Patch into parametric object](/assets/images/fropo-patch-eval.png)](/assets/images/fropo-patch-eval.png)
 
+_Figure 2:_ Patch into parametric object.
+
+
+[![Patch evaluation insights](/assets/images/fropo-patch-eval.png)](/assets/images/fropo-patch-eval.png)
+
+_Figure 3:_ Patch evaluation insights.
+
+
+[![Algorithm overview](/assets/images/fropo-algorithm.png)](/assets/images/fropo-algorithm.png)
+
+_Figure 4:_ Algorithm overview.
 
 
 # Links
