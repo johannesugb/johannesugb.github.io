@@ -1,6 +1,6 @@
 ---
 title: "Vulkan all the way: Transitioning to a modern low-level graphics API in academia"
-last_modified_at: 2025-10-29T09:20:00+02:00
+last_modified_at: 2025-10-29T12:09:00+01:00
 categories:
   - GPU-Programming
 tags:
@@ -12,21 +12,15 @@ This is the paper page of our paper "Vulkan all the way", which is an extended e
 [The Road to Vulkan: Teaching Modern Low-Level APIs in Introductory Graphics Courses](https://johannesugb.github.io/gpu-programming/the-road-to-vulkan/) 
 and has been accepted for publication in the _Computers and Graphics_ journal in 2023.
 
-<div style="display:block;">
-   <div style="float:left; width:50%; padding:4% 3% 4% 5%; text-align:center; font-size:0.9em;">
-    <a href="/assets/images/fmvr-perf-ovr-multiview.png" class="image-popup"><img src="/assets/images/fmvr-perf-ovr-multiview.png" alt="Performance of OVR multiview variants examined in our paper"/></a><br/>
-     <em>Figure 1:</em> Performance numbers of the (hardware-accelerated) "OVR multiview" pipeline variants examined in our paper.
-  </div>
-  <div style="float:left; width:50%; padding:4% 5% 4% 3%; text-align:center; font-size:0.9em;">
-    <a href="/assets/images/fmvr-perf-geom-shader-inst.png" class="image-popup"><img src="/assets/images/fmvr-perf-geom-shader-inst.png" alt="Performance of geometry shader instancing variants examined in our paper"/></a><br/>
-     <em>Figure 2:</em> Performance numbers of the geometry shader instancing-based pipeline variants examined in our paper.
-  </div>
-</div>
+{: .center}
+[![Seak peek into our paper Vulkan all the way](/assets/images/msh-header-image.png)](/assets/images/vulkan-all-the-way-teaser.png)
+
+_Figure 1:_ Our extended paper contains information across all real-time rendering focused courses in our curriculum, showing our approach, student numbers, and learnings from student feedback. It also introduces different Vulkan programming frameworks, explaining their main concepts and why we have used them.
 
 # Authors
 
 <div style="display:block; text-align: center; padding-bottom: 1em;">
-  <a href="https://www.cg.tuwien.ac.at/staff/JohannesUnterguggenberger">Johannes Unterguggenberger</a>, <a href="https://www.cg.tuwien.ac.at/staff/BernhardKerbl">Bernhard Kerbl</a>, Jakob Pernsteiner, <a href="https://www.cg.tuwien.ac.at/staff/MichaelWimmer">Michael Wimmer</a>
+  <a href="https://www.cg.tuwien.ac.at/staff/JohannesUnterguggenberger">Johannes Unterguggenberger</a>, <a href="https://www.cg.tuwien.ac.at/staff/BernhardKerbl">Bernhard Kerbl</a>, <a href="https://www.cg.tuwien.ac.at/staff/MichaelWimmer">Michael Wimmer</a>
 </div>
 <div style="display:block; text-align: center;">
   TU Wien
