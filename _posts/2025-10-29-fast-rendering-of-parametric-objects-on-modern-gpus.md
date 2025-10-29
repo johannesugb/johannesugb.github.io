@@ -1,6 +1,6 @@
 ---
 title: "Fast Rendering of Parametric Objects on Modern GPUs"
-last_modified_at: 2025-10-29T10:00:00+01:00
+last_modified_at: 2025-10-29T13:12:00+01:00
 categories:
   - GPU-Programming
 tags:
@@ -36,15 +36,23 @@ Parametric functions are an extremely efficient representation for 3D geometry, 
 
 # Details
 
-[![Patch into parametric object](/assets/images/fropo-patch-eval.png)](/assets/images/fropo-patch-eval.png)
+Our techhnique proposes the usage of so-called _parametric functions_ to describe an object with arbitrary geometric precision, limited only by floating point accuracy. An object described in such a manner has almost zero initial storage cost, actually only four `float` values, describing the patch bounds plus some auxiliary data (i.e., a few bytes in total). _Patches_ are actually the new graphics primitive, so to say. They represent the surface of an object and are distorted and brought into shape through parametric functions, to form a _parametric object_. This process is illustrated in _Figure 2_. 
+
+[![Patch into parametric object](/assets/images/fropo-patch-to-object.png)](/assets/images/fropo-patch-to-object.png)
 
 _Figure 2:_ Patch into parametric object.
 
+Parametric functions can be arbitrarily defined by users and our algorithm even supports dynamic and instantaneous changes to them, re-evaluating parametric functions and their associated patches with respect to the camera every frame. Hence, animated parametric objects are intrinsically supported.
+Our technique allows rendering in arbitrary precision, constantly evaluating and subdividing the initial patches until user-defined quality criteria are met. Such a criterium could be that a parametric object shall be rendered with (approximately) pixel-perfect geometric precision. 
+_Figure 3_ shows how our rendering pipeline evaluates patches of different parametric objects, and that it splits patches into sub-patches if it finds that quality criteria cannot be met.
 
 [![Patch evaluation insights](/assets/images/fropo-patch-eval.png)](/assets/images/fropo-patch-eval.png)
 
 _Figure 3:_ Patch evaluation insights.
 
+It shall be noted that during patch subdivision, there are some temporary storage costs---namely to store the bounds of the subdivided patches. While storage cost is not zero during our overarching rendering setup, it is still very low. 
+Example: Even for a million (subdivided) patches, the total storage costs are typically less than 20 megabytes.
+Patch subdivision is a crucial step of our rendering technique. _Figure 4_ shows an overview of all steps of our technique.
 
 [![Algorithm overview](/assets/images/fropo-algorithm.png)](/assets/images/fropo-algorithm.png)
 
