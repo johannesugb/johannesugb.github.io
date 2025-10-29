@@ -1,13 +1,11 @@
 ---
 title: "The Road to Vulkan: Teaching Modern Low-Level APIs in Introductory Graphics Courses"
-last_modified_at: 2025-10-22T17:30:00+02:00
+last_modified_at: 2025-10-29T12:08:00+01:00
 categories:
   - GPU-Programming
 tags:
   - Vulkan
   - Paper
-# header:
-#   image: /assets/images/1500x500.jpg
 ---
 
 This is the paper page of our paper "The Road to Vulkan: Teaching Modern Low-Level APIs in Introductory Graphics Courses" which has been accepted and presented at [Eurographics 2022](https://eg2022.univ-reims.fr/) in Reims, France.
@@ -20,7 +18,7 @@ _Figure 1:_ Differences between OpenGL and Vulkan. We argue that the highlighted
 # Authors
 
 <div style="display:block; text-align: center; padding-bottom: 1em;">
-  <a href="https://www.cg.tuwien.ac.at/staff/JohannesUnterguggenberger">Johannes Unterguggenberger</a>, <a href="https://www.cg.tuwien.ac.at/staff/BernhardKerbl">Bernhard Kerbl</a>, Jakob Pernsteiner, <a href="https://www.cg.tuwien.ac.at/staff/MichaelWimmer">Michael Wimmer</a>
+  <a href="https://www.cg.tuwien.ac.at/staff/JohannesUnterguggenberger">Johannes Unterguggenberger</a>, <a href="https://www.cg.tuwien.ac.at/staff/BernhardKerbl">Bernhard Kerbl</a>, <a href="https://www.cg.tuwien.ac.at/staff/MichaelWimmer">Michael Wimmer</a>
 </div>
 <div style="display:block; text-align: center;">
   TU Wien
