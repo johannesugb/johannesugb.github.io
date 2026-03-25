@@ -50,7 +50,7 @@ The reasons for the better performance of mesh shaders seem to be the removal of
 ## But What About Tessellation?
 
 I had a bit of a hard time finding suitable examples, comparing a hardware tessellation-based implementation to a mesh shading-based implementation, but I was finally able to find one in the book [Introduction to 3D Game Programming with Direct3D 12.0, 2nd edition](https://www.d3dcoder.net/d3d12_v2.htm) and its [accompanying source code](https://github.com/d3dcoder/d3d12book_2ed).
-Its example applications "Terrain" and "TerrainMS" both implement triangle subdivision for rendering terrain, using the hardware tessellator and its domain and hull shaders, or amplification and mesh shaders, respectively. Table 
+Its example applications "Terrain" and "TerrainMS" both implement triangle subdivision for rendering terrain, using the hardware tessellator and its domain and hull shaders, or amplification and mesh shaders, respectively. _Table 2_ shows screenshots and the resulting rendering and the achieved FPS.
 
 | Terrain | TerrainMS |
 | ----------- | ----------- |
