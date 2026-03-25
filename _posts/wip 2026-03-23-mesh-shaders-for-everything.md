@@ -88,12 +88,12 @@ While an optimized solution may exist—and could potentially reduce or eliminat
 
 ## Conclusion
 
-I do not see amplification/task and mesh shaders as a suitable replacement for hardware tessellation in its current form---at least not for every use case. I attribute the reasons mainly to the following limits of payload data and task shader limits:
-- There is only one payload per task shader workgroup
+In its current form, amplification (task) and mesh shaders do not appear to me as being a universal replacement for hardware tessellation. The primary limitations stem from payload handling and task shader constraints:
+- A task shader workgroup can have only one payload.
 - Only the first lane of a workgroup is allowed to declare how many mesh shader instances to spawn for the entire workgroup. (See [SPIR-V registry](https://github.khronos.org/SPIRV-Registry/extensions/EXT/SPV_EXT_mesh_shader.html) regarding `EmitMeshTasksEXT`, and the [DirectX specification](https://github.com/microsoft/DirectX-Specs/blob/master/d3d/MeshShader.md) regarding `MeshPayload`).
-- Smaller workgroup sizes can typically lead to suboptimal GPU utilization.
-- Payload is recommended to be kept small (e.g., below 236 or 108 bytes in the article [Using Mesh Shaders for Professional Graphics](https://developer.nvidia.com/blog/using-mesh-shaders-for-professional-graphics/) by Christoph Kubisch).
+- Smaller workgroup sizes typically underutilize GPU parallelism.
+- Payload size is expected to remain small (e.g., as suggested in [Using Mesh Shaders for Professional Graphics](https://developer.nvidia.com/blog/using-mesh-shaders-for-professional-graphics/) by Christoph Kubisch).
 
-While I do believe that heavily optimized mesh shading implementations can reach similar performance as hardware tessellation for some use cases, the tessellation programming interface seems so much simpler---achieving the same goal with much less implementation effort, since GPU vendors have spent so much time in optimally distributing workload across a GPU. This is obvious from, e.g., the description of the _Work Distribution Crossbar_ in [Fast Tessellated Rendering on Fermi](https://www.highperformancegraphics.org/previous/www_2010/media/Hot3D/HPG2010_Hot3D_NVIDIA.pdf) by Tim Purcell: Very complex parallel mechanics behind a relatively simple programming interface.
+While I believe that highly optimized mesh shading pipelines may achieve performance parity with hardware tessellation in certain scenarios, the tessellation pipeline remains significantly simpler to program. This simplicity reflects years of vendor-driven optimization in workload distribution across GPU architectures, as described as _Work Distribution Crossbar_ in [Fast Tessellated Rendering on Fermi](https://www.highperformancegraphics.org/previous/www_2010/media/Hot3D/HPG2010_Hot3D_NVIDIA.pdf) by Tim Purcell. 
 
-The only real benefit of amplification/task and mesh shaders I see right now are controlled and well-defined subgroup operations, just like in ordinary compute shaders. Let's see what the future has in store for mesh shading.
+The only real benefit of amplification/task and mesh shaders in tessellation scenarios appears to be their support for controlled and well-defined subgroup operations, like in conventional compute shaders. I welcome further discussion down below, and I'm particularly interested in counterarguments or descriptions of mesh shading features that I have overlooked in my analysis. In any case, I am curious how mesh shaders will evolve with future extensions and improvements.
