@@ -38,14 +38,14 @@ _Table 1: Relevant terms, some of which are used in Vulkan, others in DirectX, s
 
 ## Faster than Vertex Shading
 
-Early results of replacing vertex shaders with mesh shaders looked very promising, like the results presented by Arseny Kapoulkine in [niagara: Tuning mesh shaders](https://www.youtube.com/live/snZkA4D_qjU?si=hun0Du-13pJcWG6R&t=7770): achieving the following numbers of rasterized triangles: **20.7B/s** with mesh shading vs. **7.4B/s** with vertex shading.
+Early experiments replacing vertex shaders with mesh shaders reported highly promising results. For example, Arseny Kapoulkine demonstrated in [niagara: Tuning mesh shaders](https://www.youtube.com/live/snZkA4D_qjU?si=hun0Du-13pJcWG6R&t=7770) a throughput of **20.7B** rasterized triangles per second with mesh shading, compared to **7.4B/s** using vertex shading.
 
-We saw a less pronounced, but still clear, performance uplift of mesh shading over vertex shading in our own research on [Conservative Meshlet Bounds for Robust Culling of Skinned Meshes](https://johannesugb.github.io/gpu-programming/conservative-meshlet-bounds-for-robust-culling-of-skinned-meshes/): With fine-grained culling deactivated in task shaders, i.e., with the same geometry load for both configurations, vertex shading renders the scene shown in _Figure 1_ with 27.1 FPS, while mesh shading achieves 32.8 FPS, which is +21% rendering speed (measured on an RTX 3050 Laptop GPU). The point of our paper was actually to enable fine-grained culling for geometrically dense skinned meshes, but for the sake of this comparison it is useful to disable culling.
+In our own work on [Conservative Meshlet Bounds for Robust Culling of Skinned Meshes](https://johannesugb.github.io/gpu-programming/conservative-meshlet-bounds-for-robust-culling-of-skinned-meshes/), we observed a less dramatic but still clear performance improvement: With culling disabled in task shaders—ensuring identical geometry workloads—vertex shading rendered the scene shown in _Figure 1_ at 27.1 FPS, whereas mesh shading achieved _32.8 FPS_, corresponding to a **21% speedup** on an RTX 3050 Laptop GPU. Although the primary focus of that work was enabling fine-grained culling for geometrically dense skinned meshes, for this comparison, it is useful to disable culling in task shaders.
 
 ![Animated, skinned 3D models)](/assets/images/meshletskinningcullingscreenshotmanyskinnedmeshes.png)   
-_Figure 1: A screenshot of our evaluation scene that shows multiple different animated 3D models. It is noteworthy that instances of the same model type are _not_ rendered with instanced renderig, but all are individually animated and rendered---they just use the same animation clips and times._
+_Figure 1: A screenshot of our evaluation scene that shows multiple different animated 3D models. Notably, instances of the same model type are _not_ rendered with instanced rendering, but all are individually animated and rendered—they just use the same animation clips and times._
 
-The reasons for the better performance of mesh shaders seem to be the removal of the input assembly stage and better parallelism. I also suspected ordering guarantees to be a factor, but they still apply to some degree according to the [DirectX specification](https://microsoft.github.io/DirectX-Specs/d3d/MeshShader.html).
+The reasons for the better performance of mesh shaders seem to be the elimination of the input assembly stage and improved parallelism. I also suspected ordering guarantees being a factor, but they still apply to some degree according to the [DirectX specification](https://microsoft.github.io/DirectX-Specs/d3d/MeshShader.html).
 
 ## But What About Tessellation?
 
