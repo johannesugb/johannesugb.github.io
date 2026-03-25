@@ -12,13 +12,13 @@ tags:
 
 ## Introduction
 
-Mesh shaders are an interesting addition to graphics pipelines and sometimes, they are advocated as a sort-of silver bullet to replace all the geometry stages of graphics pipelines, i.e., vertex, tessellation, and geometry shaders. The [DirectX specification](https://microsoft.github.io/DirectX-Specs/d3d/MeshShader.html), for example, reads like this:
+Mesh shaders represent a notable evolution in modern graphics pipelines. They are often positioned as a potential “silver bullet” capable of replacing the traditional geometry processing stages—namely vertex, tessellation, and geometry shaders. For instance, the [DirectX specification](https://microsoft.github.io/DirectX-Specs/d3d/MeshShader.html) frames their role as follows:
 
 > There will additionally be a new Amplification shader stage, which enables current tessellation scenarios. Eventually the entire vertex pipeline will be two stages: an Amplification shader followed by a Mesh shader.
 > [...]
 > The Amplification shader allows users to decide how many Mesh shader groups to run and passes data to those groups. The intent for the Amplification shader is to eventually replace hardware tessellators.
 
-It was in particular the latter argument that made me suspicious and dive a bit into this topic. 
+It was the latter claim that made me suspicious and motivated me to dive a bit into this topic. 
 
 ## Glossary
 
