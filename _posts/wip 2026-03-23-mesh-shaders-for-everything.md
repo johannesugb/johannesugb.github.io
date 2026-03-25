@@ -19,9 +19,22 @@ which reads like this:
 
 It was in particular the latter argument that made me suspicious and dive a bit into this topic. 
 
+## Terminology
+
+For this blog post, I have used both, Vulkan resources and DirectX resources, so I'd like to clarify terminology upfront to avoid confusion:   
+
+| Term | Explanation |
+| ----------- | ----------- |
+| "Graphics Pipeline" | A rasterization-based graphics pipeline with classical shader stages, such as vertex shaders and tessellation shaders |
+| "Graphics Mesh Pipeline" | A rasterization-based graphics pipeline with task and mesh shaders |
+| "Mesh Shading" | Rasterization using a graphics mesh pipeline |
+| "Task Shader" | First shader stage in graphics mesh pipelines (Vulkan terminology) |
+| "Amplification Shader" | First shader stage in graphics mesh pipelines (DirectX terminology) |
+| "Mesh Shader" | Second shader stage in graphics mesh pipelines |
+
 ## Early results 
 
-Looked promising, see Arseny (20B/s vs 7B/s), also see our Meshlet Skinning Culling Paper (always faster by 10% even without culling).
+Early results of replacing vertex shaders with mesh shaders looked very promising, like the results presented by Arseny Kapoulkine in [niagara: Tuning mesh shaders](https://www.youtube.com/live/snZkA4D_qjU?si=hun0Du-13pJcWG6R&t=7770): With mesh shaders,  (20B/s vs 7B/s), also see our Meshlet Skinning Culling Paper (always faster by 10% even without culling).
 
 ## But what about tessellation
 
