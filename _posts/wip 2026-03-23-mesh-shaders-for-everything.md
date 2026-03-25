@@ -10,6 +10,8 @@ tags:
 #   image: /assets/images/1500x500.jpg
 ---
 
+## Introduction
+
 Mesh shaders are an interesting addition to graphics pipelines and sometimes, they are advocated as a sort-of silver bullet to replace all the geometry stages or graphics pipelines, like the [DirectX specification](https://microsoft.github.io/DirectX-Specs/d3d/MeshShader.html), 
 which reads like this:
 
@@ -33,7 +35,7 @@ For this blog post, I have used both, Vulkan resources and DirectX resources, so
 | "Amplification Shader" | First shader stage in graphics mesh pipelines (DirectX terminology) |
 | "Mesh Shader" | Second shader stage in graphics mesh pipelines |
 
-## Early results 
+## Faster than Vertex Shading
 
 Early results of replacing vertex shaders with mesh shaders looked very promising, like the results presented by Arseny Kapoulkine in [niagara: Tuning mesh shaders](https://www.youtube.com/live/snZkA4D_qjU?si=hun0Du-13pJcWG6R&t=7770): achieving the following numbers of rasterized triangles: **20.7B/s** with mesh shading vs. **7.4B/s** with vertex shading.
 
@@ -44,7 +46,7 @@ _Figure 1:_ A screenshot of our evaluation scene that shows multiple different a
 
 The reasons for the better performance of mesh shaders seem to be the removal of the input assembly stage and better parallelism. I also suspected ordering guarantees to be a factor, but they still apply to some degree according to the [DirectX specification](https://microsoft.github.io/DirectX-Specs/d3d/MeshShader.html).
 
-## But what about tessellation
+## But What About Tessellation?
 
 It was a bit hard to find good examples on this, but I got one from the book [Introduction to 3D Game Programming with Direct3D 12.0, 2nd edition](https://www.d3dcoder.net/d3d12_v2.htm) and its [accompanying source code](https://github.com/d3dcoder/d3d12book_2ed).
 
