@@ -20,7 +20,7 @@ Mesh shaders are an interesting addition to graphics pipelines and sometimes, th
 
 It was in particular the latter argument that made me suspicious and dive a bit into this topic. 
 
-## Terminology
+## Glossary
 
 For this blog post, I have used both, Vulkan resources and DirectX resources, so I'd like to clarify terminology upfront to avoid confusion:   
 
