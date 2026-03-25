@@ -72,14 +72,19 @@ layout(local_size_x = 1, local_size_y = 1, local_size_z = 1) in;
 ```
 However, then there are unused lanes in workgroup.
 Workgroup size should be set to at least 32 on NVIDIA GPUs, or 64 on AMD GPUs, in order to fully utilize GPU parallelism. 
-However, with larger workgroup sizes, there can still be only **one payload** between task and mesh shaders as illustrated in XXXXXXXXXXX.
+However, with larger workgroup sizes, there can still be only **one payload** between task and mesh shaders as illustrated in _Figure 2_.
+
+| ----------- | ----------- |
+| ![task to mesh shader payload)](/assets/images/task-mesh-payload-onelane.png) |  ![task to mesh shader still only one payload)](/assets/images/task-mesh-payload-twolanes.png) |
+| _Figure 2.1: Data transfer from task shader to mesh shader through a payload_ | _Figure 2.2: Regardless of how many lanes, there is always only one payload per workgroup._ |
+_Figure 2: These figures focus on the payload, which is data (typically small) passed from a task shader workgroup to its associated mesh shader instances._
 
 So, we actually want something like 
 ```glsl
 layout(local_size_x = 32, local_size_y = 1, local_size_z = 1) in;
 ```
 but then we get into trouble of how to arrange the size-limited payload in a useful manner and we cannot have different payloads for different lanes.
-It may be that an optimized solution exists and that it closes the performance gap (I shall investigate further in future), but the crucial point is that a well-performing implementation is not possible out of the box with mesh shading for any use case. While the tessellation API is not flawless either, it was suitable quite well to our use case and delivered very fast rendering speed.
+It may be that an optimized solution exists and that it closes the performance gap (I shall investigate further in future), but the crucial point is that a well-performing implementation is not possible out of the box with mesh shading for all use cases. While the tessellation API is not flawless either, it was suitable quite well to our use case and delivered very fast rendering speed.
 
 ## Conclusion
 
