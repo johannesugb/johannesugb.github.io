@@ -22,7 +22,7 @@ It was the latter claim that made me suspicious and motivated me to dive a bit i
 
 ## Glossary
 
-For this blog post, I have used both, Vulkan resources and DirectX resources, so I'd like to clarify terminology upfront to avoid confusion:   
+For this blog post, I have used both Vulkan and DirectX resources. Therefore, terminology is clarified upfront to avoid ambiguity: 
 
 | Term | Explanation |
 | ----------- | ----------- |
