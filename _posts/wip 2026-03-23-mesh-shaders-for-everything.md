@@ -34,7 +34,7 @@ For this blog post, I have used both, Vulkan resources and DirectX resources, so
 | "Amplification Shader" | First shader stage in graphics mesh pipelines (DirectX terminology) |
 | "Mesh Shader" | Second shader stage in graphics mesh pipelines |
 
-_Table 1:_ Relevant terms, some of which are used in Vulkan, others in DirectX, some in both APIs.
+_Table 1: Relevant terms, some of which are used in Vulkan, others in DirectX, some in both APIs._
 
 ## Faster than Vertex Shading
 
@@ -43,7 +43,7 @@ Early results of replacing vertex shaders with mesh shaders looked very promisin
 We saw a less pronounced, but still clear, performance uplift of mesh shading over vertex shading in our own research on [Conservative Meshlet Bounds for Robust Culling of Skinned Meshes](https://johannesugb.github.io/gpu-programming/conservative-meshlet-bounds-for-robust-culling-of-skinned-meshes/): With fine-grained culling deactivated in task shaders, i.e., with the same geometry load for both configurations, vertex shading renders the scene shown in _Figure 1_ with 27.1 FPS, while mesh shading achieves 32.8 FPS, which is +21% rendering speed (measured on an RTX 3050 Laptop GPU). The point of our paper was actually to enable fine-grained culling for geometrically dense skinned meshes, but for the sake of this comparison it is useful to disable culling.
 
 ![Animated, skinned 3D models)](/assets/images/meshletskinningcullingscreenshotmanyskinnedmeshes.png)   
-_Figure 1:_ A screenshot of our evaluation scene that shows multiple different animated 3D models. It is noteworthy that instances of the same model type are _not_ rendered with instanced renderig, but all are individually animated and rendered---they just use the same animation clips and times.
+_Figure 1: A screenshot of our evaluation scene that shows multiple different animated 3D models. It is noteworthy that instances of the same model type are _not_ rendered with instanced renderig, but all are individually animated and rendered---they just use the same animation clips and times._
 
 The reasons for the better performance of mesh shaders seem to be the removal of the input assembly stage and better parallelism. I also suspected ordering guarantees to be a factor, but they still apply to some degree according to the [DirectX specification](https://microsoft.github.io/DirectX-Specs/d3d/MeshShader.html).
 
@@ -59,9 +59,21 @@ Its example applications "Terrain" and "TerrainMS" both implement triangle subdi
 | 20.4M triangles   | 20.2M triangles     |
 | 144 FPS   | 119 FPS        |
 
-_Table 2:_ Performance comparisons of a hardware tessellation-based implementation and its mesh shading-based counterpart, both of which subdivide the input terrain to rasterize over 20M triangles, measured on an RTX 4060 Ti.
+_Table 2: Performance comparisons of a hardware tessellation-based implementation and its mesh shading-based counterpart, both of which subdivide the input terrain to rasterize over 20M triangles, measured on an RTX 4060 Ti._
 
 The performance results in _Table 2_ indicate a +21% performance uplift for good old hardware tessellation.
+The difference is even bigger in favor of hardware tessellation in one of own research projects: I've created a mesh shading-based alternative tessellation implementation to replace the hardware tessellation-based implementation of our paper [Fast Rendering of Parametric Objects on Modern GPUs](https://johannesugb.github.io/gpu-programming/fast-rendering-of-parametric-objects-on-modern-gpus/), resulting in a -76% performance downturn for the initial, unoptimized implementation. 
+However, the path towards an optimized implementation is a bit unclear to me because even though graphics mesh pipelines offer two relatively generic compute shader-style shader stages, the data transfer between those two can be a bit unwieldy for the following reasons:
+
+In our paper's hardware tessellation-based implementation, we are sending quads (parametric patches) one by one to the hardware rasterizer which subdivides them with factors of up to 64x64. 
+The straightforward translation of this approach to task and mesh shaders would be a workgroup size of 1:     
+```glsl
+layout(local_size_x = 1, local_size_y = 1, local_size_z = 1) in;
+```
+However, then there are unused lanes in workgroup.
+Workgroup size should be set to at least 32 on NVIDIA GPUs, or 64 on AMD GPUs, in order to fully utilize GPU parallelism. 
+However, with larger workgroup sizes, there can still be only **one payload** between task and mesh shaders as illustrated in XXXXXXXXXXX.
+
 
 
 but even harder in our own research, because, how do you even distribute the workload? 
