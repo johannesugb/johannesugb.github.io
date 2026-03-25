@@ -12,8 +12,7 @@ tags:
 
 ## Introduction
 
-Mesh shaders are an interesting addition to graphics pipelines and sometimes, they are advocated as a sort-of silver bullet to replace all the geometry stages or graphics pipelines, like the [DirectX specification](https://microsoft.github.io/DirectX-Specs/d3d/MeshShader.html), 
-which reads like this:
+Mesh shaders are an interesting addition to graphics pipelines and sometimes, they are advocated as a sort-of silver bullet to replace all the geometry stages of graphics pipelines, i.e., vertex, tessellation, and geometry shaders. The [DirectX specification](https://microsoft.github.io/DirectX-Specs/d3d/MeshShader.html), for example, reads like this:
 
 > There will additionally be a new Amplification shader stage, which enables current tessellation scenarios. Eventually the entire vertex pipeline will be two stages: an Amplification shader followed by a Mesh shader.
 > [...]
@@ -35,6 +34,8 @@ For this blog post, I have used both, Vulkan resources and DirectX resources, so
 | "Amplification Shader" | First shader stage in graphics mesh pipelines (DirectX terminology) |
 | "Mesh Shader" | Second shader stage in graphics mesh pipelines |
 
+_Table 1:_ Relevant terms, some of which are used in Vulkan, others in DirectX, some in both APIs.
+
 ## Faster than Vertex Shading
 
 Early results of replacing vertex shaders with mesh shaders looked very promising, like the results presented by Arseny Kapoulkine in [niagara: Tuning mesh shaders](https://www.youtube.com/live/snZkA4D_qjU?si=hun0Du-13pJcWG6R&t=7770): achieving the following numbers of rasterized triangles: **20.7B/s** with mesh shading vs. **7.4B/s** with vertex shading.
@@ -48,17 +49,20 @@ The reasons for the better performance of mesh shaders seem to be the removal of
 
 ## But What About Tessellation?
 
-It was a bit hard to find good examples on this, but I got one from the book [Introduction to 3D Game Programming with Direct3D 12.0, 2nd edition](https://www.d3dcoder.net/d3d12_v2.htm) and its [accompanying source code](https://github.com/d3dcoder/d3d12book_2ed).
-
-Comparison between the "Terrain" and "TerrainMS" examples:
+I had a bit of a hard time finding suitable examples, comparing a hardware tessellation-based implementation to a mesh shading-based implementation, but I was finally able to find one in the book [Introduction to 3D Game Programming with Direct3D 12.0, 2nd edition](https://www.d3dcoder.net/d3d12_v2.htm) and its [accompanying source code](https://github.com/d3dcoder/d3d12book_2ed).
+Its example applications "Terrain" and "TerrainMS" both implement triangle subdivision for rendering terrain, using the hardware tessellator and its domain and hull shaders, or amplification and mesh shaders, respectively. Table 
 
 | Terrain | TerrainMS |
 | ----------- | ----------- |
 | ![DX12 Terrain)](/assets/images/Terrain.png) |  ![DX12 TerrainMS)](/assets/images/TerrainMS.png) |
+| Hardware tessellation | Mesh shading |
 | 20.4M triangles   | 20.2M triangles     |
 | 144 FPS   | 119 FPS        |
 
-on an RTX 4060 Ti
+_Table 2:_ Performance comparisons of a hardware tessellation-based implementation and its mesh shading-based counterpart, both of which subdivide the input terrain to rasterize over 20M triangles, measured on an RTX 4060 Ti.
+
+The performance results in _Table 2_ indicate a +21% performance uplift for good old hardware tessellation.
+
 
 but even harder in our own research, because, how do you even distribute the workload? 
 
