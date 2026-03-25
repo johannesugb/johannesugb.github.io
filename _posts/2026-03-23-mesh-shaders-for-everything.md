@@ -36,7 +36,7 @@ For this blog post, I have used both Vulkan and DirectX resources. Therefore, te
 
 _Table 1: Relevant terms, some of which are used in Vulkan, others in DirectX, some in both APIs._
 
-## Faster than Vertex Shading
+## Faster Than Vertex Shading
 
 Early experiments replacing vertex shaders with mesh shaders reported highly promising results. For example, Arseny Kapoulkine demonstrated in [niagara: Tuning mesh shaders](https://www.youtube.com/live/snZkA4D_qjU?si=hun0Du-13pJcWG6R&t=7770) a throughput of **20.7B** rasterized triangles per second with mesh shading, compared to **7.4B/s** using vertex shading.
 
