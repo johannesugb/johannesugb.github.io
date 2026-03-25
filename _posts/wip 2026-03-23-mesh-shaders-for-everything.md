@@ -83,10 +83,11 @@ It may be that an optimized solution exists and that it closes the performance g
 
 ## Conclusion
 
-I do not see amplification/task and mesh shaders as a suitable replacement for hardware tessellation in its current for---at least not for every use case. I attribute the reasons mainly to the following limits of payload data and task shader limits:
+I do not see amplification/task and mesh shaders as a suitable replacement for hardware tessellation in its current form---at least not for every use case. I attribute the reasons mainly to the following limits of payload data and task shader limits:
 - There is only one payload per task shader workgroup
 - Only the first lane of a workgroup is allowed to declare how many mesh shader instances to spawn for the entire workgroup. (See [SPIR-V registry](https://github.khronos.org/SPIRV-Registry/extensions/EXT/SPV_EXT_mesh_shader.html) regarding `EmitMeshTasksEXT`, and the [DirectX specification](https://github.com/microsoft/DirectX-Specs/blob/master/d3d/MeshShader.md) regarding `MeshPayload`).
 - Smaller workgroup sizes can typically lead to suboptimal GPU utilization.
+- Payload is recommended to be kept small (e.g., below 236 or 108 bytes in the article [Using Mesh Shaders for Professional Graphics](https://developer.nvidia.com/blog/using-mesh-shaders-for-professional-graphics/) by Christoph Kubisch).
 
 While I do believe that heavily optimized mesh shading implementations can reach similar performance as hardware tessellation for some use cases, the tessellation programming interface seems so much simpler---achieving the same goal with much less implementation effort, since GPU vendors have spent so much time in optimally distributing workload across a GPU. This is obvious from, e.g., the description of the _Work Distribution Crossbar_ in [Fast Tessellated Rendering on Fermi](https://www.highperformancegraphics.org/previous/www_2010/media/Hot3D/HPG2010_Hot3D_NVIDIA.pdf) by Tim Purcell: Very complex parallel mechanics behind a relatively simple programming interface.
 
