@@ -49,8 +49,8 @@ The reasons for the better performance of mesh shaders seem to be the eliminatio
 
 ## But What About Tessellation?
 
-I had a bit of a hard time finding suitable examples, comparing a hardware tessellation-based implementation to a mesh shading-based implementation, but I was finally able to find one in the book [Introduction to 3D Game Programming with Direct3D 12.0, 2nd edition](https://www.d3dcoder.net/d3d12_v2.htm) and its [accompanying source code](https://github.com/d3dcoder/d3d12book_2ed).
-Its example applications "Terrain" and "TerrainMS" both implement triangle subdivision for rendering terrain, using the hardware tessellator and its domain and hull shaders, or amplification and mesh shaders, respectively. _Table 2_ shows screenshots and the resulting rendering and the achieved FPS.
+Finding comparable examples between hardware tessellation and mesh shading proved a bit challenging. I was finally able to find one in the book [Introduction to 3D Game Programming with Direct3D 12.0, 2nd edition](https://www.d3dcoder.net/d3d12_v2.htm) and its [accompanying source code](https://github.com/d3dcoder/d3d12book_2ed).
+The sample applications _Terrain_ and _TerrainMS_ both implement terrain subdivision, using either the fixed-function tessellator (with hull and domain shaders) or amplification and mesh shaders, respectively. _Table 2_ summarizes the rendered output alongside measured frame rates.
 
 | Terrain | TerrainMS |
 | ----------- | ----------- |
@@ -59,20 +59,20 @@ Its example applications "Terrain" and "TerrainMS" both implement triangle subdi
 | 20.4M triangles   | 20.2M triangles     |
 | 144 FPS   | 119 FPS        |
 
-_Table 2: Performance comparisons of a hardware tessellation-based implementation and its mesh shading-based counterpart, both of which subdivide the input terrain to rasterize over 20M triangles, measured on an RTX 4060 Ti._
+_Table 2: Performance comparisons of a hardware tessellation-based implementation and its mesh shading-based counterpart. Both approaches subdivide the input terrain to rasterize over 20 million triangles, measured on an RTX 4060 Ti._
 
-The performance results in _Table 2_ indicate a +21% performance uplift for good old hardware tessellation.
-The difference is even bigger in favor of hardware tessellation in one of own research projects: I've created a mesh shading-based alternative tessellation implementation to replace the hardware tessellation-based implementation of our paper [Fast Rendering of Parametric Objects on Modern GPUs](https://johannesugb.github.io/gpu-programming/fast-rendering-of-parametric-objects-on-modern-gpus/), resulting in a -76% performance downturn for the initial, unoptimized implementation. 
-However, the path towards an optimized implementation is a bit unclear to me because even though graphics mesh pipelines offer two relatively generic compute shader-style shader stages, the data transfer between those two can be a bit unwieldy for the following reasons:
+The results indicate a ~21% performance advantage for traditional hardware tessellation. This trend is even more pronounced in our own work on Fast Rendering of Parametric Objects on Modern GPUs, where an initial mesh shading–based reimplementation of a tessellation pipeline resulted in a 76% performance regression. Achieving a competitive implementation remains nontrivial: although mesh pipelines expose flexible, compute-like stages, data exchange between task and mesh shaders introduces additional complexity.
 
-In our paper's hardware tessellation-based implementation, we are sending quads (parametric patches) one by one to the hardware rasterizer which subdivides them with factors of up to 64x64. 
-The straightforward translation of this approach to task and mesh shaders would be a workgroup size of 1:     
+The performance results in _Table 2_ indicate a **~21% performance advantage** for traditional hardware tessellation.
+The difference is even bigger in favor of hardware tessellation in one of our own research projects: I've created a mesh shading-based alternative tessellation implementation to replace the hardware tessellation-based implementation of our paper [Fast Rendering of Parametric Objects on Modern GPUs](https://johannesugb.github.io/gpu-programming/fast-rendering-of-parametric-objects-on-modern-gpus/), which resulted in a 76% performance regression.
+Achieving a competitive implementation remains nontrivial: although mesh pipelines expose flexible, compute-like stages, data exchange between task and mesh shaders introduces additional complexity.
+
+In the original hardware tessellation approach, parametric patches (quads) are submitted individually to the rasterizer and subdivided with factors of up to 64×64. A direct mapping of this strategy to task and mesh shaders would imply a workgroup size of 1:
+
 ```glsl
 layout(local_size_x = 1, local_size_y = 1, local_size_z = 1) in;
 ```
-However, then there are unused lanes in workgroup.
-Workgroup size should be set to at least 32 on NVIDIA GPUs, or 64 on AMD GPUs, in order to fully utilize GPU parallelism. 
-However, with larger workgroup sizes, there can still be only **one payload** between task and mesh shaders as illustrated in _Figure 2_.
+This approach, however, leads to underutilized lanes within the workgroup. To fully leverage GPU parallelism, workgroup sizes should be at least 32 threads on NVIDIA architectures and 64 on AMD. Increasing the workgroup size introduces another constraint: only **one single payload** can be transferred between task and mesh shaders, as illustrated in _Figure 2_.
 
 |             |             |
 | ----------- | ----------- |
@@ -85,8 +85,8 @@ So, we actually want something like
 ```glsl
 layout(local_size_x = 32, local_size_y = 1, local_size_z = 1) in;
 ```
-but then we get into trouble of how to arrange the size-limited payload in a useful manner and we cannot have different payloads for different lanes.
-It may be that an optimized solution exists and that it closes the performance gap (I shall investigate further in future), but the crucial point is that a well-performing implementation is not possible out of the box with mesh shading for all use cases. While the tessellation API is not flawless either, it was suitable quite well to our use case and delivered very fast rendering speed.
+but this quickly raises challenges with respect to arranging the size-limited payload in a useful manner. In particular, we **cannot** have different payloads for different lanes.
+While an optimized solution may exist—and could potentially reduce or eliminate the observed performance gap—such an implementation is not immediately apparent. The key takeaway is that mesh shading does not provide a drop-in, high-performance replacement for all use cases. Although the tessellation pipeline has its own limitations, it proved well-suited to our scenario and delivered consistently high performance.
 
 ## Conclusion
 
