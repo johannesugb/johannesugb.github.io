@@ -74,8 +74,8 @@ This approach, however, leads to underutilized lanes within the workgroup. To fu
 
 <table>
   <tr>
-    <td>![task to mesh shader payload](/assets/images/task-mesh-payload-onelane.png)</td>
-    <td>![task to mesh shader still only one payload](/assets/images/task-mesh-payload-twolanes.png)</td>
+    <td> <img alt="task to mesh shader payload" src="/assets/images/task-mesh-payload-onelane.png" /> </td>
+    <td> <img alt="task to mesh shader payload" src="/assets/images/task-mesh-payload-twolanes.png" /> </td>
   </tr>
   <tr>
     <td> <em>Figure 2.1: Data transfer from task shader to mesh shader through a payload</em> </td>
