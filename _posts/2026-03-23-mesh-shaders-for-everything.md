@@ -93,7 +93,7 @@ While an optimized solution may exist—and could potentially reduce or eliminat
 
 ## Conclusion
 
-In its current form, amplification (task) and mesh shaders do not appear to me as being a universal replacement for hardware tessellation. The primary limitations stem from payload handling and task shader constraints:
+In its current form, amplification/task and mesh shaders do not appear to me as being a universal replacement for hardware tessellation. The primary limitations stem from payload handling and task shader constraints:
 - A task shader workgroup can have only one payload.
 - Only the first lane of a workgroup is allowed to declare how many mesh shader instances to spawn for the entire workgroup. (See [SPIR-V registry](https://github.khronos.org/SPIRV-Registry/extensions/EXT/SPV_EXT_mesh_shader.html) regarding `EmitMeshTasksEXT`, and the [DirectX specification](https://github.com/microsoft/DirectX-Specs/blob/master/d3d/MeshShader.md) regarding `MeshPayload`).
 - Smaller workgroup sizes typically underutilize GPU parallelism.
