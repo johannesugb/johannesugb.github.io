@@ -74,10 +74,10 @@ However, then there are unused lanes in workgroup.
 Workgroup size should be set to at least 32 on NVIDIA GPUs, or 64 on AMD GPUs, in order to fully utilize GPU parallelism. 
 However, with larger workgroup sizes, there can still be only **one payload** between task and mesh shaders as illustrated in _Figure 2_.
 
-|   |   |
 | ----------- | ----------- |
 | ![task to mesh shader payload](/assets/images/task-mesh-payload-onelane.png) |  ![task to mesh shader still only one payload](/assets/images/task-mesh-payload-twolanes.png) |
 | _Figure 2.1: Data transfer from task shader to mesh shader through a payload_ | _Figure 2.2: Regardless of how many lanes, there is always only one payload per workgroup._ |
+
 _Figure 2: These figures focus on the payload, which is data (typically small) passed from a task shader workgroup to its associated mesh shader instances._
 
 So, we actually want something like 
