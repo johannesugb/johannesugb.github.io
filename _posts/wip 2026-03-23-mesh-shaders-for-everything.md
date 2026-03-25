@@ -61,8 +61,6 @@ The sample applications _Terrain_ and _TerrainMS_ both implement terrain subdivi
 
 _Table 2: Performance comparisons of a hardware tessellation-based implementation and its mesh shading-based counterpart. Both approaches subdivide the input terrain to rasterize over 20 million triangles, measured on an RTX 4060 Ti._
 
-The results indicate a ~21% performance advantage for traditional hardware tessellation. This trend is even more pronounced in our own work on Fast Rendering of Parametric Objects on Modern GPUs, where an initial mesh shading–based reimplementation of a tessellation pipeline resulted in a 76% performance regression. Achieving a competitive implementation remains nontrivial: although mesh pipelines expose flexible, compute-like stages, data exchange between task and mesh shaders introduces additional complexity.
-
 The performance results in _Table 2_ indicate a **~21% performance advantage** for traditional hardware tessellation.
 The difference is even bigger in favor of hardware tessellation in one of our own research projects: I've created a mesh shading-based alternative tessellation implementation to replace the hardware tessellation-based implementation of our paper [Fast Rendering of Parametric Objects on Modern GPUs](https://johannesugb.github.io/gpu-programming/fast-rendering-of-parametric-objects-on-modern-gpus/), which resulted in a 76% performance regression.
 Achieving a competitive implementation remains nontrivial: although mesh pipelines expose flexible, compute-like stages, data exchange between task and mesh shaders introduces additional complexity.
