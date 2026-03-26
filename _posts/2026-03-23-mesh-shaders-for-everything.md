@@ -97,7 +97,7 @@ In its current form, amplification/task and mesh shaders do not appear to me as 
 - A task shader workgroup can have only one payload.
 - Only the first lane of a workgroup is allowed to declare how many mesh shader instances to spawn for the entire workgroup. (See [SPIR-V registry](https://github.khronos.org/SPIRV-Registry/extensions/EXT/SPV_EXT_mesh_shader.html) regarding `EmitMeshTasksEXT`, and the [DirectX specification](https://github.com/microsoft/DirectX-Specs/blob/master/d3d/MeshShader.md) regarding `MeshPayload`).
 - Smaller workgroup sizes typically underutilize GPU parallelism.
-- Payload size is expected to remain small (e.g., as suggested in [Using Mesh Shaders for Professional Graphics](https://developer.nvidia.com/blog/using-mesh-shaders-for-professional-graphics/) by Christoph Kubisch).
+- Payload size is expected to remain small (e.g., less than 236 or 108 bytes, as suggested in [Using Mesh Shaders for Professional Graphics](https://developer.nvidia.com/blog/using-mesh-shaders-for-professional-graphics/) by Christoph Kubisch).
 
 While I believe that highly optimized mesh shading pipelines may achieve performance parity with hardware tessellation in certain scenarios, the tessellation pipeline remains significantly simpler to program. This simplicity reflects years of vendor-driven optimization in workload distribution across GPU architectures, as described as _Work Distribution Crossbar_ in [Fast Tessellated Rendering on Fermi](https://www.highperformancegraphics.org/previous/www_2010/media/Hot3D/HPG2010_Hot3D_NVIDIA.pdf) by Tim Purcell. 
 
