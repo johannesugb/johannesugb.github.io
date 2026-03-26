@@ -70,7 +70,7 @@ With the original hardware tessellation approach from our paper, parametric patc
 ```glsl
 layout(local_size_x = 1, local_size_y = 1, local_size_z = 1) in;
 ```
-This approach, however, leads to underutilized lanes within the workgroup. To fully leverage GPU parallelism, workgroup sizes should be at least 32 threads on NVIDIA architectures and 64 on AMD. Increasing the workgroup size introduces another constraint: only **one single payload** can be transferred between task and mesh shaders, as illustrated in _Figure 2_.
+This approach, however, leads to underutilized lanes within the workgroup. To fully leverage GPU parallelism, workgroup sizes should be at least 32 threads on NVIDIA architectures and 64 on AMD. Increasing the workgroup size reveals another difficulty: only **one single payload** can be transferred between task and mesh shaders, as illustrated in _Figure 2_.
 
 <table>
   <tr>
