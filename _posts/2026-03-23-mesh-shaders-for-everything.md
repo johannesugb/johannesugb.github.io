@@ -26,8 +26,8 @@ For this blog post, I have used both Vulkan and DirectX resources. Therefore, te
 
 | Term | Explanation |
 | ----------- | ----------- |
-| "Graphics Pipeline" | A rasterization-based graphics pipeline with classical shader stages, such as vertex shaders and tessellation shaders |
-| "Graphics Mesh Pipeline" | A rasterization-based graphics pipeline with task and mesh shaders |
+| "Graphics Pipeline" | A rasterization-based graphics pipeline with classical shader stages, and classical geometry shader stages: vertex, tessellation, and geometry shaders |
+| "Graphics Mesh Pipeline" | A rasterization-based graphics pipeline with amplification/task and mesh shaders |
 | "Vertex Shading" | Rasterization using a classical graphics pipeline |
 | "Mesh Shading" | Rasterization using a graphics mesh pipeline |
 | "Task Shader" | First shader stage in graphics mesh pipelines (Vulkan terminology) |
