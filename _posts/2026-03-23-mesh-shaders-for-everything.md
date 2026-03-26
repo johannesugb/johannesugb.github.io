@@ -45,7 +45,7 @@ In our own work on [Conservative Meshlet Bounds for Robust Culling of Skinned Me
 ![Animated, skinned 3D models)](/assets/images/meshletskinningcullingscreenshotmanyskinnedmeshes.png)   
 _Figure 1: A screenshot of our evaluation scene that shows multiple different animated 3D models. Notably, instances of the same model type are **not** rendered with instanced rendering, but all are individually animated and rendered—they just use the same animation clips and times._
 
-The reasons for the better performance of mesh shaders seem to be the elimination of the input assembly stage and improved parallelism. I also suspected ordering guarantees being a factor, but they still apply to some degree according to the [DirectX specification](https://microsoft.github.io/DirectX-Specs/d3d/MeshShader.html).
+The reasons for the better performance of mesh shading seem to be the elimination of the input assembly stage and improved parallelism. I also suspected ordering guarantees being a factor, but they still apply to some degree according to the [DirectX specification](https://microsoft.github.io/DirectX-Specs/d3d/MeshShader.html).
 
 ## But What About Tessellation?
 
