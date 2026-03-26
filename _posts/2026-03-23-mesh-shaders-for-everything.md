@@ -88,7 +88,7 @@ So, we actually want something like
 ```glsl
 layout(local_size_x = 32, local_size_y = 1, local_size_z = 1) in;
 ```
-but this quickly raises challenges with respect to arranging the size-limited payload in a useful manner. In particular, we **cannot** have different payloads for different lanes.
+but this quickly leads to challenges with respect to arranging the size-limited payload in a useful manner. In particular, we **cannot** have different payloads for different lanes.
 While an optimized solution may exist—and could potentially reduce or eliminate the observed performance gap—such an implementation is not immediately apparent. The key takeaway is that mesh shading does not provide a drop-in, high-performance replacement for all use cases. Although the tessellation pipeline has its own limitations, it proved well-suited to our scenario and delivered consistently high performance.
 
 ## Conclusion
