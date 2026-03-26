@@ -65,7 +65,7 @@ The performance results in _Table 2_ indicate a **~21% performance advantage** f
 The difference is even bigger in favor of hardware tessellation in one of our own research projects: I've created a mesh shading-based alternative tessellation implementation to replace the hardware tessellation-based implementation of our paper [Fast Rendering of Parametric Objects on Modern GPUs](https://johannesugb.github.io/gpu-programming/fast-rendering-of-parametric-objects-on-modern-gpus/), which resulted in a **76% performance regression**.
 Achieving a competitive implementation remains nontrivial: although mesh pipelines expose flexible, compute-like stages, data exchange between task and mesh shaders introduces additional complexity.
 
-In the original hardware tessellation approach, parametric patches (quads) are submitted individually to the rasterizer and subdivided with factors of up to 64×64. A direct mapping of this strategy to task and mesh shaders would imply a workgroup size of 1:
+With the original hardware tessellation approach from our paper, parametric patches (quads) are submitted individually to graphics pipelines and subdivided with factors of up to 64×64. A direct mapping of this strategy to task and mesh shaders would imply a workgroup size of 1:
 
 ```glsl
 layout(local_size_x = 1, local_size_y = 1, local_size_z = 1) in;
