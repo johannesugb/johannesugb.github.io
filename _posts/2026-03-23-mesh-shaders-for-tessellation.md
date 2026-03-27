@@ -79,7 +79,7 @@ The sample applications _Terrain_ and _TerrainMS_ both implement terrain subdivi
 | Terrain | TerrainMS |
 | ----------- | ----------- |
 | [![DX12 Terrain](/assets/images/Terrain.png)](/assets/images/Terrain.png) |  [![DX12 TerrainMS](/assets/images/TerrainMS.png)](/assets/images/TerrainMS.png) |
-| Hardware tessellation | Mesh shading |
+| Hardware tessellation | Mesh shading-based tessellation |
 | 20.4M triangles   | 20.2M triangles     |
 | 144 FPS   | 119 FPS        |
 
