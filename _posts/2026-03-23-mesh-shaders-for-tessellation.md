@@ -1,6 +1,6 @@
 ---
-title: "Mesh Shaders As Replacement for Hardware Tessellation?"
-# last_modified_at: 2026-03-26T00:42:00+01:00
+title: "Mesh Shaders as Replacement for Hardware Tessellation?"
+# last_modified_at: 2026-03-27T01:00:00+01:00
 categories:
   - GPU-Programming
 tags:
@@ -19,6 +19,16 @@ Mesh shaders represent a notable evolution in modern graphics pipelines. They ar
 > The Amplification shader allows users to decide how many Mesh shader groups to run and passes data to those groups. The intent for the Amplification shader is to eventually replace hardware tessellators.
 
 It was the latter claim that made me suspicious and motivated me to dive a bit into this topic. 
+
+As a quick reminder, _Figure 1_ shows the structure of classical graphics pipelines compared to a mesh shading-based graphics pipeline, where all the geometry stages have been replaced by two compute shader-style stages: task and mesh shader. 
+
+![Classical graphics pipeline](/assets/images/classical-graphics-pipeline.png)
+_Figure 1: Stages of a classical rasterization-based graphics pipeline, with several fixed-function stages (input assembly, tessellation, and rasterization) and several programmable stages (vertex shader, tessellation control shader, tessellation evaluation shader, geometry shader, and fragment shader)._
+
+![Graphics mesh pipeline](/assets/images/graphics-mesh-pipeline.png)
+_Figure 2: Stages of a graphics mesh pipeline, where only the rasterizer remains as a fixed-function stage. Two new programmable shader stages (task and mesh shader) replace all geometry stages of classical rasterization-based graphics pipelines._
+
+Task and mesh shaders are, generally speaking, more generic and versatile stages compared to their counterparts in classical graphics pipelines. This means they offer more freedom, but also put more burden of optimization onto graphics programmers. From a GPU's perspective, fewer fixed-function steps are active since input assembly and hardware tessellation are not usable/not supported with mesh shading.
 
 ## Glossary
 
@@ -40,10 +50,10 @@ _Table 1: Relevant terms, some of which are used in Vulkan, others in DirectX, s
 
 Early experiments replacing vertex shaders with mesh shaders reported highly promising results. For example, Arseny Kapoulkine demonstrated in [niagara: Tuning mesh shaders](https://www.youtube.com/live/snZkA4D_qjU?si=hun0Du-13pJcWG6R&t=7770) a throughput of **20.7B** rasterized triangles per second with mesh shading, compared to **7.4B/s** using vertex shading.
 
-In our own work on [Conservative Meshlet Bounds for Robust Culling of Skinned Meshes](https://johannesugb.github.io/gpu-programming/conservative-meshlet-bounds-for-robust-culling-of-skinned-meshes/), we observed a less dramatic but still clear performance improvement: With culling disabled in task shaders—ensuring identical geometry workloads—vertex shading rendered the scene shown in _Figure 1_ at **27.1 FPS**, whereas mesh shading achieved **32.8 FPS**, corresponding to a **21% speedup** on an RTX 3050 Laptop GPU. Although the primary focus of that work was enabling fine-grained culling for geometrically dense skinned meshes, for this comparison, it is useful to disable culling in task shaders.
+In our own work on [Conservative Meshlet Bounds for Robust Culling of Skinned Meshes](https://johannesugb.github.io/gpu-programming/conservative-meshlet-bounds-for-robust-culling-of-skinned-meshes/), we observed a less dramatic but still clear performance improvement: With culling disabled in task shaders—ensuring identical geometry workloads—vertex shading rendered the scene shown in _Figure 3_ at **27.1 FPS**, whereas mesh shading achieved **32.8 FPS**, corresponding to a **21% speedup** on an RTX 3050 Laptop GPU. Although the primary focus of that work was enabling fine-grained culling for geometrically dense skinned meshes, for this comparison, it is useful to disable culling in task shaders.
 
 ![Animated, skinned 3D models)](/assets/images/meshletskinningcullingscreenshotmanyskinnedmeshes.png)   
-_Figure 1: A screenshot of our evaluation scene that shows multiple different animated 3D models. Notably, instances of the same model type are **not** rendered with instanced rendering, but all are individually animated and rendered—they just use the same animation clips and times._
+_Figure 3: A screenshot of our evaluation scene that shows multiple different animated 3D models. Notably, instances of the same model type are **not** rendered with instanced rendering, but all are individually animated and rendered—they just use the same animation clips and times._
 
 The reasons for the better performance of mesh shading seem to be the elimination of the input assembly stage and improved parallelism. I also suspected ordering guarantees being a factor, but they still apply to some degree according to the [DirectX specification](https://microsoft.github.io/DirectX-Specs/d3d/MeshShader.html).
 
@@ -70,7 +80,7 @@ With the original hardware tessellation approach from our paper, parametric patc
 ```glsl
 layout(local_size_x = 1, local_size_y = 1, local_size_z = 1) in;
 ```
-This approach, however, leads to underutilized lanes within the workgroup. To fully leverage GPU parallelism, workgroup sizes should be at least 32 threads on NVIDIA architectures and 64 on AMD. Increasing the workgroup size reveals another difficulty: only **one single payload** can be transferred between task and mesh shaders, as illustrated in _Figure 2_.
+This approach, however, leads to underutilized lanes within the workgroup. To fully leverage GPU parallelism, workgroup sizes should be at least 32 threads on NVIDIA architectures and 64 on AMD. Increasing the workgroup size reveals another difficulty: only **one single payload** can be transferred between task and mesh shaders, as illustrated in _Figure 4_.
 
 <table>
   <tr>
@@ -78,11 +88,11 @@ This approach, however, leads to underutilized lanes within the workgroup. To fu
     <td> <img alt="task to mesh shader payload" src="/assets/images/task-mesh-payload-twolanes.png" /> </td>
   </tr>
   <tr>
-    <td> <em>Figure 2.1: Data transfer from task shader to mesh shader through a payload</em> </td>
-    <td> <em>Figure 2.2: Regardless of how many lanes, there is always only one payload per workgroup.</em> </td>
+    <td> <em>Figure 4.1: Data transfer from task shader to mesh shader through a payload</em> </td>
+    <td> <em>Figure 4.2: Regardless of how many lanes, there is always only one payload per workgroup.</em> </td>
   </tr>
 </table>
-_Figure 2: These figures focus on the payload, which is data (typically small) passed from a task shader workgroup to its associated mesh shader instances._
+_Figure 4: These figures focus on the payload, which is data (typically small) passed from a task shader workgroup to its associated mesh shader instances._
 
 So, we actually want something like 
 ```glsl
