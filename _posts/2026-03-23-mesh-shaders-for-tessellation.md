@@ -1,6 +1,6 @@
 ---
 title: "Mesh Shaders as Replacement for Hardware Tessellation?"
-# last_modified_at: 2026-03-27T01:00:00+01:00
+# last_modified_at: 2026-03-27T02:19:00+01:00
 categories:
   - GPU-Programming
 tags:
