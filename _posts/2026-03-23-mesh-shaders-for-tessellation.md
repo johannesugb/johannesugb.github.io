@@ -90,7 +90,7 @@ The difference is even bigger in favor of hardware tessellation in one of our ow
 I am confident that performance can be optimized, but it is a rather dire starting point. 
 Once again, using classical graphics pipelines with tessellation enabled delivers good performance out of the box—mesh shading demands figuring out performance optimizations from graphics programmers before it becomes a competitive alternative.
 
-With the original hardware tessellation approach from our paper, parametric patches (quads) are submitted individually to graphics pipelines and subdivided with factors of up to 64×64. A direct mapping of this strategy to task and mesh shaders would imply a workgroup size of 1 (due to a peculiarity regarding payloads, transferred between task and mesh shaders):
+With the original hardware tessellation approach from our paper, parametric patches (quads) are submitted individually to graphics pipelines and subdivided with factors of up to 64×64. A direct mapping of this strategy to task and mesh shaders would imply a workgroup size of 1 due to a peculiarity regarding payloads (more details further down below):
 
 ```glsl
 layout(local_size_x = 1, local_size_y = 1, local_size_z = 1) in;
