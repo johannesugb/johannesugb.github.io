@@ -43,6 +43,9 @@ For this blog post, I have used both Vulkan and DirectX resources. Therefore, te
 | "Task Shader" | First shader stage in graphics mesh pipelines (Vulkan terminology) |
 | "Amplification Shader" | First shader stage in graphics mesh pipelines (DirectX terminology) |
 | "Mesh Shader" | Second shader stage in graphics mesh pipelines |
+| "Workgroup" | GPU threads that are scheduled to process the same instructions in a single instruction multiple data (SIMD) fashion |
+| "Invocation" | A GPU thread (Vulkan terminology) |
+| "Lane" | A GPU thread (DirectX terminology) |
 
 _Table 1: Relevant terms, some of which are used in Vulkan, others in DirectX, some in both APIs._
 
