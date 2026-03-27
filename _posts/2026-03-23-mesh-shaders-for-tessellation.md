@@ -28,7 +28,7 @@ _Figure 1: Stages of a classical rasterization-based graphics pipeline, with sev
 ![Graphics mesh pipeline](/assets/images/graphics-mesh-pipeline.png)
 _Figure 2: Stages of a graphics mesh pipeline, where only the rasterizer remains as a fixed-function stage. Two new programmable shader stages (task and mesh shader) replace all geometry stages of classical rasterization-based graphics pipelines._
 
-Task and mesh shaders are, generally speaking, more generic and versatile stages compared to their counterparts in classical graphics pipelines. This means they offer more freedom, but also put more burden of optimization onto graphics programmers. From a GPU's perspective, fewer fixed-function steps are active since input assembly and hardware tessellation are not usable/not supported with mesh shading.
+Task and mesh shaders are, generally speaking, more generic and versatile stages compared to their counterparts in classical graphics pipelines. This means they offer more freedom but also place more of the optimization burden on graphics programmers. From a GPU's perspective, fewer fixed-function steps are active since input assembly and hardware tessellation are not usable/not supported with mesh shading.
 
 ## Glossary
 
@@ -55,7 +55,14 @@ In our own work on [Conservative Meshlet Bounds for Robust Culling of Skinned Me
 ![Animated, skinned 3D models)](/assets/images/meshletskinningcullingscreenshotmanyskinnedmeshes.png)   
 _Figure 3: A screenshot of our evaluation scene that shows multiple different animated 3D models. Notably, instances of the same model type are **not** rendered with instanced rendering, but all are individually animated and rendered—they just use the same animation clips and times._
 
-The reasons for the better performance of mesh shading seem to be the elimination of the input assembly stage and improved parallelism. I also suspected ordering guarantees being a factor, but they still apply to some degree according to the [DirectX specification](https://microsoft.github.io/DirectX-Specs/d3d/MeshShader.html).
+It must be noted, however, that the results reported in this section do **not** come automatically by just using task and mesh shaders. A substantial amount of optimizations had to be implemented to get there in both cases—essentially following the guidelines presented by Arseny Kapoulkine in his [YouTube video series](https://www.youtube.com/watch?v=BR2my8OE1Sc&list=PL0JVLUVCkk-l7CWCn3-cdftR0oajugYvd). As stated in the introduction, graphics programmers are now responsible for good rendering performance, unlike classical graphics pipelines, which provide generally good performance out of the box for many use cases.
+
+The exact reasons for the ultimately better performance of mesh shading cannot be stated definitively, but most available sources point to issues with the fixed-function input assembly stage, which can stall if its dedicated memory fills too fast. This can be a result of cache-inefficient index buffer layouts, or memory-intensive vertex shader exports, as analyzed in [The performance impact of vertex shader exports](https://interplayoflight.wordpress.com/2025/09/21/the-performance-impact-of-vertex-shader-exports/) by Kostas Anagnostou. Meshlets, on the other hand, are very small clusters of vertices with typically high positional locality and vertex sharing as well. Citing [Coming to DirectX 12— Mesh Shaders and Amplification Shaders: Reinventing the Geometry Pipeline](https://devblogs.microsoft.com/directx/coming-to-directx-12-mesh-shaders-and-amplification-shaders-reinventing-the-geometry-pipeline/) by 
+Sarah Jobalia:
+
+> A meshlet is a subset of a mesh created through an intentional partition of the geometry. Meshlets should be somewhere in the range of 32 to around 200 vertices, depending on the number of attributes, and will have as many shared vertices as possible to allow for vertex re-use during rendering. This partitioning will be pre-computed and stored with the geometry to avoid computation at runtime, unlike the current Input Assembler which must attempt to dynamically identify vertex reuse every time a mesh is drawn.
+
+These aspects ultimately allow geometry processing in a more parallel way, as stated in the [DirectX specification](https://microsoft.github.io/DirectX-Specs/d3d/MeshShader.html).
 
 ## But What About Tessellation?
 
