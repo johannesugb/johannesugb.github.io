@@ -25,7 +25,7 @@ It was the latter claim that made me suspicious and motivated me to dive a bit i
 As a quick reminder, _Figure 1_ shows the structure of classical graphics pipelines, to be compared to a mesh shading-based graphics pipeline in _Figure 2_, where all the geometry stages have been replaced by two compute shader-style stages: task and mesh shader. 
 
 [![Classical graphics pipeline](/assets/images/classical-graphics-pipeline.png)](/assets/images/classical-graphics-pipeline.png)         
-_Figure 1: Stages of a classical rasterization-based graphics pipeline, with several fixed-function stages (input assembly, tessellation, and rasterization) and several programmable stages (vertex shader, tessellation control shader, tessellation evaluation shader, geometry shader, and fragment shader)._
+_Figure 1: Stages of a classical rasterization-based graphics pipeline, with several fixed-function stages (input assembly, tessellator, and rasterizer) and several programmable stages (vertex shader, tessellation control shader, tessellation evaluation shader, geometry shader, and fragment shader)._
 
 [![Graphics mesh pipeline](/assets/images/graphics-mesh-pipeline.png)](/assets/images/graphics-mesh-pipeline.png)           
 _Figure 2: Stages of a graphics mesh pipeline, where only the rasterizer remains as a fixed-function stage. Two new programmable shader stages (task and mesh shader) replace all geometry stages of classical rasterization-based graphics pipelines._
