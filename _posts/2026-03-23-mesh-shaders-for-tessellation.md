@@ -51,7 +51,7 @@ _Figure 1: Stages of a classical rasterization-based graphics pipeline, with sev
 [![Graphics mesh pipeline](/assets/images/graphics-mesh-pipeline.png)](/assets/images/graphics-mesh-pipeline.png)           
 _Figure 2: Stages of a graphics mesh pipeline, where only the rasterizer remains as a fixed-function stage. Two new programmable shader stages (task and mesh shader) replace all geometry stages of classical rasterization-based graphics pipelines._
 
-Task and mesh shaders are, generally speaking, more generic and versatile stages compared to their counterparts in classical graphics pipelines. One could say that they offer more freedom, but also place more of the optimization burden on graphics programmers. From a GPU's perspective, fewer fixed-function steps are active since input assembly and hardware tessellation are not usable/not supported with mesh shading.
+Task and mesh shaders are, generally speaking, more generic and versatile stages compared to their counterparts in classical graphics pipelines. One could say that they offer more freedom, but also place more of the optimization burden on graphics programmers. From a GPU's perspective, fewer fixed-function steps are active since input assembly and the hardware tessellator are not usable/not supported in graphics mesh pipelines.
 
 ## Faster Than Vertex Shading
 
