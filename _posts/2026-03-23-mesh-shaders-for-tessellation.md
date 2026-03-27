@@ -22,10 +22,10 @@ It was the latter claim that made me suspicious and motivated me to dive a bit i
 
 As a quick reminder, _Figure 1_ shows the structure of classical graphics pipelines compared to a mesh shading-based graphics pipeline, where all the geometry stages have been replaced by two compute shader-style stages: task and mesh shader. 
 
-![Classical graphics pipeline](/assets/images/classical-graphics-pipeline.png)
+[![Classical graphics pipeline](/assets/images/classical-graphics-pipeline.png)](/assets/images/classical-graphics-pipeline.png)         
 _Figure 1: Stages of a classical rasterization-based graphics pipeline, with several fixed-function stages (input assembly, tessellation, and rasterization) and several programmable stages (vertex shader, tessellation control shader, tessellation evaluation shader, geometry shader, and fragment shader)._
 
-![Graphics mesh pipeline](/assets/images/graphics-mesh-pipeline.png)
+[![Graphics mesh pipeline](/assets/images/graphics-mesh-pipeline.png)](/assets/images/graphics-mesh-pipeline.png)           
 _Figure 2: Stages of a graphics mesh pipeline, where only the rasterizer remains as a fixed-function stage. Two new programmable shader stages (task and mesh shader) replace all geometry stages of classical rasterization-based graphics pipelines._
 
 Task and mesh shaders are, generally speaking, more generic and versatile stages compared to their counterparts in classical graphics pipelines. This means they offer more freedom but also place more of the optimization burden on graphics programmers. From a GPU's perspective, fewer fixed-function steps are active since input assembly and hardware tessellation are not usable/not supported with mesh shading.
@@ -55,7 +55,7 @@ Early experiments replacing vertex shaders with mesh shaders reported highly pro
 
 In our own work on [Conservative Meshlet Bounds for Robust Culling of Skinned Meshes](https://johannesugb.github.io/gpu-programming/conservative-meshlet-bounds-for-robust-culling-of-skinned-meshes/), we observed a less dramatic but still clear performance improvement: With culling disabled in task shaders—ensuring identical geometry workloads—vertex shading rendered the scene shown in _Figure 3_ at **27.1 FPS**, whereas mesh shading achieved **32.8 FPS**, corresponding to a **21% speedup** on an RTX 3050 Laptop GPU. Although the primary focus of that work was enabling fine-grained culling for geometrically dense skinned meshes, for this comparison, it is useful to disable culling in task shaders.
 
-![Animated, skinned 3D models)](/assets/images/meshletskinningcullingscreenshotmanyskinnedmeshes.png)   
+[![Animated, skinned 3D models)](/assets/images/meshletskinningcullingscreenshotmanyskinnedmeshes.png)](/assets/images/meshletskinningcullingscreenshotmanyskinnedmeshes.png)   
 _Figure 3: A screenshot of our evaluation scene that shows multiple different animated 3D models. Notably, instances of the same model type are **not** rendered with instanced rendering, but all are individually animated and rendered—they just use the same animation clips and times._
 
 It must be noted, however, that the results reported in this section do **not** come automatically by just using task and mesh shaders. A substantial amount of optimizations had to be implemented to get there in both cases—essentially following the guidelines presented by Arseny Kapoulkine in his [YouTube video series](https://www.youtube.com/watch?v=BR2my8OE1Sc&list=PL0JVLUVCkk-l7CWCn3-cdftR0oajugYvd). As stated in the introduction, graphics programmers are now responsible for good rendering performance, unlike classical graphics pipelines, which provide generally good performance out of the box for many use cases.
@@ -74,7 +74,7 @@ The sample applications _Terrain_ and _TerrainMS_ both implement terrain subdivi
 
 | Terrain | TerrainMS |
 | ----------- | ----------- |
-| ![DX12 Terrain](/assets/images/Terrain.png) |  ![DX12 TerrainMS](/assets/images/TerrainMS.png) |
+| [![DX12 Terrain](/assets/images/Terrain.png)](/assets/images/Terrain.png) |  [![DX12 TerrainMS](/assets/images/TerrainMS.png)](/assets/images/TerrainMS.png) |
 | Hardware tessellation | Mesh shading |
 | 20.4M triangles   | 20.2M triangles     |
 | 144 FPS   | 119 FPS        |
