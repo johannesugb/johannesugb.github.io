@@ -78,11 +78,12 @@ The sample applications _Terrain_ and _TerrainMS_ both implement terrain subdivi
 
 _Table 2: Performance comparisons of a hardware tessellation-based implementation and its mesh shading-based counterpart. Both approaches subdivide the input terrain to rasterize over 20 million triangles, measured on an RTX 4060 Ti._
 
-The performance results in _Table 2_ indicate a **~21% performance advantage** for traditional hardware tessellation.
-The difference is even bigger in favor of hardware tessellation in one of our own research projects: I've created a mesh shading-based alternative tessellation implementation to replace the hardware tessellation-based implementation of our paper [Fast Rendering of Parametric Objects on Modern GPUs](https://johannesugb.github.io/gpu-programming/fast-rendering-of-parametric-objects-on-modern-gpus/), which resulted in a **76% performance regression**.
-Achieving a competitive implementation remains nontrivial: although mesh pipelines expose flexible, compute-like stages, data exchange between task and mesh shaders introduces additional complexity.
+The performance results in _Table 2_ indicate a **21% performance advantage** for traditional hardware tessellation.
+The difference is even bigger in favor of hardware tessellation in one of our own research projects: I've created a mesh shading-based alternative tessellation implementation to replace the hardware tessellation-based implementation of our paper [Fast Rendering of Parametric Objects on Modern GPUs](https://johannesugb.github.io/gpu-programming/fast-rendering-of-parametric-objects-on-modern-gpus/). Porting the tessellation implementation to task and mesh shaders resulted in reducing the FPS to a quarter (i.e., **-76%** performance).
+I am confident that performance can be optimized, but it is a rather dire starting point. 
+Once again, using classical graphics pipelines with tessellation enabled delivers good performance out of the box—mesh shading demands figuring out performance optimizations from graphics programmers before it becomes a competitive alternative.
 
-With the original hardware tessellation approach from our paper, parametric patches (quads) are submitted individually to graphics pipelines and subdivided with factors of up to 64×64. A direct mapping of this strategy to task and mesh shaders would imply a workgroup size of 1:
+With the original hardware tessellation approach from our paper, parametric patches (quads) are submitted individually to graphics pipelines and subdivided with factors of up to 64×64. A direct mapping of this strategy to task and mesh shaders would imply a workgroup size of 1 (due to a peculiarity regarding payloads, transferred between task and mesh shaders):
 
 ```glsl
 layout(local_size_x = 1, local_size_y = 1, local_size_z = 1) in;
@@ -105,8 +106,22 @@ So, we actually want something like
 ```glsl
 layout(local_size_x = 32, local_size_y = 1, local_size_z = 1) in;
 ```
-but this quickly leads to challenges with respect to arranging the size-limited payload in a useful manner. In particular, we **cannot** have different payloads for different lanes.
-While an optimized solution may exist—and could potentially reduce or eliminate the observed performance gap—such an implementation is not immediately apparent. The key takeaway is that mesh shading does not provide a drop-in, high-performance replacement for all use cases. Although the tessellation pipeline has its own limitations, it proved well-suited to our scenario and delivered consistently high performance.
+but this quickly leads to challenges with respect to arranging the size-limited payload in a useful manner since we **cannot** have different payloads for different lanes. Between tessellation control and tessellation evaluation shaders, we can have exactly that. The following is the “payload” transferred between them in our implementation via patch attributes and varying attributes—and the GPU efficiently handles this setup, leading to high FPS:
+
+```glsl
+layout (location = 0) out PerControlPointPayload
+{ 
+	vec2 mParams;
+} control_out[];
+
+layout (location = 1) patch out PerPatchPayload
+{
+    uint mObjectId;
+    uvec3 mUserData;
+} patch_out;
+```
+
+While an optimized solution may exist—and could potentially reduce or eliminate the observed performance gap, such an implementation is not immediately apparent. The key takeaway is that mesh shading does not provide a drop-in, high-performance replacement for all use cases. Although the tessellation pipeline has its own limitations, and its API has arguably also been a bit bent to our use case, it proved well-suited to our scenario and delivered consistently high performance.
 
 ## Conclusion
 
