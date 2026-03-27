@@ -92,30 +92,8 @@ The difference is even bigger in favor of hardware tessellation in one of our ow
 I am confident that performance can be optimized, but it is a rather dire starting point. 
 Once again, the classical graphics pipeline with hardware tessellation provides strong out-of-the-box performance, whereas mesh shading typically requires explicit optimization efforts by graphics programmers to reach a competitive level.
 
-With the original hardware tessellation approach from our paper, parametric patches (quads) are submitted individually to graphics pipelines and subdivided with factors of up to 64×64. A direct mapping of this strategy to task and mesh shaders would imply a workgroup size of 1 due to a peculiarity regarding payloads (more details further down below):
-
-```glsl
-layout(local_size_x = 1, local_size_y = 1, local_size_z = 1) in;
-```
-This approach, however, leads to underutilized lanes within the workgroup. To fully leverage GPU parallelism, workgroup sizes should be at least 32 threads on NVIDIA architectures and 64 on AMD. Increasing the workgroup size reveals another difficulty: only **one single payload** can be transferred between task and mesh shaders, as illustrated in _Figure 4_.
-
-<table>
-  <tr>
-    <td> <img alt="task to mesh shader payload" src="/assets/images/task-mesh-payload-onelane.png" /> </td>
-    <td> <img alt="task to mesh shader payload" src="/assets/images/task-mesh-payload-twolanes.png" /> </td>
-  </tr>
-  <tr>
-    <td> <em>Figure 4.1: Data transfer from task shader to mesh shader through a payload</em> </td>
-    <td> <em>Figure 4.2: Regardless of how many lanes, there is always only one payload per workgroup.</em> </td>
-  </tr>
-</table>
-_Figure 4: These figures focus on the payload, which is data (typically small) passed from a task shader workgroup to its associated mesh shader instances._
-
-So, we actually want something like 
-```glsl
-layout(local_size_x = 32, local_size_y = 1, local_size_z = 1) in;
-```
-but this quickly leads to challenges with respect to arranging the size-limited payload in a useful manner since we **cannot** have different payloads for different lanes. Between tessellation control and tessellation evaluation shaders, we can have exactly that. The following is the “payload” transferred between them in our implementation via patch attributes and varying attributes—and the GPU efficiently handles this setup, leading to high FPS:
+With the original hardware tessellation approach from our paper, parametric patches (quads) are submitted individually to graphics pipelines and subdivided with factors of up to 64×64. 
+It requires an individual “payload” transferred between tessellation control and tessellation evaluation shaders, via patch data and varying data:
 
 ```glsl
 layout (location = 0) out PerControlPointPayload
@@ -129,6 +107,31 @@ layout (location = 1) patch out PerPatchPayload
     uvec3 mUserData;
 } patch_out;
 ```
+
+A direct mapping of this strategy to task and mesh shaders would imply a workgroup size of 1:
+```glsl
+layout(local_size_x = 1, local_size_y = 1, local_size_z = 1) in;
+```
+due to the limitation that there can only be **one single payload** between task and mesh shaders, as illustrated in _Figure 4_.
+This approach, however, leads to underutilized lanes within the workgroup. 
+
+<table>
+  <tr>
+    <td> <img alt="task to mesh shader payload" src="/assets/images/task-mesh-payload-onelane.png" /> </td>
+    <td> <img alt="task to mesh shader payload" src="/assets/images/task-mesh-payload-twolanes.png" /> </td>
+  </tr>
+  <tr>
+    <td> <em>Figure 4.1: Data transfer from task shader to mesh shader through a payload</em> </td>
+    <td> <em>Figure 4.2: Regardless of how many lanes, there is always only one payload per workgroup.</em> </td>
+  </tr>
+</table>
+_Figure 4: These figures focus on the payload, which is data (typically small) passed from a task shader workgroup to its associated mesh shader instances._
+
+To fully leverage GPU parallelism, workgroup sizes should be at least 32 threads on NVIDIA architectures and 64 on AMD. I.e., we actually want something like this:
+```glsl
+layout(local_size_x = 32, local_size_y = 1, local_size_z = 1) in;
+```
+but this quickly leads to challenges with respect to arranging the size-limited payload in a useful manner since we **cannot** have different payloads for different lanes. Between tessellation control and tessellation evaluation shaders, we can have exactly that. 
 
 While an optimized solution may exist and would probably reduce or eliminate the observed performance gap, such an implementation is not immediately apparent. The key takeaway is that mesh shading does not provide a drop-in, high-performance replacement for all use cases. Although the tessellation pipeline has its own limitations, and its API has arguably also been a bit bent to our use case, it proved well-suited to our scenario and delivered consistently high performance.
 
