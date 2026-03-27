@@ -22,16 +22,6 @@ Mesh shaders represent a notable evolution in modern graphics pipelines. They ar
 
 It was the latter claim that made me suspicious and motivated me to dive a bit into this topic. 
 
-As a quick reminder, _Figure 1_ shows the structure of classical graphics pipelines, to be compared to a mesh shading-based graphics pipeline in _Figure 2_, where all the geometry stages have been replaced by two compute shader-style stages: task and mesh shader. 
-
-[![Classical graphics pipeline](/assets/images/classical-graphics-pipeline.png)](/assets/images/classical-graphics-pipeline.png)         
-_Figure 1: Stages of a classical rasterization-based graphics pipeline, with several fixed-function stages (input assembly, tessellator, and rasterizer) and several programmable stages (vertex shader, tessellation control shader, tessellation evaluation shader, geometry shader, and fragment shader)._
-
-[![Graphics mesh pipeline](/assets/images/graphics-mesh-pipeline.png)](/assets/images/graphics-mesh-pipeline.png)           
-_Figure 2: Stages of a graphics mesh pipeline, where only the rasterizer remains as a fixed-function stage. Two new programmable shader stages (task and mesh shader) replace all geometry stages of classical rasterization-based graphics pipelines._
-
-Task and mesh shaders are, generally speaking, more generic and versatile stages compared to their counterparts in classical graphics pipelines. This means they offer more freedom but also place more of the optimization burden on graphics programmers. From a GPU's perspective, fewer fixed-function steps are active since input assembly and hardware tessellation are not usable/not supported with mesh shading.
-
 ## Glossary
 
 For this blog post, I have used both Vulkan and DirectX resources. Therefore, terminology is clarified upfront to avoid ambiguity: 
@@ -50,6 +40,18 @@ For this blog post, I have used both Vulkan and DirectX resources. Therefore, te
 | "Lane" | A GPU thread (DirectX terminology) |
 
 _Table 1: Relevant terms, some of which are used in Vulkan, others in DirectX, some in both APIs._
+
+## Graphics Pipelines
+
+As a quick reminder, _Figure 1_ shows the structure of classical graphics pipelines, to be compared to a mesh shading-based graphics pipeline in _Figure 2_, where all the geometry stages have been replaced by two compute shader-style stages: task and mesh shader. 
+
+[![Classical graphics pipeline](/assets/images/classical-graphics-pipeline.png)](/assets/images/classical-graphics-pipeline.png)         
+_Figure 1: Stages of a classical rasterization-based graphics pipeline, with several fixed-function stages (input assembly, tessellator, and rasterizer) and several programmable stages (vertex shader, tessellation control shader, tessellation evaluation shader, geometry shader, and fragment shader)._
+
+[![Graphics mesh pipeline](/assets/images/graphics-mesh-pipeline.png)](/assets/images/graphics-mesh-pipeline.png)           
+_Figure 2: Stages of a graphics mesh pipeline, where only the rasterizer remains as a fixed-function stage. Two new programmable shader stages (task and mesh shader) replace all geometry stages of classical rasterization-based graphics pipelines._
+
+Task and mesh shaders are, generally speaking, more generic and versatile stages compared to their counterparts in classical graphics pipelines. This means they offer more freedom but also place more of the optimization burden on graphics programmers. From a GPU's perspective, fewer fixed-function steps are active since input assembly and hardware tessellation are not usable/not supported with mesh shading.
 
 ## Faster Than Vertex Shading
 
