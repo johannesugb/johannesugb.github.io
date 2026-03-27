@@ -67,7 +67,9 @@ Sarah Jobalia:
 
 > A meshlet is a subset of a mesh created through an intentional partition of the geometry. Meshlets should be somewhere in the range of 32 to around 200 vertices, depending on the number of attributes, and will have as many shared vertices as possible to allow for vertex re-use during rendering. This partitioning will be pre-computed and stored with the geometry to avoid computation at runtime, unlike the current Input Assembler which must attempt to dynamically identify vertex reuse every time a mesh is drawn.
 
-These aspects ultimately allow geometry processing in a more parallel way, as stated in the [DirectX specification](https://microsoft.github.io/DirectX-Specs/d3d/MeshShader.html).
+These aspects ultimately allow geometry processing in a more parallel way, as stated in the [DirectX specification](https://microsoft.github.io/DirectX-Specs/d3d/MeshShader.html):
+
+> From the hardware perspective the goal is to remove the need for the index processing part of the IA and allow GPUs to be more parallel.
 
 ## But What About Tessellation?
 
