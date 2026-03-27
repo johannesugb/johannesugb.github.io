@@ -92,7 +92,7 @@ The difference is even bigger in favor of hardware tessellation in one of our ow
 I am confident that performance can be optimized, but it is a rather dire starting point. 
 Once again, the classical graphics pipeline with hardware tessellation provides strong out-of-the-box performance, whereas mesh shading requires explicit optimization efforts by graphics programmers to reach a competitive level.
 
-With the original hardware tessellation approach from our paper, parametric patches (quads) are submitted individually to graphics pipelines and subdivided with factors of up to 64×64. 
+With the original hardware tessellation approach from our paper, parametric patches (quads) are submitted to graphics pipelines and subdivided with factors of up to 64×64. 
 It requires an individual “payload” transferred between tessellation control and tessellation evaluation shaders, via patch data and varying data:
 
 ```glsl
