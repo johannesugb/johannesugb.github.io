@@ -67,13 +67,13 @@ Sarah Jobalia:
 
 > A meshlet is a subset of a mesh created through an intentional partition of the geometry. Meshlets should be somewhere in the range of 32 to around 200 vertices, depending on the number of attributes, and will have as many shared vertices as possible to allow for vertex re-use during rendering. This partitioning will be pre-computed and stored with the geometry to avoid computation at runtime, unlike the current Input Assembler which must attempt to dynamically identify vertex reuse every time a mesh is drawn.
 
-These aspects ultimately allow geometry processing in a more parallel way, as stated in the [DirectX specification](https://microsoft.github.io/DirectX-Specs/d3d/MeshShader.html):
+These aspects ultimately allows geometry processing in a more parallel way, as stated in the [DirectX specification](https://microsoft.github.io/DirectX-Specs/d3d/MeshShader.html):
 
 > From the hardware perspective the goal is to remove the need for the index processing part of the IA and allow GPUs to be more parallel.
 
 ## But What About Tessellation?
 
-Finding comparable examples between hardware tessellation and mesh shading proved a bit challenging. I was finally able to find one in the book [Introduction to 3D Game Programming with Direct3D 12.0, 2nd edition](https://www.d3dcoder.net/d3d12_v2.htm) and its [accompanying source code](https://github.com/d3dcoder/d3d12book_2ed).
+Finding examples for comparing hardware tessellation with mesh shading-based tessellation proved a bit challenging. I was finally able to find one in the book [Introduction to 3D Game Programming with Direct3D 12.0, 2nd edition](https://www.d3dcoder.net/d3d12_v2.htm) and its [accompanying source code](https://github.com/d3dcoder/d3d12book_2ed).
 The sample applications _Terrain_ and _TerrainMS_ both implement terrain subdivision, using either the fixed-function tessellator (with hull and domain shaders) or amplification and mesh shaders, respectively. _Table 2_ summarizes the rendered output alongside measured frame rates.
 
 | Terrain | TerrainMS |
