@@ -128,7 +128,7 @@ layout (location = 1) patch out PerPatchPayload
 } patch_out;
 ```
 
-While an optimized solution may exist—and could potentially reduce or eliminate the observed performance gap, such an implementation is not immediately apparent. The key takeaway is that mesh shading does not provide a drop-in, high-performance replacement for all use cases. Although the tessellation pipeline has its own limitations, and its API has arguably also been a bit bent to our use case, it proved well-suited to our scenario and delivered consistently high performance.
+While an optimized solution may exist and would probably reduce or eliminate the observed performance gap, such an implementation is not immediately apparent. The key takeaway is that mesh shading does not provide a drop-in, high-performance replacement for all use cases. Although the tessellation pipeline has its own limitations, and its API has arguably also been a bit bent to our use case, it proved well-suited to our scenario and delivered consistently high performance.
 
 ## Conclusion
 
