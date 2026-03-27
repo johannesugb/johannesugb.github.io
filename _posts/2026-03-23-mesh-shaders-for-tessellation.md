@@ -118,7 +118,7 @@ but this quickly leads to challenges with respect to arranging the size-limited 
 ```glsl
 layout (location = 0) out PerControlPointPayload
 { 
-	vec2 mParams;
+    vec2 mParams;
 } control_out[];
 
 layout (location = 1) patch out PerPatchPayload
