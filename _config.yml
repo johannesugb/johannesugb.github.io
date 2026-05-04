@@ -82,7 +82,7 @@ author:
       url: "https://x.com/JohannesUgb"
     - label: "CV"
       icon: "fas fa-solid fa-file-pdf"
-      url: "https://johannesugb.github.io/assets/CV_Johannes_Unterguggenberger_Feb2026.pdf"
+      url: "https://johannesugb.github.io/assets/CV_Johannes_Unterguggenberger_May2026.pdf"
       
 footer:
   links:
@@ -106,7 +106,7 @@ footer:
       url: "https://x.com/JohannesUgb"
     - label: "CV"
       icon: "fas fa-solid fa-file-pdf"
-      url: "https://johannesugb.github.io/assets/CV_Johannes_Unterguggenberger_Feb2026.pdf"
+      url: "https://johannesugb.github.io/assets/CV_Johannes_Unterguggenberger_May2026.pdf"
 
 defaults:
   # _posts
