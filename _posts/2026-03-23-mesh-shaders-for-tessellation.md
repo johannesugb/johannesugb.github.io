@@ -12,8 +12,6 @@ tags:
 #   image: /assets/images/1500x500.jpg
 ---
 
-## Introduction
-
 Mesh shaders represent a notable evolution in modern graphics pipelines. They are often positioned as a potential “silver bullet” capable of replacing the traditional geometry processing stages—namely vertex, tessellation, and geometry shaders. For instance, the [DirectX specification](https://microsoft.github.io/DirectX-Specs/d3d/MeshShader.html) frames their role as follows:
 
 > There will additionally be a new Amplification shader stage, which enables current tessellation scenarios. Eventually the entire vertex pipeline will be two stages: an Amplification shader followed by a Mesh shader.
