@@ -33,7 +33,7 @@ So, this is a shame, because this tool looks like the perfect tool for Android G
 - Download and install the [Android GPU Inspector](https://developer.android.com/agi)
 - Connect an Android device via USB and ensure that USB Debugging is enabled
 - Start the Android GPU Inspector
-- On the connected Android device, you will be asked to install the untrusted `GAPID - arm64v8a`
+- On the connected Android device, you will be asked to install the "harmfull" `GAPID - arm64v8a`, which you have to `Install anyway`
 - _Capture a new trace_ via Android GPU Inspector:
   - As soon as the device has been successfully connected and GAPID has been installed, you'll be able to select your `Device`
   - Then, you'll also be able to select an `Application` to GPU-debug via the `...`-Button.
