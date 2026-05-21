@@ -25,4 +25,46 @@ I.e., as developer it can be useful to juggle between all of these tools.
 Currently, I'm workin with Android and I am still struggling to establish a great GPU debugging workflow. 
 This post contains a few notes on my attempts to establish GPU debugging on Android and the associated struggles.
 
-## Restore:
+## Android GPU Inspector and How to Uninstall it
+
+So, this is a shame, because this tool looks like the perfect tool for Android GPU debugging. However, it always crashed the app that I wanted to debug and worse, it left my Android device in a state so that the app would now _always_ crash with a segmentation fault, even when not being debugged. Therefore, this section is mainly an uninstall guide because uninstalling wasn't straight-forward. And without removing everything that Android GPU Inspector leaves on the Android device, your app might never run again on that device.
+
+**Install Instructions:** 
+- Download and install the [Android GPU Inspector](https://developer.android.com/agi)
+- Connect an Android device via USB and ensure that USB Debugging is enabled
+- Start the Android GPU Inspector
+- On the connected Android device, you will be asked to install the untrusted `GAPID - arm64v8a`
+- _Capture a new trace_ via Android GPU Inspector:
+  - As soon as the device has been successfully connected and GAPID has been installed, you'll be able to select your `Device`
+  - Then, you'll also be able to select an `Application` to GPU-debug via the `...`-Button.
+- If you're lucky, you can do GPU profiling. If you're not, the Android device might be configured in a way that your app never runs again.
+
+**Uninstall Instructions:**
+- Uninstall `GAPID - arm64v8a` from _Settings -> Apps_
+- Execute in a terminal:
+  ```
+  adb shell settings delete global gpu_debug_layers
+  ```
+  If successful, you should see the following message printed to the console: `Deleted 1 rows`.
+
+These should be the most important steps.        
+For a clean state, also perform the following actions:
+- If any of these statements:       
+  ```
+  adb shell settings get global enable_gpu_debug_layers
+  adb shell settings get global gpu_debug_app
+  ``` 
+  return something other than `null` or `0`, execute these respective cleanup statements:       
+  ```
+  adb shell settings delete global enable_gpu_debug_layers
+  adb shell settings delete global gpu_debug_app
+  ```
+- If these statement:          
+  ```
+  adb shell ls /data/local/tmp/
+  ```
+  lists entries connected to the Android GPU Inspector, delete them:
+  ```
+  adb shell rm /data/local/tmp/agi_launch_producer
+  adb shell rm /data/local/tmp/agi_launch_producer.pid
+  ```
