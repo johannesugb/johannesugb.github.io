@@ -47,7 +47,7 @@ So, this is a shame, because this tool looks like the perfect tool for Android G
   ```
   If successful, you should see the following message printed to the console: `Deleted 1 rows`.
 
-These should be the most important steps.        
+These should be the most important steps to get Android GPU Inspector off of your app.        
 For a clean state, also perform the following actions:
 - If any of these statements:       
   ```
