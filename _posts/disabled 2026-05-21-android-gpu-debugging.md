@@ -75,3 +75,12 @@ For a clean state, also perform the following actions:
 
 Good old [RenderDoc](https://renderdoc.org) by Baldur Karlsson can be used for GPU profiling on Android. Similar to Android GPU Inspector, it installs an interceptor layer on the phone: an app called **"RenderDocCmd"**. While I got an impression of RenderDoc being slightly outdated in terms of Android support, I could successfully use it for GPU profiling. RenderDoc is run on the PC and connects to a so-called _Remote Context_---namely a Debug-enabled Android device, as described on RenderDoc's [How do I use RenderDoc on Android?](https://renderdoc.org/docs/how/how_android_capture.html) page.
 
+## Perfetto
+
+Perfetto seems to be _the_ standard system-wide profiling layer on Android nowadays, which offers support for GPU profiling among all kinds of other profiling areas. GPU profiling seems to somewhat limited with respect to the other solutions presented above. However, there's a new tool which TBD (speaking of Sokatoa)
+
+Citing the _Perfetto DOCS_ (available at [perfetto.dev/docs](https://perfetto.dev/docs/))
+
+> Built into Android
+Part of the platform since Android 9 Pie, runs on Linux as well
+
