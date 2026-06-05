@@ -29,6 +29,8 @@ This post contains a few notes on my attempts to establish GPU debugging on Andr
 
 So, this is a shame, because this tool looks like the perfect tool for Android GPU debugging. However, it always crashed the app that I wanted to debug and worse, it left my Android device in a state so that the app would now _always_ crash with a segmentation fault, even when not being debugged. Therefore, this section is mainly an uninstall guide because uninstalling wasn't straight-forward. And without removing everything that Android GPU Inspector leaves on the Android device, your app might never run again on that device.
 
+Android GPU Inspector installs an interceptor layer as an app called **"GAPID"** to capture GPU calls. 
+
 **Install Instructions:** 
 - Download and install the [Android GPU Inspector](https://developer.android.com/agi)
 - Connect an Android device via USB and ensure that USB Debugging is enabled
@@ -68,3 +70,8 @@ For a clean state, also perform the following actions:
   adb shell rm /data/local/tmp/agi_launch_producer
   adb shell rm /data/local/tmp/agi_launch_producer.pid
   ```
+
+## RenderDoc
+
+Good old [RenderDoc](https://renderdoc.org) by Baldur Karlsson can be used for GPU profiling on Android. Similar to Android GPU Inspector, it installs an interceptor layer on the phone: an app called **"RenderDocCmd"**. While I got an impression of RenderDoc being slightly outdated in terms of Android support, I could successfully use it for GPU profiling. RenderDoc is run on the PC and connects to a so-called _Remote Context_---namely a Debug-enabled Android device, as described on RenderDoc's [How do I use RenderDoc on Android?](https://renderdoc.org/docs/how/how_android_capture.html) page.
+
