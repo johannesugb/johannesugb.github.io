@@ -118,10 +118,12 @@ There is a much better option. 👇
 
 ## Sokatoa
 
-In short, Sokatoa `v1.0.0` is what I expected from Android GPU Inspector. It is a very new tool, with its `v1.0.0` having been released in March 2026, followed by `v1.0.1` in May 2026. 
-It is developed by the Samsung Austin Research Center but is by no means limited to Samsung devices but instead, a vendor-neutral GPU profiler and debugger. I've successfully used it it debug running on Adreno and Mali GPUs, on Samsung and non-Samsung devices. The debugging experience was overall pretty smooth and the tool was very stable. Not all features are as user friendly as they could be, but there is a Discord server where one can get in contact with the developers, which are very active and open to feedback. Overall, my experience with it was pretty awesome and I cannot wait for seeing future upgrades to the tool.
+In short, Sokatoa `v1.0.0` is what I expected Android GPU Inspector to be. It is a very new tool, with its `v1.0.0` having been released in March 2026, followed by `v1.0.1` in May 2026. 
+It is developed by the Samsung Austin Research Center but is by no means limited to Samsung devices. Instead, it is a vendor-neutral GPU profiler and debugger. I've successfully used it to debug apps running on Adreno and Mali GPUs, on Samsung and non-Samsung devices. The debugging experience was overall pretty smooth and the tool was very stable. Not all features are as user friendly as they could be (yet), but there is a Discord server where one can get in contact with the developers, which are very active and open to feedback. Overall, my experience with it was pretty awesome and I cannot wait for seeing future upgrades to the tool.
 
-From a technical point, Sokatoa interfaces with Perfetto and uses LunarG's [GFXReconstruct](https://github.com/LunarG/gfxreconstruct). Its interface looks like shown in _Figure 4_ and it offers much better control than Perfetto's Trace Viewer, and is partly on par with RenderDoc. RenderDoc, however, offers more features and maybe more data insights---it is a battle-tested and time-proven tool after all. In terms of stability tough, I got a better impression of Sokatoa. This is remarkable for a `v1.0.1`, which is the version I've used for my first GPU traces.
+**Releases**, **installation instructions**, and a link to the **Discord** server are available on [Sokatoa's GitHub site](https://github.com/sarc-acl/sokatoa).
+
+From a technical point, Sokatoa interfaces with Perfetto and uses LunarG's [GFXReconstruct](https://github.com/LunarG/gfxreconstruct). Its interface looks like shown in _Figure 4_ and it offers much better control than Perfetto's Trace Viewer. In parts, it is even on par with RenderDoc. In general though, RenderDoc offers more features and maybe more data insights---it is a battle-tested and time-proven tool after all. However, in terms of stability Sokatoa left a better impression, which is remarkable for a `v1.0.1`.
 
 ## Conclusion
 
