@@ -79,7 +79,7 @@ Good old [RenderDoc](https://renderdoc.org) by Baldur Karlsson can be used for G
 _Figure 1: Connecting to Remote Context or Replay Context through RenderDoc (see bottom-left)._
 
 
-After establishing this connection, RenderDoc provides a list of Android application identifiers (those `com.application.my`-type names) which can be selected through the `...`-menu next to the `Executable Path` textbox. This looks like shown in _Figure 2_ and once the to-be-debugged application has been selected, GPU debugging can be `Launch`ed.
+After establishing this connection, RenderDoc provides a list of Android application package names (those `com.application.my`-type ones) which can be selected through the `...`-menu next to the `Executable Path` textbox. This looks like shown in _Figure 2_ and once the to-be-debugged application has been selected, GPU debugging can be `Launch`ed.
 
 <img width="1808" height="718" alt="renderdoc-select-android-app" src="https://github.com/user-attachments/assets/55068442-88b2-435b-9972-1e360005fd83" />              
 _Figure 2: Selecting an Android app which is present on the connected phone for GPU debugging._
@@ -87,12 +87,22 @@ _Figure 2: Selecting an Android app which is present on the connected phone for 
 
 The rest is pretty much the typical RenderDoc profiling and debugging experience---which is awesome if it works. However, also in typical RenderDoc manner, RenderDoc sometimes crashes. Be it that the app is using exotic features, or features code that can lead to undefined behavior, it can be challenging to find the root cause.
 
-## Perfetto
+## Perfetto and Its Online Trace Viewer
 
-Perfetto seems to be _the_ standard system-wide profiling layer on Android nowadays, which offers support for GPU profiling among all kinds of other profiling areas. GPU profiling seems to somewhat limited with respect to the other solutions presented above. However, there's a new tool which TBD (speaking of Sokatoa)
+Perfetto seems to be _the_ standard system-wide profiling layer on Android nowadays, which offers support for GPU profiling among all kinds of other profiling areas. GPU profiling seems to somewhat limited with respect to the other solutions presented above when using the [online Trace Viewer](https://ui.perfetto.dev/), but there's a new tool by Samsung which might indicate otherwise (more information about that in the next section about #Sokatoa).
 
-Citing the _Perfetto DOCS_ (available at [perfetto.dev/docs](https://perfetto.dev/docs/))
+Citing the _Perfetto DOCS_ (available at [perfetto.dev/docs](https://perfetto.dev/docs/)),
 
-> Built into Android
-Part of the platform since Android 9 Pie, runs on Linux as well
+> Perfetto is the **default tracing system** for the **Android operating system**
+
+so nothing has to be installed on the Android device---at least on newer devices, since Perfetto is
+
+> Part of the platform since Android 9 Pie.
+
+Most interestingly, there is a browser-based tool to record and view traces, namely Perfetto's [**Trace Viewer**](https://ui.perfetto.dev/). Its menu item [Record new trace](https://ui.perfetto.dev/#!/record) allows to connect to a device (it will ask for permission to _Sign in as "WebUSB ADB Key"_) once you hit the |▶ button.
+- Connect to a target device under [Overview](https://ui.perfetto.dev/#!/record/target)
+- Focus on a specific package name under [Android apps & svcs](https://ui.perfetto.dev/#!/record/android)
+- Configure which data to capture, such as settings for GPU-specific probes under [GPU](https://ui.perfetto.dev/#!/record/gpu)
+- Start profiling with the |▶ button, and stop it with the ■ button.          
+  The trace will open directly in the browser, showing the captures counters/measurements/etc.
 
