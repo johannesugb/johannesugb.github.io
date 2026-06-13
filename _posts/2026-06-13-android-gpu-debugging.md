@@ -1,6 +1,6 @@
 ---
 title: "Android GPU Debugging"
-# last_modified_at: 2026-06-13T22:03:00+02:00
+# last_modified_at: 2026-06-13T22:39:00+02:00
 categories:
   - GPU-Programming
 tags:
@@ -22,6 +22,8 @@ I think, I actually like RenderDoc best for ordinary GPU debugging sessions. How
 so it is sometimes necessary to use NVIDIA Nsight instead. 
 Sometimes, both of these tools would crash during graphics debugging, but PIX doesn't.
 I.e., as developer it can be useful to juggle between all of these tools.
+
+But how to do GPU profiling and debugging on Android?
 
 This post contains a few notes on my attempts to establish proper GPU debugging on Android, and concrete recommendations on which GPU profiling applications to use. TL;DR for the latter part: Jump directly to section [Conclusion](#conclusion).
 
