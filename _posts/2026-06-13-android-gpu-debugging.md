@@ -23,8 +23,7 @@ so it is sometimes necessary to use NVIDIA Nsight instead.
 Sometimes, both of these tools would crash during graphics debugging, but PIX doesn't.
 I.e., as developer it can be useful to juggle between all of these tools.
 
-Currently, I'm workin with Android and I am still struggling to establish a great GPU debugging workflow. 
-This post contains a few notes on my attempts to establish GPU debugging on Android and the associated struggles.
+This post contains a few notes on my attempts to establish proper GPU debugging on Android, and concrete recommendations on which GPU profiling applications to use. TL;DR for the latter part: Jump directly to section [Conclusion](#conclusion).
 
 ## Android GPU Inspector and How to Uninstall it
 
@@ -90,7 +89,7 @@ The rest is pretty much the typical RenderDoc profiling and debugging experience
 
 ## Perfetto and Its Online Trace Viewer
 
-Perfetto seems to be _the_ standard system-wide profiling layer on Android nowadays, which offers support for GPU profiling among all kinds of other profiling areas. GPU profiling seems to somewhat limited with respect to the other solutions presented above when using the [online Trace Viewer](https://ui.perfetto.dev/), but there's a new tool by Samsung which might indicate otherwise (more information about that in the next section about #Sokatoa).
+Perfetto seems to be _the_ standard system-wide profiling layer on Android nowadays, which offers support for GPU profiling among all kinds of other profiling areas. GPU profiling seems to somewhat limited with respect to the other solutions presented above when using the [online Trace Viewer](https://ui.perfetto.dev/), but there's a new tool by Samsung which might indicate otherwise (more information about that in the next section about [Sokatoa](#sokatoa)).
 
 Citing the _Perfetto DOCS_ (available at [perfetto.dev/docs](https://perfetto.dev/docs/)),
 
@@ -100,7 +99,9 @@ so nothing has to be installed on the Android device---at least on newer devices
 
 > Part of the platform since Android 9 Pie.
 
-Most interestingly, there is a browser-based tool to record and view traces, namely Perfetto's [**Trace Viewer**](https://ui.perfetto.dev/). Its menu item [Record new trace](https://ui.perfetto.dev/#!/record) allows to connect to a device (it will ask for permission to _Sign in as "WebUSB ADB Key"_) once you hit the ▶ button.
+Most interestingly, there is a browser-based tool to record and view traces, namely Perfetto's [Trace Viewer](https://ui.perfetto.dev/). 
+
+Its menu item [Record new trace](https://ui.perfetto.dev/#!/record) allows to connect to a device (it will ask for permission to _Sign in as "WebUSB ADB Key"_) once you hit the ▶ button.
 - Connect to a target device under [Overview](https://ui.perfetto.dev/#!/record/target)
 - Focus on a specific package name under [Android apps & svcs](https://ui.perfetto.dev/#!/record/android)
 - Configure which data to capture, such as settings for GPU-specific probes under [GPU](https://ui.perfetto.dev/#!/record/gpu)
@@ -118,12 +119,12 @@ However, I really disagree with their recommendation of Android GPU Inspector, a
 
 ## Sokatoa
 
-In short, Sokatoa `v1.0.0` is what I expected Android GPU Inspector to be. Its `v1.0.0` has only recently been released---in March 2026---followed by `v1.0.1` in May 2026. 
+In short, Sokatoa `v1.0.0` is what I expected [Android GPU Inspector](#android-gpu-inspector-and-how-to-uninstall-it) to be. Its `v1.0.0` has only recently been released---in March 2026---followed by `v1.0.1` in May 2026. 
 It is developed by the Samsung Austin Research Center but is by no means limited to Samsung devices. Instead, it is a vendor-neutral GPU profiler and debugger. I've successfully used it to debug apps running on Adreno and Mali GPUs, on Samsung and non-Samsung devices. The debugging experience was overall pretty smooth and the tool was very stable. Not all features are as user friendly as they could be (yet), but there is a Discord server where one can get in contact with the developers, which are very active and open to feedback. Overall, my experience with it was pretty awesome and I cannot wait for seeing future upgrades to the tool.
 
 **Releases**, **installation instructions**, and a link to the **Discord** server are available on [Sokatoa's GitHub site](https://github.com/sarc-acl/sokatoa).
 
-From a technical point, Sokatoa interfaces with Perfetto and uses LunarG's [GFXReconstruct](https://github.com/LunarG/gfxreconstruct). Its interface looks like shown in _Figure 4_ and it offers much better control than Perfetto's Trace Viewer. In parts, it is even on par with RenderDoc. In general though, RenderDoc offers more features and maybe more data insights---it is a battle-tested and time-proven tool after all. However, in terms of stability Sokatoa left a better impression, which is remarkable for a `v1.0.1`.
+From a technical point, Sokatoa interfaces with [Perfetto](#perfetto-and-its-online-trace-viewer) and uses LunarG's [GFXReconstruct](https://github.com/LunarG/gfxreconstruct). Its interface looks like shown in _Figure 4_ and it offers much better control than Perfetto's Trace Viewer. In parts, it is even on par with RenderDoc. In general though, RenderDoc offers more features and maybe more data insights---it is a battle-tested and time-proven tool after all. However, in terms of stability Sokatoa left a better impression, which is remarkable for a `v1.0.1`.
 
 <img alt="sokatoa-one-frame" src="https://github.com/user-attachments/assets/d91d8090-50eb-4532-b350-53e7781702e4" />            
 _Figure 4: A bit more than one frame in Sokatoa. The viewed frame has black background, while previous and next frames have gray backgrounds. Below the System overview, there is a "Current Selection" tab, which should actually show the frame's rendering output. However, the app which was debugged uses the Vulkan extension [VK_EXT_layer_settings](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_layer_settings.html) which was not supported by Sokatoa v1.0.1 and led to frames not being shown. Preparing a build with this Vulkan extension omitted can serve as a workaround to fix this issue for now._
