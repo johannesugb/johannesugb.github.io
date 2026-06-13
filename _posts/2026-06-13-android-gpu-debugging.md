@@ -1,11 +1,12 @@
 ---
 title: "Android GPU Debugging"
-# last_modified_at: 2026-05-21T02:12:00+02:00
+# last_modified_at: 2026-06-13T22:03:00+02:00
 categories:
   - GPU-Programming
 tags:
   - Vulkan
   - Android
+  - GPU Profiling
 # header:
 #   image: /assets/images/1500x500.jpg
 ---
@@ -124,6 +125,9 @@ It is developed by the Samsung Austin Research Center but is by no means limited
 **Releases**, **installation instructions**, and a link to the **Discord** server are available on [Sokatoa's GitHub site](https://github.com/sarc-acl/sokatoa).
 
 From a technical point, Sokatoa interfaces with Perfetto and uses LunarG's [GFXReconstruct](https://github.com/LunarG/gfxreconstruct). Its interface looks like shown in _Figure 4_ and it offers much better control than Perfetto's Trace Viewer. In parts, it is even on par with RenderDoc. In general though, RenderDoc offers more features and maybe more data insights---it is a battle-tested and time-proven tool after all. However, in terms of stability Sokatoa left a better impression, which is remarkable for a `v1.0.1`.
+
+<img alt="sokatoa-one-frame" src="https://github.com/user-attachments/assets/d91d8090-50eb-4532-b350-53e7781702e4" />            
+_Figure 4: A bit more than one frame in Sokatoa. The viewed frame has black background, while previous and next frames have gray backgrounds. Below the System overview, there is a "Current Selection" tab, which should actually show the frame's rendering output. However, the app which was debugged uses the Vulkan extension [VK_EXT_layer_settings](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_layer_settings.html) which was not supported by Sokatoa v1.0.1 and led to frames not being displayer. Preparing a build with this Vulkan extension omitted can serve as a workaround to fix this issue for now._
 
 ## Conclusion
 
