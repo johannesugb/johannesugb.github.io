@@ -3,7 +3,7 @@ permalink: /about/
 title: "About"
 ---
 
-My name is Johannes Unterguggenberger. I am mainly a real-rime rendering engineer and researcher and live in Austria. I received my PhD degree from of [TU Wien](https://www.tuwien.at), where I served as researcher and university assistant for many years at the [Research Unit of Computer Graphics](https://www.cg.tuwien.ac.at).
+My name is Johannes Unterguggenberger. I am mainly a real-time rendering engineer and researcher and live in Austria. I received my PhD degree from of [TU Wien](https://www.tuwien.at), where I served as researcher and university assistant for many years at the [Research Unit of Computer Graphics](https://www.cg.tuwien.ac.at).
 
 ### Technology and GitHub Projects
 
