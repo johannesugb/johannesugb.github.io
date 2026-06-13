@@ -104,12 +104,12 @@ Most interestingly, there is a browser-based tool to record and view traces, nam
 - Focus on a specific package name under [Android apps & svcs](https://ui.perfetto.dev/#!/record/android)
 - Configure which data to capture, such as settings for GPU-specific probes under [GPU](https://ui.perfetto.dev/#!/record/gpu)
 - Start profiling with the |▶ button, and stop it with the ■ button.          
-  The trace will open directly in the browser, showing the captures counters/measurements/etc.
+- The trace will open directly in the browser, showing the captures counters/measurements/etc. A Perfetto trace can look like shown in _Figure 3_.
 
 <img alt="perfetto-trace" src="https://github.com/user-attachments/assets/2128ef42-d840-40d8-94d4-09f6fb0cd44c" />       
 _Figure 3: A Perfetto trace, showing approximately one frame. The `surfaceflinger` section gives some insights of the work done on the GPU._
 
-A Perfetto trace can look like shown in _Figure 3_. In terms of GPU debugging, the Perfetto DOCS point out the Trace Viewer's limited support for GPU debuging information:
+In terms of GPU debugging, the Perfetto DOCS point out the Trace Viewer's limited support for GPU debuging information:
 
 > We have some support for GPU render stages and GPU counters recording on Android, but these features are better supported by Android GPU Inspector (which under the hoods uses Perfetto as one of its data sources).
 
@@ -117,5 +117,18 @@ However, I really disagree with their recommendation of Android GPU Inspector, a
 There is a much better option. 👇
 
 ## Sokatoa
+
+In short, Sokatoa `v1.0.0` is what I expected from Android GPU Inspector. It is a very new tool, with its `v1.0.0` having been released in March 2026, followed by `v1.0.1` in May 2026. 
+It is developed by the Samsung Austin Research Center but is by no means limited to Samsung devices but instead, a vendor-neutral GPU profiler and debugger. I've successfully used it it debug running on Adreno and Mali GPUs, on Samsung and non-Samsung devices. The debugging experience was overall pretty smooth and the tool was very stable. Not all features are as user friendly as they could be, but there is a Discord server where one can get in contact with the developers, which are very active and open to feedback. Overall, my experience with it was pretty awesome and I cannot wait for seeing future upgrades to the tool.
+
+From a technical point, Sokatoa interfaces with Perfetto and uses LunarG's [GFXReconstruct](https://github.com/LunarG/gfxreconstruct). Its interface looks like shown in _Figure 4_ and it offers much better control than Perfetto's Trace Viewer, and is partly on par with RenderDoc. RenderDoc, however, offers more features and maybe more data insights---it is a battle-tested and time-proven tool after all. In terms of stability tough, I got a better impression of Sokatoa. This is remarkable for a `v1.0.1`, which is the version I've used for my first GPU traces.
+
+## Conclusion
+
+My recommendation for GPU profiling and debugging on Android is straight forward:
+- Try Sokatoa first, and see how far you get with it. It is modern and stable (at least in part because it uses Perfetto).
+- If you do not find the information you are looking in Sokatoa, try your luck in RenderDoc.
+- Avoid Android GPU Inspector
+
 
 
