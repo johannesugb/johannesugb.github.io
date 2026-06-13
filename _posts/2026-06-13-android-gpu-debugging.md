@@ -11,7 +11,7 @@ tags:
 #   image: /assets/images/1500x500.jpg
 ---
 
-<img width="25%" alt="PeakVisor Logo" src="https://github.com/user-attachments/assets/75c87e67-f03e-40a7-a7c6-6bea63649ce1" style="float:left" /> 
+<img width="20%" alt="PeakVisor Logo" src="https://github.com/user-attachments/assets/75c87e67-f03e-40a7-a7c6-6bea63649ce1" style="float:left; margin:2%;" /> 
 I am currently working on improving the custom Vulkan renderer that powers [PeakVisor](https://peakvisor.com)’s [Android app](https://play.google.com/store/apps/details?id=tips.routes.peakvisor). It is one of the key features that sets the app apart from other **mountain route-planning** applications, enabling highly accurate **3D maps** and augmented-reality (AR) **peak identification**. However, building a custom renderer also comes with unique challenges. Addressing performance issues and rendering bugs often requires GPU profiling and debugging, and on Android, determining which tools are appropriate for these tasks is not immediately obvious.
 
 On Windows, I have successfully used [NVIDIA Nsight](https://developer.nvidia.com/tools-overview#get-tools), Baldur Karlsson's [RenderDoc](https://renderdoc.org/), and Microsoft's [PIX](https://devblogs.microsoft.com/pix/).
