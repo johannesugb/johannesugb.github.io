@@ -100,12 +100,12 @@ so nothing has to be installed on the Android device---at least on newer devices
 
 > Part of the platform since Android 9 Pie.
 
-Most interestingly, there is a browser-based tool to record and view traces, namely Perfetto's [**Trace Viewer**](https://ui.perfetto.dev/). Its menu item [Record new trace](https://ui.perfetto.dev/#!/record) allows to connect to a device (it will ask for permission to _Sign in as "WebUSB ADB Key"_) once you hit the |▶ button.
+Most interestingly, there is a browser-based tool to record and view traces, namely Perfetto's [**Trace Viewer**](https://ui.perfetto.dev/). Its menu item [Record new trace](https://ui.perfetto.dev/#!/record) allows to connect to a device (it will ask for permission to _Sign in as "WebUSB ADB Key"_) once you hit the ▶ button.
 - Connect to a target device under [Overview](https://ui.perfetto.dev/#!/record/target)
 - Focus on a specific package name under [Android apps & svcs](https://ui.perfetto.dev/#!/record/android)
 - Configure which data to capture, such as settings for GPU-specific probes under [GPU](https://ui.perfetto.dev/#!/record/gpu)
-- Start profiling with the |▶ button, and stop it with the ■ button.          
-- The trace will open directly in the browser, showing the captures counters/measurements/etc. A Perfetto trace can look like shown in _Figure 3_.
+- Start profiling with the ▶ button, and stop it with the ■ button.
+- The trace will open directly in the browser, showing the measurements. A Perfetto trace can look like shown in _Figure 3_.
 
 <img alt="perfetto-trace" src="https://github.com/user-attachments/assets/2128ef42-d840-40d8-94d4-09f6fb0cd44c" />       
 _Figure 3: A Perfetto trace, showing approximately one frame. The `surfaceflinger` section gives some insights of the work done on the GPU._
