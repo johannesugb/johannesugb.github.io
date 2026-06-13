@@ -11,19 +11,17 @@ tags:
 #   image: /assets/images/1500x500.jpg
 ---
 
-The need for good tooling is crucial during graphics programming. On the Windows operating system, some awesome tools exist for GPU profiling, which usually manage to help you along. 
-Tools that I have successfully used for GPU profiling in the last years are:
-- [NVIDIA Nsight](https://developer.nvidia.com/tools-overview#get-tools)
-- Baldur Karlsson's [RenderDoc](https://renderdoc.org/)
-- Microsoft's [PIX](https://devblogs.microsoft.com/pix/)
+<img width="25%" alt="PeakVisor Logo" src="https://github.com/user-attachments/assets/75c87e67-f03e-40a7-a7c6-6bea63649ce1" style="float:left" /> 
+I am currently working on improving the custom Vulkan renderer that powers [PeakVisor](https://peakvisor.com)’s [Android app](https://play.google.com/store/apps/details?id=tips.routes.peakvisor). It is one of the key features that sets the app apart from other **mountain route-planning** applications, enabling highly accurate **3D maps** and augmented-reality (AR) **peak identification**. However, building a custom renderer also comes with unique challenges. Addressing performance issues and rendering bugs often requires GPU profiling and debugging, and on Android, determining which tools are appropriate for these tasks is not immediately obvious.
 
+On Windows, I have successfully used [NVIDIA Nsight](https://developer.nvidia.com/tools-overview#get-tools), Baldur Karlsson's [RenderDoc](https://renderdoc.org/), and Microsoft's [PIX](https://devblogs.microsoft.com/pix/).
 Those tools all have different strengths and weaknesses. 
 I think, I actually like RenderDoc best for ordinary GPU debugging sessions. However, there are some issues with respect to [ray tracing support](https://renderdoc.org/docs/behind_scenes/raytracing.html), 
-so it is sometimes necessary to use NVIDIA Nsight instead. 
-Sometimes, both of these tools would crash during graphics debugging, but PIX doesn't.
-I.e., as developer it can be useful to juggle between all of these tools.
+so it was sometimes necessary to use NVIDIA Nsight instead. 
+Sometimes, both of these tools would crash during graphics debugging, but PIX didn't.
+I.e., as developer it can be useful to juggle between different tools.
 
-But how to do GPU profiling and debugging on Android?
+But how to best do GPU profiling and debugging on Android?
 
 This post contains a few notes on my attempts to establish proper GPU debugging on Android, and concrete recommendations on which GPU profiling applications to use. TL;DR for the latter part: Jump directly to section [Conclusion](#conclusion).
 
