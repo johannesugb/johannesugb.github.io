@@ -131,8 +131,8 @@ _Figure 4: A bit more than one frame in Sokatoa. The viewed frame has black back
 ## Conclusion
 
 My recommendation for GPU profiling and debugging on Android is straight forward:
-- Try Sokatoa first, and see how far you get with it. It is modern and stable (at least in part because it uses Perfetto).
-- If you do not find the information you are looking in Sokatoa, try your luck in RenderDoc.
+- Try Sokatoa first, and see how far you get with it. It is modern, stable, and uses Perfetto as one of its data sources.
+- If you do not find the information you are looking for in Sokatoa, try your luck in RenderDoc. (And hope that it doesn't crash)
 - Avoid Android GPU Inspector
 
 
