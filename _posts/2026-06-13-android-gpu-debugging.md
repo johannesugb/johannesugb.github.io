@@ -114,12 +114,11 @@ In terms of GPU debugging, the Perfetto DOCS point out the Trace Viewer's limite
 
 > We have some support for GPU render stages and GPU counters recording on Android, but these features are better supported by Android GPU Inspector (which under the hoods uses Perfetto as one of its data sources).
 
-However, I really disagree with their recommendation of Android GPU Inspector, as described above.       
-There is a much better option. 👇
+However, I really disagree with their recommendation of Android GPU Inspector, as described above. There is a much better option. 👇
 
 ## Sokatoa
 
-In short, Sokatoa `v1.0.0` is what I expected Android GPU Inspector to be. It is a very new tool, with its `v1.0.0` having been released in March 2026, followed by `v1.0.1` in May 2026. 
+In short, Sokatoa `v1.0.0` is what I expected Android GPU Inspector to be. Its `v1.0.0` has only recently been released---in March 2026---followed by `v1.0.1` in May 2026. 
 It is developed by the Samsung Austin Research Center but is by no means limited to Samsung devices. Instead, it is a vendor-neutral GPU profiler and debugger. I've successfully used it to debug apps running on Adreno and Mali GPUs, on Samsung and non-Samsung devices. The debugging experience was overall pretty smooth and the tool was very stable. Not all features are as user friendly as they could be (yet), but there is a Discord server where one can get in contact with the developers, which are very active and open to feedback. Overall, my experience with it was pretty awesome and I cannot wait for seeing future upgrades to the tool.
 
 **Releases**, **installation instructions**, and a link to the **Discord** server are available on [Sokatoa's GitHub site](https://github.com/sarc-acl/sokatoa).
