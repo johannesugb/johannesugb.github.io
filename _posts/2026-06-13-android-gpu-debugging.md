@@ -39,7 +39,7 @@ Android GPU Inspector installs an interceptor layer as an app called **"GAPID"**
 - On the connected Android device, you will be asked to install the "harmfull" `GAPID - arm64v8a`, which you have to `Install anyway`
 - _Capture a new trace_ via Android GPU Inspector:
   - As soon as the device has been successfully connected and GAPID has been installed, you'll be able to select your `Device`
-  - Then, you'll also be able to select an `Application` to GPU-debug via the `...`-Button.
+  - Then, you'll also be able to select an `Application` to GPU-debug via the `...`-button.
 - If you're lucky, you can do GPU profiling. If you're not, the Android device might be configured in a way that your app never runs again.
 
 **Uninstall Instructions:**
