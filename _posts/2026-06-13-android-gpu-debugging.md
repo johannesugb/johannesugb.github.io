@@ -1,6 +1,6 @@
 ---
 title: "Android GPU Debugging"
-# last_modified_at: 2026-06-13T22:39:00+02:00
+# last_modified_at: 2026-06-13T23:25:00+02:00
 categories:
   - GPU-Programming
 tags:
@@ -23,11 +23,11 @@ I.e., as developer it can be useful to juggle between different tools.
 
 But how to best do GPU profiling and debugging on Android?
 
-This post contains a few notes on my attempts to establish proper GPU debugging on Android, and concrete recommendations on which GPU profiling applications to use. TL;DR for the latter part: Jump directly to section [Conclusion](#conclusion).
+This post contains concrete recommendations on which GPU profiling and debugging applications to use. TL;DR: Jump directly to section [Conclusion](#conclusion).
 
 ## Android GPU Inspector and How to Uninstall it
 
-So, this is a shame, because this tool looks like the perfect tool for Android GPU debugging. However, it always crashed the app that I wanted to debug and worse, it left my Android device in a state so that the app would now _always_ crash with a segmentation fault, even when not being debugged. Therefore, this section is mainly an uninstall guide because uninstalling wasn't straight-forward. And without removing everything that Android GPU Inspector leaves on the Android device, your app might never run again on that device.
+This is a shame, because this tool looks like the perfect tool for Android GPU debugging. However, it always crashed the app that I wanted to debug and worse, it left my Android device in a state so that the app would now _always_ crash with a segmentation fault, even when not being debugged. Therefore, this section is mainly an uninstall guide because uninstalling wasn't straight-forward. And without removing everything that Android GPU Inspector leaves on the Android device, your app might never run again on that device.
 
 Android GPU Inspector installs an interceptor layer as an app called **"GAPID"** to capture GPU calls. 
 
@@ -39,7 +39,7 @@ Android GPU Inspector installs an interceptor layer as an app called **"GAPID"**
 - _Capture a new trace_ via Android GPU Inspector:
   - As soon as the device has been successfully connected and GAPID has been installed, you'll be able to select your `Device`
   - Then, you'll also be able to select an `Application` to GPU-debug via the `...`-button.
-- If you're lucky, you can do GPU profiling. If you're not, the Android device might be configured in a way that your app never runs again.
+- If you're lucky, you can do GPU debugging. If you're not, the Android device might be configured in a way that your app never runs again.
 
 **Uninstall Instructions:**
 - Uninstall `GAPID - arm64v8a` from _Settings -> Apps_
@@ -73,7 +73,7 @@ For a clean state, also perform the following actions:
 
 ## RenderDoc
 
-Good old [RenderDoc](https://renderdoc.org) by Baldur Karlsson can be used for GPU profiling on Android. Similar to Android GPU Inspector, it installs an interceptor layer on the phone: an app called **"RenderDocCmd"**. While I got an impression of RenderDoc being slightly outdated in terms of Android support, I could successfully use it for GPU profiling. RenderDoc is run on the PC and connects to a so-called _Remote Context_---namely a Debug-enabled Android device, as described on RenderDoc's [How do I use RenderDoc on Android?](https://renderdoc.org/docs/how/how_android_capture.html) page. How to connect to an Android device as Remote Context is shown in _Figure 1_. Connecting starts RenderDocCmd on the Android device which communicates with RenderDoc.
+Good old [RenderDoc](https://renderdoc.org) by Baldur Karlsson can be used for GPU debugging on Android. Similar to Android GPU Inspector, it installs an interceptor layer on the phone: an app called **"RenderDocCmd"**. While I got an impression of RenderDoc being slightly outdated in terms of Android support, I could successfully use it for GPU debugging. RenderDoc is run on the PC and connects to a so-called _Remote Context_---namely a Debug-enabled Android device, as described on RenderDoc's [How do I use RenderDoc on Android?](https://renderdoc.org/docs/how/how_android_capture.html) page. How to connect to an Android device as Remote Context is shown in _Figure 1_. Connecting starts RenderDocCmd on the Android device which communicates with RenderDoc.
 
 <img alt="renderdoc-replay-context" src="https://github.com/user-attachments/assets/4fe8ee63-c72c-4fd7-b60b-7f9b2ba36d38" />              
 _Figure 1: Connecting to Remote Context or Replay Context through RenderDoc (see bottom-left)._
