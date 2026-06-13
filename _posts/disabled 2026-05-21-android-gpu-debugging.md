@@ -73,7 +73,17 @@ For a clean state, also perform the following actions:
 
 ## RenderDoc
 
-Good old [RenderDoc](https://renderdoc.org) by Baldur Karlsson can be used for GPU profiling on Android. Similar to Android GPU Inspector, it installs an interceptor layer on the phone: an app called **"RenderDocCmd"**. While I got an impression of RenderDoc being slightly outdated in terms of Android support, I could successfully use it for GPU profiling. RenderDoc is run on the PC and connects to a so-called _Remote Context_---namely a Debug-enabled Android device, as described on RenderDoc's [How do I use RenderDoc on Android?](https://renderdoc.org/docs/how/how_android_capture.html) page.
+Good old [RenderDoc](https://renderdoc.org) by Baldur Karlsson can be used for GPU profiling on Android. Similar to Android GPU Inspector, it installs an interceptor layer on the phone: an app called **"RenderDocCmd"**. While I got an impression of RenderDoc being slightly outdated in terms of Android support, I could successfully use it for GPU profiling. RenderDoc is run on the PC and connects to a so-called _Remote Context_---namely a Debug-enabled Android device, as described on RenderDoc's [How do I use RenderDoc on Android?](https://renderdoc.org/docs/how/how_android_capture.html) page. How to connect to an Android device as Remote Context is shown in _Figure 1_. Connecting starts RenderDocCmd on the Android device which communicates with RenderDoc.
+
+<img alt="renderdoc-replay-context" src="https://github.com/user-attachments/assets/4fe8ee63-c72c-4fd7-b60b-7f9b2ba36d38" />
+_Figure 1: Connecting to Remote Context or Replay Context through RenderDoc (see bottom-left)._
+
+After establishing this connection, RenderDoc provides a list of Android application identifiers (those `com.application.my`-type names) which can be selected through the `...`-menu next to the `Executable Path` textbox. This looks like shown in _Figure 2_ and once the to-be-debugged application has been selected, GPU debugging can be `Launch`ed.
+
+<img alt="renderdoc-select-android-app" src="https://github.com/user-attachments/assets/e72b174b-bec0-435f-b28f-d8fd6f9418ad" />
+_Figure 2: Selecting an Android app which is present on the connected phone for GPU debugging._
+
+The rest is pretty much the typical RenderDoc profiling and debugging experience---which is awesome if it works. However, also in typical RenderDoc manner, RenderDoc sometimes crashes. Be it that the app is using exotic features, or features code that can lead to undefined behavior, it can be challenging to find the root cause.
 
 ## Perfetto
 
