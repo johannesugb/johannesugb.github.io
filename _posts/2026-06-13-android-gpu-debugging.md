@@ -1,6 +1,6 @@
 ---
 title: "Android GPU Debugging"
-# last_modified_at: 2026-06-13T23:29:00+02:00
+# last_modified_at: 2026-06-13T23:56:00+02:00
 categories:
   - GPU-Programming
 tags:
@@ -83,6 +83,7 @@ Good old [RenderDoc](https://renderdoc.org) by Baldur Karlsson can be used for G
         
 {: .center}
 [![RenderDoc Replay Context](/assets/images/renderdoc-replay-context.jpg)](/assets/images/renderdoc-replay-context.jpg)       
+
 _Figure 1: Connecting to Remote Context or Replay Context through RenderDoc (see bottom-left)._
 
 
@@ -90,6 +91,7 @@ After establishing this connection, RenderDoc provides a list of Android applica
 
 {: .center}
 [![RenderDoc Select Android app](/assets/images/renderdoc-select-android-app.jpg)](/assets/images/renderdoc-select-android-app.jpg)             
+
 _Figure 2: Selecting an Android app which is present on the connected phone for GPU debugging._
 
 
@@ -118,6 +120,7 @@ Its menu item [Record new trace](https://ui.perfetto.dev/#!/record) allows to co
 
 {: .center}
 [![A Perfetto trace, viewed in Trace Viewer](/assets/images/perfetto-trace.jpg)](/assets/images/perfetto-trace.jpg)     
+
 _Figure 3: A Perfetto trace, showing approximately one frame. The `surfaceflinger` section gives some insights of the work done on the GPU._
 
 In terms of GPU debugging, the Perfetto DOCS point out the Trace Viewer's limited support for GPU debuging information:
@@ -137,6 +140,7 @@ From a technical point, Sokatoa interfaces with [Perfetto](#perfetto-and-its-onl
 
 {: .center}
 [![A frame viewed in Sokatoa](/assets/images/sokatoa-one-frame.jpg)](/assets/images/sokatoa-one-frame.jpg)   
+
 _Figure 4: A bit more than one frame in Sokatoa. The viewed frame has black background, while previous and next frames have gray backgrounds. The "Current Selection" tab at the bottom should actually show the frame's rendering output. However, the app which was debugged uses the Vulkan extension [VK_EXT_layer_settings](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_layer_settings.html) which was not supported by Sokatoa v1.0.1 and led to frames not being shown. Preparing a build with this Vulkan extension omitted can serve as a workaround to fix this issue for now._
 
 ## Conclusion
