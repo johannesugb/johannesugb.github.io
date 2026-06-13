@@ -106,7 +106,10 @@ Most interestingly, there is a browser-based tool to record and view traces, nam
 - Start profiling with the |▶ button, and stop it with the ■ button.          
   The trace will open directly in the browser, showing the captures counters/measurements/etc.
 
-In terms of GPU debugging, the Perfetto DOCS point out the Trace Viewer's limited support for GPU debuging information:
+<img alt="perfetto-trace" src="https://github.com/user-attachments/assets/2128ef42-d840-40d8-94d4-09f6fb0cd44c" />       
+_Figure 3: A Perfetto trace, showing approximately one frame. The `surfaceflinger` section gives some insights of the work done on the GPU._
+
+A Perfetto trace can look like shown in _Figure 3_. In terms of GPU debugging, the Perfetto DOCS point out the Trace Viewer's limited support for GPU debuging information:
 
 > We have some support for GPU render stages and GPU counters recording on Android, but these features are better supported by Android GPU Inspector (which under the hoods uses Perfetto as one of its data sources).
 
