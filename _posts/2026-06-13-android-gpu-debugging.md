@@ -11,7 +11,7 @@ tags:
 #   image: /assets/images/1500x500.jpg
 ---
 
-<img width="20%" alt="PeakVisor Logo" src="https://github.com/user-attachments/assets/75c87e67-f03e-40a7-a7c6-6bea63649ce1" style="float:left; margin:2%;" /> 
+<img width="20%" alt="PeakVisor Logo" src="/assets/images/peakvisor-logo.png" style="float:left; margin:2%;" /> 
 I am currently working on improving the custom Vulkan renderer that powers [PeakVisor](https://peakvisor.com)’s [Android app](https://play.google.com/store/apps/details?id=tips.routes.peakvisor). It is one of the key features that sets the app apart from other **mountain route-planning** applications, enabling highly accurate **3D maps** and augmented-reality (AR) **peak identification**. However, building a custom renderer also comes with unique challenges. Addressing performance issues and rendering bugs often requires GPU profiling and debugging, and on Android, determining which tools are appropriate for these tasks is not immediately obvious.
 
 On Windows, I have successfully used [NVIDIA Nsight](https://developer.nvidia.com/tools-overview#get-tools), Baldur Karlsson's [RenderDoc](https://renderdoc.org/), and Microsoft's [PIX](https://devblogs.microsoft.com/pix/).
@@ -80,14 +80,16 @@ For a clean state, also perform the following actions:
 ## RenderDoc
 
 Good old [RenderDoc](https://renderdoc.org) by Baldur Karlsson can be used for GPU debugging on Android. Similar to Android GPU Inspector, it installs an interceptor layer on the phone: an app called **"RenderDocCmd"**. While I got an impression of RenderDoc being slightly outdated in terms of Android support, I could successfully use it for GPU debugging. RenderDoc is run on the PC and connects to a so-called _Remote Context_---namely a Debug-enabled Android device, as described on RenderDoc's [How do I use RenderDoc on Android?](https://renderdoc.org/docs/how/how_android_capture.html) page. How to connect to an Android device as Remote Context is shown in _Figure 1_. Connecting starts RenderDocCmd on the Android device which communicates with RenderDoc.
-
-<img alt="renderdoc-replay-context" src="https://github.com/user-attachments/assets/4fe8ee63-c72c-4fd7-b60b-7f9b2ba36d38" />              
+        
+{: .center}
+[![RenderDoc Replay Context](/assets/images/renderdoc-replay-context.jpg)](/assets/images/renderdoc-replay-context.jpg)       
 _Figure 1: Connecting to Remote Context or Replay Context through RenderDoc (see bottom-left)._
 
 
 After establishing this connection, RenderDoc provides a list of Android application package names (those `com.application.my`-type ones) which can be selected through the `...`-menu next to the `Executable Path` textbox. This looks like shown in _Figure 2_ and once the to-be-debugged application has been selected, GPU debugging can be `Launch`ed.
 
-<img width="1808" height="718" alt="renderdoc-select-android-app" src="https://github.com/user-attachments/assets/55068442-88b2-435b-9972-1e360005fd83" />              
+{: .center}
+[![RenderDoc Select Android app](/assets/images/renderdoc-select-android-app.jpg)](/assets/images/renderdoc-select-android-app.jpg)             
 _Figure 2: Selecting an Android app which is present on the connected phone for GPU debugging._
 
 
@@ -114,7 +116,8 @@ Its menu item [Record new trace](https://ui.perfetto.dev/#!/record) allows to co
 - Start profiling with the ▶ button, and stop it with the ■ button.
 - The trace will open directly in the browser, showing the measurements. A Perfetto trace can look like shown in _Figure 3_.
 
-<img alt="perfetto-trace" src="https://github.com/user-attachments/assets/2128ef42-d840-40d8-94d4-09f6fb0cd44c" />       
+{: .center}
+[![A Perfetto trace, viewed in Trace Viewer](/assets/images/perfetto-trace.jpg)](/assets/images/perfetto-trace.jpg)     
 _Figure 3: A Perfetto trace, showing approximately one frame. The `surfaceflinger` section gives some insights of the work done on the GPU._
 
 In terms of GPU debugging, the Perfetto DOCS point out the Trace Viewer's limited support for GPU debuging information:
@@ -132,7 +135,8 @@ It is developed by the Samsung Austin Research Center but is by no means limited
 
 From a technical point, Sokatoa interfaces with [Perfetto](#perfetto-and-its-online-trace-viewer) and uses LunarG's [GFXReconstruct](https://github.com/LunarG/gfxreconstruct). _Figure 4_ shows its interface. Sokatoa offers much better control and insights than Perfetto's Trace Viewer. In parts, it is even on par with RenderDoc. In general though, RenderDoc offers more features and maybe more data insights---it is a battle-tested and time-proven tool after all. However, in terms of stability Sokatoa left a better impression, which is remarkable for a `v1.0.1`.
 
-<img alt="sokatoa-one-frame" src="https://github.com/user-attachments/assets/d91d8090-50eb-4532-b350-53e7781702e4" />            
+{: .center}
+[![A frame viewed in Sokatoa](/assets/images/sokatoa-one-frame.jpg)](/assets/images/sokatoa-one-frame.jpg)   
 _Figure 4: A bit more than one frame in Sokatoa. The viewed frame has black background, while previous and next frames have gray backgrounds. The "Current Selection" tab at the bottom should actually show the frame's rendering output. However, the app which was debugged uses the Vulkan extension [VK_EXT_layer_settings](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_layer_settings.html) which was not supported by Sokatoa v1.0.1 and led to frames not being shown. Preparing a build with this Vulkan extension omitted can serve as a workaround to fix this issue for now._
 
 ## Conclusion
