@@ -1,6 +1,6 @@
 ---
 title: "Android GPU Debugging"
-# last_modified_at: 2026-06-13T23:25:00+02:00
+# last_modified_at: 2026-06-13T23:29:00+02:00
 categories:
   - GPU-Programming
 tags:
@@ -23,7 +23,13 @@ I.e., as developer it can be useful to juggle between different tools.
 
 But how to best do GPU profiling and debugging on Android?
 
-This post contains concrete recommendations on which GPU profiling and debugging applications to use. TL;DR: Jump directly to section [Conclusion](#conclusion).
+This post contains concrete recommendations on which GPU profiling and debugging applications to use. It covers:
+- [Android GPU Inspector](#android-gpu-inspector-and-how-to-uninstall-it)
+- [RenderDoc](#renderdoc)
+- [Perfetto](#perfetto-and-its-online-trace-viewer)
+- [Sokatoa](#sokatoa)
+
+TL;DR: Jump directly to section [Conclusion](#conclusion).
 
 ## Android GPU Inspector and How to Uninstall it
 
